@@ -15,7 +15,7 @@ jobs:
       - name: Windows GUT CLI
         run: |
           godot --headless -q
-          godot --headless --path . -s addons/gut/gut_cmdln.gd
+          godot --headless -gexit --path . -s addons/gut/gut_cmdln.gd
 
   test-linux:
     if: true
@@ -29,4 +29,4 @@ jobs:
       - name: Linux GUT CLI
         run: |
           godot --headless -q
-          godot --headless --path . -s addons/gut/gut_cmdln.gd
+          godot --headless -gexit --path . -s addons/gut/gut_cmdln.gd
