@@ -1,4 +1,4 @@
-name: "Push Export"
+name: "Test"
 on:
   push:
 env:
@@ -7,34 +7,26 @@ env:
 jobs:
   test-windows:
     if: true
-    name: Windows Export
+    name: Windows Test
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
-          mv -v /root/.local/share/godot/templates/* ~/.local/share/godot/export_templates/
       - name: Windows Build
         run: |
           godot --headless -s --path $PWD addons/gut/gut_cmdln.gd
 
   test-linux:
     if: true
-    name: Linux Export
+    name: Linux Test
     runs-on: ubuntu-20.04
     container:
       image: barichello/godot-ci:4.2.1
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
-          mv -v /root/.local/share/godot/templates/* ~/.local/share/godot/export_templates/
       - name: Linux Build
         run: |
           godot --headless -s --path $PWD addons/gut/gut_cmdln.gd
