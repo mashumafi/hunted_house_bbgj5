@@ -12,7 +12,7 @@ config_version=5
 
 config/name="godot-game-template"
 run/main_scene="res://scenes/menu/menu.tscn"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2.1")
 boot_splash/bg_color=Color(0.0862745, 0.0862745, 0.0862745, 1)
 boot_splash/image="res://assets/splash.png"
 config/icon="res://assets/sprites/icon.png"
