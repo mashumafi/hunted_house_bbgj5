@@ -8,7 +8,7 @@ permissions:
 env:
   GODOT_VERSION: 4.2.1
   EXPORT_NAME: godot-game-template
-  ITCH_IO: false #set to true if you want to enable automatic itch.io deploy
+  ITCH_IO: true
 
 jobs:
   export-windows:
