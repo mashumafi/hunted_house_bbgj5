@@ -22,7 +22,7 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p builds/windows
-          godot --headless --export-release "Windows Desktop" ./builds/windows/$EXPORT_NAME.exe
+          godot --headless --export-release "Windows Desktop" ./builds/windows/${EXPORT_NAME}.exe
       - name: Windows GUT CLI
         run: |
           godot --headless -gexit --path . -s addons/gut/gut_cmdln.gd
@@ -43,7 +43,7 @@ jobs:
       - name: Linux Build
         run: |
           mkdir -v -p builds/linux
-          godot -v --headless --export-release "Linux/X11" ./builds/linux/$EXPORT_NAME.x86_64
+          godot -v --headless --export-release "Linux/X11" ./builds/linux/${EXPORT_NAME}.x86_64
       - name: Linux GUT CLI
         run: |
           godot --headless -gexit --path . -s addons/gut/gut_cmdln.gd
