@@ -1,7 +1,4 @@
-https://static.itch.io/images/logo-black-new.svg
-
-[![itch.io](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif)](https://mashumafi.itch.io/bbgj5)
-
+[![itch.io](https://static.itch.io/images/badge-color.svg)](https://mashumafi.itch.io/bbgj5)
 
 ![game-template-overview](https://user-images.githubusercontent.com/6860637/101258948-24c35c80-3726-11eb-8c64-7a201e945f73.png)
 
