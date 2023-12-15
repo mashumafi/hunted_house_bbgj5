@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v1
       - name: Windows Build
         run: |
-          godot --headless -s --path $PWD addons/gut/gut_cmdln.gd
+          godot -d --headless -s --path $PWD addons/gut/gut_cmdln.gd
 
   test-linux:
     if: true
@@ -29,5 +29,5 @@ jobs:
         uses: actions/checkout@v1
       - name: Linux Build
         run: |
-          godot --headless -s --path $PWD addons/gut/gut_cmdln.gd
+          godot -d --headless -s --path $PWD addons/gut/gut_cmdln.gd
 
