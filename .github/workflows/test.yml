@@ -1,0 +1,49 @@
+name: "Test"
+on:
+  push:
+env:
+  GODOT_VERSION: 4.2.1
+  EXPORT_NAME: bbgj5
+
+jobs:
+  test-windows:
+    if: true
+    name: Windows Test
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.2.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+          mv -v /root/.local/share/godot/templates/* ~/.local/share/godot/export_templates/
+      - name: Windows Build
+        run: |
+          mkdir -v -p builds/windows
+          godot --headless --export-release "Windows Desktop" ./builds/windows/${EXPORT_NAME}.exe
+      - name: Windows GUT CLI
+        run: |
+          godot --headless -gexit --path . -s addons/gut/gut_cmdln.gd
+
+  test-linux:
+    if: true
+    name: Linux Test
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.2.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+          mv -v /root/.local/share/godot/templates/* ~/.local/share/godot/export_templates/
+      - name: Linux Build
+        run: |
+          mkdir -v -p builds/linux
+          godot -v --headless --export-release "Linux/X11" ./builds/linux/${EXPORT_NAME}.x86_64
+      - name: Linux GUT CLI
+        run: |
+          godot --headless -gexit --path . -s addons/gut/gut_cmdln.gd

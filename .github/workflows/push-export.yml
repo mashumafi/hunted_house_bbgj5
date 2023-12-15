@@ -7,7 +7,7 @@ permissions:
   contents: write
 env:
   GODOT_VERSION: 4.2.1
-  EXPORT_NAME: godot-game-template
+  EXPORT_NAME: bbgj5
   ITCH_IO: true
 
 jobs:

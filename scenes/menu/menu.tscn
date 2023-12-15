@@ -32,7 +32,7 @@ offset_bottom = -339.0
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4")
 theme_override_font_sizes/font_size = 60
-text = "Godot Game Template"
+text = "BBGJ 5"
 uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -72,7 +72,8 @@ offset_bottom = -18.0
 
 [node name="GameVersion" type="Label" parent="Version"]
 layout_mode = 2
-text = "<x.y.z>"
+text = "0.0.1
+"
 script = ExtResource("4_3hod2")
 
 [node name="GodotVersion" type="Label" parent="Version"]
@@ -102,19 +103,12 @@ text = "made by:"
 [node name="Developer1" type="Label" parent="Credits"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
-text = "Crystal Bit community"
+text = "Matthew Murphy"
 
 [node name="Developer2" type="Label" parent="Credits"]
-visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
-text = "Developer 2"
-
-[node name="Developer3" type="Label" parent="Credits"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
-text = "Developer 3"
+text = "Peyton Williams"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
