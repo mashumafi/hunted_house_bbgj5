@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjh5fofgfgv0g"]
+
+[ext_resource type="Script" path="res://scenes/ghosts/basic_ghost.gd" id="1_h0f6c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b8aiu"]
+
+[node name="BasicGhost" type="CharacterBody3D"]
+script = ExtResource("1_h0f6c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_b8aiu")
