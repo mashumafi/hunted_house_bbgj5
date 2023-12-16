@@ -25,6 +25,7 @@ Game="*res://addons/ggt-core/game.gd"
 Transitions="*res://addons/ggt-core/transitions/transitions.tscn"
 Scenes="*res://addons/ggt-core/scenes/scenes.gd"
 Utils="*res://addons/ggt-core/utils/utils.gd"
+ParanormalActivity="*res://scenes/possessable/paranormal_activity.gd"
 
 [category]
 
@@ -72,3 +73,5 @@ debug_quit_game={
 3d_physics/layer_1="Solid"
 3d_physics/layer_2="Furniture"
 3d_physics/layer_3="Possessable"
+3d_physics/layer_4="Ghost"
+3d_physics/layer_5="Hunter"
