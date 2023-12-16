@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjkfik5s4clml"]
+[gd_scene load_steps=16 format=3 uid="uid://c43fphw4ncnq7"]
 
 [ext_resource type="PackedScene" uid="uid://6j3cdoiy67nj" path="res://assets/models/Furniture_Kit/wall.glb" id="1_8wlkb"]
 [ext_resource type="PackedScene" uid="uid://pwk5le8ukcpu" path="res://assets/models/Furniture_Kit/floorFull.glb" id="1_p3hux"]
