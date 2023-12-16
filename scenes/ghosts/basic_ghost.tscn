@@ -1238,11 +1238,11 @@ animation = &"sprint"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bphcq"]
-graph_offset = Vector2(-695.011, 65.1547)
+graph_offset = Vector2(-616.931, -59.0053)
 nodes/idle_anim/node = SubResource("AnimationNodeAnimation_2jyrd")
 nodes/idle_anim/position = Vector2(-146.667, 13.3333)
 nodes/move_anim/node = SubResource("AnimationNodeBlend3_2v3v4")
-nodes/move_anim/position = Vector2(42.56, 89.76)
+nodes/move_anim/position = Vector2(66.6667, 93.3333)
 nodes/output/position = Vector2(346.667, 200)
 nodes/sprint_anim/node = SubResource("AnimationNodeAnimation_b6k5c")
 nodes/sprint_anim/position = Vector2(-160, 280)
@@ -1263,13 +1263,13 @@ shape = SubResource("CapsuleShape3D_b8aiu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 
 [node name="torso" parent="character-ghost2/character-ghost/root" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0.000527015, 0, -0.000527015, 1, -1.44382e-15, 0.223184, -7.21911e-16)
+transform = Transform3D(1, 0, 0, 0, 0.999141, -0.0414512, 0, 0.0414512, 0.999141, -1.44382e-15, 0.223184, -7.21911e-16)
 
 [node name="arm-left" parent="character-ghost2/character-ghost/root/torso" index="0"]
-transform = Transform3D(0.708224, 0.705988, 0, -0.705988, 0.708224, 0, 0, 0, 1, 0.15, 0.225, 0.0025)
+transform = Transform3D(0.789373, 0.613914, 0, -0.613914, 0.789373, 0, 0, 0, 1, 0.15, 0.225, 0.0025)
 
 [node name="arm-right" parent="character-ghost2/character-ghost/root/torso" index="1"]
-transform = Transform3D(0.708224, -0.705988, 0, 0.705988, 0.708224, 0, 0, 0, 1, -0.15, 0.225, 0.0025)
+transform = Transform3D(0.789373, -0.613914, 0, 0.613914, 0.789373, 0, 0, 0, 1, -0.15, 0.225, 0.0025)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
