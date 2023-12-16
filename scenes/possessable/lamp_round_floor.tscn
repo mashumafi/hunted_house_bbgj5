@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba2yiy4ot6m6d"]
+
+[ext_resource type="PackedScene" uid="uid://dpe0ifx42jrpj" path="res://assets/models/Furniture_Kit/lampRoundFloor.glb" id="1_lqn6e"]
+[ext_resource type="Script" path="res://scenes/possessable/light_possessable.gd" id="2_ia56y"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qnwfj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_raq3h"]
+
+[sub_resource type="Curve" id="Curve_3wisl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="lamp_round_floor" type="Node3D"]
+
+[node name="lampRoundFloor" parent="." instance=ExtResource("1_lqn6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lampRoundFloor" groups=["lamp"]]
+transform = Transform3D(1, 0, 8.23764e-10, 0, 1, 0, -8.23764e-10, 0, 1, 0.0663652, 0.839895, -0.0568066)
+light_energy = 0.5
+
+[node name="TriggerArea3D" type="Area3D" parent="lampRoundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lampRoundFloor/TriggerArea3D"]
+shape = SubResource("CylinderShape3D_qnwfj")
+
+[node name="ScareArea3D" type="Area3D" parent="lampRoundFloor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lampRoundFloor/ScareArea3D"]
+shape = SubResource("SphereShape3D_raq3h")
+
+[node name="LightPossessable" type="Node" parent="." node_paths=PackedStringArray("light", "tigger_area", "scare_area")]
+script = ExtResource("2_ia56y")
+light = NodePath("../lampRoundFloor/OmniLight3D")
+display_name = "Toggle Light"
+tigger_area = NodePath("../lampRoundFloor/TriggerArea3D")
+scare_area = NodePath("../lampRoundFloor/ScareArea3D")
+max_scare_distance = 3
+scare_curve = SubResource("Curve_3wisl")

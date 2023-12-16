@@ -1,10 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://byyctdd4c7uk7"]
+[gd_scene load_steps=8 format=3 uid="uid://byyctdd4c7uk7"]
 
 [ext_resource type="PackedScene" uid="uid://2g8wriumrpcf" path="res://assets/models/Nature_Kit/ground_grass.glb" id="1_xppk8"]
 [ext_resource type="PackedScene" uid="uid://dfmv4nj7r8rt7" path="res://assets/models/Nature_Kit/grass_leafs.glb" id="2_g7ey2"]
 [ext_resource type="PackedScene" uid="uid://bctitubcbwx2q" path="res://assets/models/Nature_Kit/grass.glb" id="3_umxsr"]
 [ext_resource type="PackedScene" uid="uid://btd28cc2hr6xs" path="res://assets/models/Nature_Kit/grass_large.glb" id="4_httvg"]
 [ext_resource type="PackedScene" uid="uid://cp65eniso521t" path="res://assets/models/Nature_Kit/grass_leafsLarge.glb" id="5_6qs5k"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7epgl"]
+emission_shape_offset = Vector3(2.08165e-12, 3, 2.08165e-12)
+emission_shape_scale = Vector3(3, 2.08165e-12, 3)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_max = 647.7
+direction = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+spread = 0.0
+collision_mode = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j1cam"]
+radius = 0.05
+height = 0.1
+radial_segments = 12
+rings = 3
 
 [node name="Outside" type="Node3D"]
 
@@ -48,3 +64,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
 [node name="grass_leafsLarge2" parent="Grass/ground_grass3" instance=ExtResource("5_6qs5k")]
+
+[node name="Snow" type="Node3D" parent="."]
+visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Snow"]
+amount = 42
+process_material = SubResource("ParticleProcessMaterial_7epgl")
+draw_pass_1 = SubResource("CapsuleMesh_j1cam")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Snow"]
+size = Vector3(4, 6, 4)

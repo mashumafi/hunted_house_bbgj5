@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjkfik5s4clml"]
+[gd_scene load_steps=21 format=3 uid="uid://cjkfik5s4clml"]
 
 [ext_resource type="PackedScene" uid="uid://6j3cdoiy67nj" path="res://assets/models/Furniture_Kit/wall.glb" id="1_8wlkb"]
 [ext_resource type="PackedScene" uid="uid://pwk5le8ukcpu" path="res://assets/models/Furniture_Kit/floorFull.glb" id="1_p3hux"]
@@ -12,9 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://doo7ilyqqbuvo" path="res://assets/models/Furniture_Kit/loungeSofaLong.glb" id="10_gwwb4"]
 [ext_resource type="PackedScene" uid="uid://o04i3sake5e4" path="res://assets/models/Furniture_Kit/tableCoffeeGlass.glb" id="11_osjps"]
 [ext_resource type="PackedScene" uid="uid://dtjv23s4y7cdc" path="res://assets/models/Furniture_Kit/sideTable.glb" id="12_lt05t"]
-[ext_resource type="PackedScene" uid="uid://cqp8i0n3hibp6" path="res://assets/models/Furniture_Kit/lampRoundTable.glb" id="13_nqvti"]
-[ext_resource type="PackedScene" uid="uid://dpe0ifx42jrpj" path="res://assets/models/Furniture_Kit/lampRoundFloor.glb" id="14_p072c"]
+[ext_resource type="PackedScene" uid="uid://mat8uq2giici" path="res://scenes/possessable/lamp_round_table.tscn" id="13_4hafg"]
 [ext_resource type="PackedScene" uid="uid://bbod07jar0oy3" path="res://assets/models/Furniture_Kit/rugRectangle.glb" id="15_214bv"]
+[ext_resource type="PackedScene" uid="uid://ehxftbrqh2fu" path="res://assets/models/Holiday_Kit/treeDecorated.glb" id="16_slin7"]
+[ext_resource type="PackedScene" uid="uid://bgf6hfxeshddl" path="res://assets/models/Holiday_Kit/presentLow.glb" id="17_pg0l8"]
+[ext_resource type="PackedScene" uid="uid://fy07ago77y1" path="res://assets/models/Holiday_Kit/presentGreen.glb" id="18_4wlmj"]
+[ext_resource type="PackedScene" uid="uid://dn466bd50q73k" path="res://assets/models/Holiday_Kit/present.glb" id="19_a87k1"]
+[ext_resource type="PackedScene" uid="uid://c8wo6h5gr3kly" path="res://assets/models/Holiday_Kit/presentRound.glb" id="20_b3yuj"]
+[ext_resource type="PackedScene" uid="uid://ba2yiy4ot6m6d" path="res://scenes/possessable/lamp_round_floor.tscn" id="20_gvert"]
 
 [node name="Structure" type="Node3D"]
 
@@ -198,19 +203,31 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.0236
 [node name="sideTable" parent="Furniture/LivingRoom" instance=ExtResource("12_lt05t")]
 transform = Transform3D(0.605766, 0, -0.795643, 0, 1, 0, 0.795643, 0, 0.605766, 1.24629, 0.0555492, 0.46175)
 
-[node name="lampRoundTable" parent="Furniture/LivingRoom/sideTable" instance=ExtResource("13_nqvti")]
-transform = Transform3D(1, 0, -8.23764e-10, 0, 1, 0, -8.23764e-10, 0, 1, 0.258, 0.384, -0.014)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/LivingRoom/sideTable/lampRoundTable" groups=["lamp"]]
-transform = Transform3D(1, 0, -8.23764e-10, 0, 1, 0, -8.23764e-10, 0, 1, 0.0711462, 0.294989, -0.0568066)
-light_energy = 0.5
-
-[node name="lampRoundFloor" parent="Furniture/LivingRoom" instance=ExtResource("14_p072c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06927, 0.056, 0.502613)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/LivingRoom/lampRoundFloor" groups=["lamp"]]
-transform = Transform3D(1, 0, 8.23764e-10, 0, 1, 0, -8.23764e-10, 0, 1, 0.0663652, 0.839895, -0.0568066)
-light_energy = 0.5
+[node name="lamp_round_table" parent="Furniture/LivingRoom/sideTable" instance=ExtResource("13_4hafg")]
+transform = Transform3D(1, 0, -1.67192e-08, 0, 1, 0, 3.15679e-08, 0, 1, 0.222715, 0, -0.0636242)
 
 [node name="rugRectangle" parent="Furniture/LivingRoom" instance=ExtResource("15_214bv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5814, 0.0555492, 2.68745)
+
+[node name="treeDecorated2" parent="Furniture/LivingRoom" instance=ExtResource("16_slin7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4196, 0.0555492, 2.74684)
+
+[node name="presentLow2" parent="Furniture/LivingRoom/treeDecorated2" instance=ExtResource("17_pg0l8")]
+transform = Transform3D(0.931488, 0, 0.363772, 0, 1, 0, -0.363772, 0, 0.931488, -0.35504, 1.19209e-07, -0.363019)
+
+[node name="presentGreen2" parent="Furniture/LivingRoom/treeDecorated2" instance=ExtResource("18_4wlmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.376352, 1.19209e-07, 0.296622)
+
+[node name="present2" parent="Furniture/LivingRoom/treeDecorated2" instance=ExtResource("19_a87k1")]
+transform = Transform3D(0.977798, 0, -0.20955, 0, 1, 0, 0.20955, 0, 0.977798, 0, 1.19209e-07, 0.512692)
+
+[node name="presentRound2" parent="Furniture/LivingRoom/treeDecorated2" instance=ExtResource("20_b3yuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152207, 0, -0.435914)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Furniture/LivingRoom/treeDecorated2" groups=["lamp"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129163, 1.65772, -0.0612268)
+
+[node name="lamp_round_floor" parent="Furniture/LivingRoom" instance=ExtResource("20_gvert")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.861781, 0.0504574, 0.461953)
+
+[editable path="Walls/wall"]
