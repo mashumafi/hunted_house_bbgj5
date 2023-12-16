@@ -12,6 +12,9 @@ var ghost : Node3D
 @export
 var blend_tree : AnimationTree
 
+func _ready():
+	blend_tree.active = true
+
 func _process(delta: float) -> void:
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * speed
 	velocity = velocity.move_toward(Vector3(direction.x, velocity.y + gravity, direction.y), .4)

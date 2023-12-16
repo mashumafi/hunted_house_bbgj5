@@ -28,6 +28,7 @@ var compute_first_frame := false
 func _ready():
 	random = RandomNumberGenerator.new()
 	random.randomize()
+	anim_tree.active = true
 
 func _physics_process(delta):
 	

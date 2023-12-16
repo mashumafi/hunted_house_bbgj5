@@ -2132,13 +2132,13 @@ path_max_distance = 2.01
 [node name="character-digger2" parent="." instance=ExtResource("2_1780j")]
 
 [node name="torso" parent="character-digger2/character-digger/root" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.99927, -0.0381933, 0, 0.0381933, 0.99927, -1.44382e-15, 0.223184, -7.21911e-16)
+transform = Transform3D(1, 0, 0, 0, 0.99919, -0.0402488, 0, 0.0402488, 0.99919, -1.44382e-15, 0.223184, -7.21911e-16)
 
 [node name="arm-left" parent="character-digger2/character-digger/root/torso" index="0"]
-transform = Transform3D(0.759122, 0.650949, 0, -0.650949, 0.759122, 0, 0, 0, 1, 0.15, 0.2, 0.0025)
+transform = Transform3D(0.787152, 0.616759, 0, -0.616759, 0.787152, 0, 0, 0, 1, 0.15, 0.2, 0.0025)
 
 [node name="arm-right" parent="character-digger2/character-digger/root/torso" index="1"]
-transform = Transform3D(0.759122, -0.650949, 0, 0.650949, 0.759122, 0, 0, 0, 1, -0.15, 0.2, 0.0025)
+transform = Transform3D(0.787152, -0.616759, 0, 0.616759, 0.787152, 0, 0, 0, 1, -0.15, 0.2, 0.0025)
 
 [node name="Flashlight" type="MeshInstance3D" parent="character-digger2/character-digger/root/torso/arm-right" index="0"]
 transform = Transform3D(0.295792, -0.86441, 0.406575, 0.86441, 0.0610551, -0.499067, 0.406575, 0.499067, 0.765264, -0.305984, 0.0454307, 0.0906013)
@@ -2150,7 +2150,7 @@ transform = Transform3D(-0.320537, 0.928661, -0.186666, -0.031457, -0.207391, -0
 spot_angle = 20.0
 
 [node name="head" parent="character-digger2/character-digger/root/torso" index="2"]
-transform = Transform3D(0.99927, 0, -0.0381933, 0, 1, 0, 0.0381933, 0, 0.99927, -1.44382e-15, 0.26, 3.60956e-16)
+transform = Transform3D(0.99919, 0, -0.0402488, 0, 1, 0, 0.0402488, 0, 0.99919, -1.44382e-15, 0.26, 3.60956e-16)
 
 [node name="DetectionArea" type="Area3D" parent="."]
 
@@ -2159,6 +2159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00970864, 0.950328, 0.00405
 shape = SubResource("CylinderShape3D_xl2ua")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 root_node = NodePath("../character-digger2")
 libraries = {
 "": SubResource("AnimationLibrary_3oanq")
