@@ -1,8 +1,11 @@
 extends Area3D
 
+const DAMAGE_PER_SECOND = 20
+
 @export var anim_player : AnimationPlayer
 
 var activated := false
+var ghost : Node3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +22,11 @@ func _physics_process(delta):
 			if body.is_in_group("ghost"):
 				activated = true
 				anim_player.play("activate")
+				ghost = body
+				
+	if activated:
+		ghost.take_damage(delta * DAMAGE_PER_SECOND)
+		
 				
 func end_trap():
 	queue_free()

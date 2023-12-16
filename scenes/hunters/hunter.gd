@@ -41,9 +41,9 @@ func _physics_process(delta):
 		
 		var query = PhysicsRayQueryParameters3D.create(global_position, ghost.global_position)
 		query.exclude = [self]
-		var result = space_state.intersect_ray(query)
+		var result := space_state.intersect_ray(query)
 		
-		if !result["collider"] or result["collider"] != ghost:
+		if !result.has("collider") or result["collider"] != ghost:
 			state = STATE.EXPLORING
 			ghost = null
 			anim_tree.set("parameters/hold_blend/blend_amount", 0)
@@ -71,9 +71,9 @@ func _physics_process(delta):
 					
 					var query = PhysicsRayQueryParameters3D.create(global_position, body.global_position)
 					query.exclude = [self]
-					var result = space_state.intersect_ray(query)
+					var result := space_state.intersect_ray(query)
 					
-					if result["collider"] and result["collider"] == body:
+					if result.has("collider") and result["collider"] == body:
 						state = STATE.HUNTING
 						ghost = body
 						anim_tree.set("parameters/hold_blend/blend_amount", 1)

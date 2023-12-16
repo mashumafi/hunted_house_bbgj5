@@ -12,6 +12,8 @@ var ghost : Node3D
 @export
 var blend_tree : AnimationTree
 
+var health := 100.0
+
 func _ready():
 	blend_tree.active = true
 
@@ -27,3 +29,6 @@ func _process(delta: float) -> void:
 	blend_tree.set("parameters/move_anim/blend_amount", remap(Vector2(velocity.x, velocity.z).length(), 0, speed, -1, .5))
 
 	move_and_slide()
+
+func take_damage(damage: float):
+	health -= damage
