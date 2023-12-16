@@ -22,3 +22,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.478148, 0.5, -7.88874)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.290602, 0.956844, 0, -0.956844, 0.290602, 0, 15.6905, 0)
+current = true
