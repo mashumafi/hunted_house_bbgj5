@@ -7,6 +7,7 @@ extends CanvasLayer
 
 func _ready():
 	pause.hide()
+	ParanormalActivity.contact_made.connect(_contact_made)
 
 
 # when the node is removed from the tree (mostly because of a scene change)
@@ -46,3 +47,12 @@ func _on_PauseButton_pressed():
 
 func _on_main_menu_pressed():
 	Game.change_scene_to_file("res://scenes/menu/menu.tscn", {"show_progress_bar": false})
+
+var last_contact : Possessable = null
+func _contact_made(p: Possessable, entered: bool) -> void:
+	if entered:
+		$DisplayName.text = p.display_name
+		last_contact = p
+	elif last_contact == p:
+		$DisplayName.text = ""
+		last_contact = null

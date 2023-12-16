@@ -1250,6 +1250,7 @@ nodes/walk_anim/position = Vector2(-146.667, 146.667)
 node_connections = [&"move_anim", 0, &"idle_anim", &"move_anim", 1, &"walk_anim", &"move_anim", 2, &"sprint_anim", &"output", 0, &"move_anim"]
 
 [node name="BasicGhost" type="CharacterBody3D" node_paths=PackedStringArray("ghost", "blend_tree") groups=["ghost"]]
+collision_layer = 8
 script = ExtResource("1_h0f6c")
 ghost = NodePath("character-ghost")
 blend_tree = NodePath("AnimationTree")
