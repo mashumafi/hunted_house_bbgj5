@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d16uljs8lp37p"]
+[gd_scene load_steps=5 format=3 uid="uid://d16uljs8lp37p"]
 
 [ext_resource type="PackedScene" uid="uid://bo5gfb7t8db8r" path="res://scenes/hunters/hunter.tscn" id="1_xypgc"]
+[ext_resource type="PackedScene" uid="uid://cjh5fofgfgv0g" path="res://scenes/ghosts/basic_ghost.tscn" id="2_qm54d"]
+[ext_resource type="PackedScene" uid="uid://c26qcyvtl7y54" path="res://scenes/tools/ghost_trap.tscn" id="3_aha5m"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_n2o2h"]
 vertices = PackedVector3Array(-14.0718, -1.29583, -16.7393, -14.0718, -1.29583, 6.26068, 8.92816, -1.29583, 6.26068, 8.92816, -1.29583, -16.7393)
@@ -20,6 +22,11 @@ size = Vector3(23.9299, 1, 23.9433)
 [node name="Hunter" parent="." instance=ExtResource("1_xypgc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.478148, 0.5, -7.88874)
 
+[node name="BasicGhost" parent="." instance=ExtResource("2_qm54d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.99155, 0.5, -2.90644)
+
+[node name="GhostTrap" parent="." instance=ExtResource("3_aha5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.699738, 0.500001, -1.04796)
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.290602, 0.956844, 0, -0.956844, 0.290602, 0, 15.6905, 0)
-current = true
+transform = Transform3D(1, 0, 0, 0, 0.328042, 0.944663, 0, -0.944663, 0.328042, 0, 11.1426, 0)

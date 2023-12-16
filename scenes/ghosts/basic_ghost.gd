@@ -12,6 +12,11 @@ var ghost : Node3D
 @export
 var blend_tree : AnimationTree
 
+var health := 100.0
+
+func _ready():
+	blend_tree.active = true
+
 func _process(delta: float) -> void:
 	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * speed
 	velocity = velocity.move_toward(Vector3(direction.x, velocity.y + gravity, direction.y), .4)
@@ -24,3 +29,6 @@ func _process(delta: float) -> void:
 	blend_tree.set("parameters/move_anim/blend_amount", remap(Vector2(velocity.x, velocity.z).length(), 0, speed, -1, .5))
 
 	move_and_slide()
+
+func take_damage(damage: float):
+	health -= damage
