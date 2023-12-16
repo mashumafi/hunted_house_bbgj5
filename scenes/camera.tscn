@@ -2,3 +2,4 @@
 
 [node name="Camera" type="Camera3D"]
 transform = Transform3D(1, -5.95416e-16, 2.4663e-16, 2.4663e-16, 0.707107, 0.707107, -5.95416e-16, -0.707107, 0.707107, 2.08165e-12, 3, 2)
+current = true
