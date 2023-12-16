@@ -12,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("character-ghost2:position")
+tracks/0/path = NodePath("character-ghost:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +28,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("character-ghost2:position")
+tracks/0/path = NodePath("character-ghost:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1238,7 +1238,6 @@ animation = &"sprint"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bphcq"]
-graph_offset = Vector2(-683.347, -23.492)
 nodes/idle_anim/node = SubResource("AnimationNodeAnimation_2jyrd")
 nodes/idle_anim/position = Vector2(-146.667, 13.3333)
 nodes/move_anim/node = SubResource("AnimationNodeBlend3_2v3v4")
@@ -1252,21 +1251,15 @@ node_connections = [&"move_anim", 0, &"idle_anim", &"move_anim", 1, &"walk_anim"
 
 [node name="BasicGhost" type="CharacterBody3D" node_paths=PackedStringArray("ghost", "blend_tree") groups=["ghost"]]
 script = ExtResource("1_h0f6c")
-ghost = NodePath("character-ghost2")
+ghost = NodePath("character-ghost")
 blend_tree = NodePath("AnimationTree")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.4, 2.08165e-12)
 shape = SubResource("CapsuleShape3D_b8aiu")
 
-[node name="character-ghost2" parent="." instance=ExtResource("2_sqhnt")]
+[node name="character-ghost" parent="." instance=ExtResource("2_sqhnt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
-
-[node name="arm-left" parent="character-ghost2/character-ghost/root/torso" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0.225, 0.0025)
-
-[node name="arm-right" parent="character-ghost2/character-ghost/root/torso" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0.225, 0.0025)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1276,12 +1269,10 @@ autoplay = "hover"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false
-root_node = NodePath("../character-ghost2")
+root_node = NodePath("../character-ghost")
 libraries = {
 "": SubResource("AnimationLibrary_6qatl")
 }
 tree_root = SubResource("AnimationNodeBlendTree_bphcq")
-anim_player = NodePath("../character-ghost2/AnimationPlayer")
+anim_player = NodePath("../character-ghost/AnimationPlayer")
 parameters/move_anim/blend_amount = -1.0
-
-[editable path="character-ghost2"]
