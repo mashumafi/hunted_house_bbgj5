@@ -1,11 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjh5fofgfgv0g"]
+[gd_scene load_steps=7 format=3 uid="uid://cjh5fofgfgv0g"]
 
 [ext_resource type="Script" path="res://scenes/ghosts/basic_ghost.gd" id="1_h0f6c"]
+[ext_resource type="PackedScene" uid="uid://2cakrgbmp1xl" path="res://assets/models/Graveyard_Kit/character-ghost.glb" id="2_sqhnt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b8aiu"]
+radius = 0.2
+height = 0.8
 
-[node name="BasicGhost" type="CharacterBody3D"]
+[sub_resource type="Animation" id="Animation_f7s2u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-ghost2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_gnslp"]
+resource_name = "hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-ghost2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12), Vector3(2.08165e-12, 0.1, 2.08165e-12), Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5mel1"]
+_data = {
+"RESET": SubResource("Animation_f7s2u"),
+"hover": SubResource("Animation_gnslp")
+}
+
+[node name="BasicGhost" type="CharacterBody3D" node_paths=PackedStringArray("ghost")]
 script = ExtResource("1_h0f6c")
+ghost = NodePath("character-ghost2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.4, 2.08165e-12)
 shape = SubResource("CapsuleShape3D_b8aiu")
+
+[node name="character-ghost2" parent="." instance=ExtResource("2_sqhnt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="arm-left" parent="character-ghost2/character-ghost/root/torso" index="0"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.15, 0.225, 0.0025)
+
+[node name="arm-right" parent="character-ghost2/character-ghost/root/torso" index="1"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.15, 0.225, 0.0025)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5mel1")
+}
+autoplay = "hover"
+
+[editable path="character-ghost2"]
