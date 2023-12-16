@@ -37,3 +37,13 @@ func sort_by_distance(possessables: Array[Possessable], global_position: Vector3
 	possessables.sort_custom(func(a: Possessable, b: Possessable) -> bool:
 		return a.trigger_area.global_position.distance_squared_to(global_position) < b.trigger_area.global_position.distance_squared_to(global_position)
 	)
+
+func spawn_ghost(node: Node3D):
+	var ghost := preload("res://scenes/ghosts/basic_ghost.tscn").instantiate()
+	var camera := preload("res://scenes/camera.tscn").instantiate()
+	var parent := node.get_parent()
+	ghost.add_child(camera)
+	parent.add_child(ghost)
+	camera.current = true
+	ghost.global_position = node.global_position
+	node.queue_free()

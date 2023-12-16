@@ -1,7 +1,15 @@
 class_name Possessable
 extends Node
 
+enum State {
+	Default,
+	Possessed,
+}
+var state := State.Default
+
 @export var display_name: String
+
+@export var camera: Camera3D
 
 # area for triggering possession
 @export var trigger_area: Area3D
@@ -33,8 +41,12 @@ func _body_exited(body: Node3D) -> void:
 	ParanormalActivity.contact_made.emit(self, false)
 
 func possess():
+	if state != State.Default:
+		printerr("Expected to be in the default state.")
+
 	possessions_since_last_investigation += 1
-	prints("Possessed:", display_name)
+	camera.current = true
+	state = State.Possessed
 
 func try_scare() -> bool:
 	# TODO: Check ghost energy and consume it before trying to scare
@@ -58,3 +70,12 @@ func try_scare() -> bool:
 
 func _scare() -> void:
 	pass
+
+func _process(delta: float) -> void:
+	if state == State.Possessed:
+		if Input.is_action_just_pressed("interact"):
+			try_scare()
+		if Input.get_vector("move_left", "move_right", "move_up", "move_down").length_squared() > 0:
+			state = State.Default
+			var ghost : Node3D = get_tree().get_nodes_in_group("ghost")[0]
+			ParanormalActivity.spawn_ghost(ghost)

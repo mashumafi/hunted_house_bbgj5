@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ew551lkpjt6m"]
+[gd_scene load_steps=11 format=3 uid="uid://ew551lkpjt6m"]
 
 [ext_resource type="PackedScene" uid="uid://b3cpsuq3v8hn2" path="res://assets/models/Furniture_Kit/doorwayFront.glb" id="1_bt4bp"]
 [ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="2_1pgh5"]
+[ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="2_rk8h4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_la7qa"]
 
@@ -88,11 +89,14 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorwayFront/ScareArea3D"]
 shape = SubResource("SphereShape3D_pf23n")
 
-[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "trigger_area", "scare_area") groups=["interactive"]]
+[node name="Camera" parent="doorwayFront" instance=ExtResource("2_rk8h4")]
+
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area") groups=["interactive", "possessable"]]
 script = ExtResource("2_1pgh5")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["open", "close"])
 display_name = "Toggle Door"
+camera = NodePath("../doorwayFront/Camera")
 trigger_area = NodePath("../doorwayFront/TriggerArea3D")
 scare_area = NodePath("../doorwayFront/ScareArea3D")
 max_scare_distance = 3
