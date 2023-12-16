@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjkfik5s4clml"]
+
+[ext_resource type="PackedScene" uid="uid://6j3cdoiy67nj" path="res://assets/models/Furniture_Kit/wall.glb" id="1_8wlkb"]
+[ext_resource type="PackedScene" uid="uid://pwk5le8ukcpu" path="res://assets/models/Furniture_Kit/floorFull.glb" id="1_p3hux"]
+[ext_resource type="PackedScene" uid="uid://c5odmwn705l8x" path="res://assets/models/Furniture_Kit/wallWindow.glb" id="2_t4iy0"]
+[ext_resource type="PackedScene" uid="uid://pa27rd3h6ilo" path="res://assets/models/Furniture_Kit/wallDoorway.glb" id="4_4wixk"]
+[ext_resource type="PackedScene" uid="uid://ew551lkpjt6m" path="res://scenes/possessable/front_door.tscn" id="5_mdf1e"]
+
+[node name="Structure" type="Node3D"]
+
+[node name="Floor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 1)
+
+[node name="floorFull" parent="Floor" instance=ExtResource("1_p3hux")]
+
+[node name="floorFull2" parent="Floor" instance=ExtResource("1_p3hux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="floorFull3" parent="Floor" instance=ExtResource("1_p3hux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="wall" parent="Walls" instance=ExtResource("1_8wlkb")]
+
+[node name="wallWindow" parent="Walls" instance=ExtResource("2_t4iy0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="wallDoorway" parent="Walls" instance=ExtResource("4_4wixk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="FrontDoor" parent="Walls/wallDoorway" instance=ExtResource("5_mdf1e")]

@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://ew551lkpjt6m"]
+
+[ext_resource type="PackedScene" uid="uid://b3cpsuq3v8hn2" path="res://assets/models/Furniture_Kit/doorwayFront.glb" id="1_bt4bp"]
+[ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="2_1pgh5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_la7qa"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pf23n"]
+radius = 2.0
+
+[sub_resource type="Curve" id="Curve_rdamt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.5, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_0lope"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("doorwayFront/doorwayFront(Clone)/door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16)]
+}
+
+[sub_resource type="Animation" id="Animation_nixuo"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("doorwayFront/doorwayFront(Clone)/door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.48787e-16, 1.5708, 3.48787e-16), Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16)]
+}
+
+[sub_resource type="Animation" id="Animation_ds5gx"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("doorwayFront/doorwayFront(Clone)/door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16), Vector3(3.48787e-16, 1.5708, 3.48787e-16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ht4jf"]
+_data = {
+"RESET": SubResource("Animation_0lope"),
+"close": SubResource("Animation_nixuo"),
+"open": SubResource("Animation_ds5gx")
+}
+
+[node name="FrontDoor" type="Node3D"]
+
+[node name="doorwayFront" parent="." instance=ExtResource("1_bt4bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.08165e-12, 2.08165e-12)
+
+[node name="door" parent="doorwayFront/doorwayFront(Clone)" index="0"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0.02835, 0, -0.04455)
+
+[node name="TriggerArea3D" type="Area3D" parent="doorwayFront"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorwayFront/TriggerArea3D"]
+shape = SubResource("BoxShape3D_la7qa")
+
+[node name="ScareArea3D" type="Area3D" parent="doorwayFront"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 2.08165e-12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorwayFront/ScareArea3D"]
+shape = SubResource("SphereShape3D_pf23n")
+
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player")]
+script = ExtResource("2_1pgh5")
+anim_player = NodePath("../AnimationPlayer")
+scare_anim = Array[String](["open", "close"])
+display_name = "Door"
+scare_curve = SubResource("Curve_rdamt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ht4jf")
+}
+
+[editable path="doorwayFront"]
