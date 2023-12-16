@@ -7,7 +7,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xm4fn"]
 
-[sub_resource type="Curve" id="Curve_ea47e"]
+[sub_resource type="Curve" id="Curve_xo8ob"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -34,11 +34,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lampRoundTable/ScareArea3D"]
 shape = SubResource("SphereShape3D_xm4fn")
 
-[node name="LightPossessable" type="Node" parent="." node_paths=PackedStringArray("light", "tigger_area", "scare_area")]
+[node name="LightPossessable" type="Node" parent="." node_paths=PackedStringArray("light", "trigger_area", "scare_area") groups=["interactive"]]
 script = ExtResource("2_h6bon")
 light = NodePath("../lampRoundTable/OmniLight3D")
-display_name = "Toggle Light"
-tigger_area = NodePath("../lampRoundTable/TriggerArea3D")
+display_name = "Toggle Lamp"
+trigger_area = NodePath("../lampRoundTable/TriggerArea3D")
 scare_area = NodePath("../lampRoundTable/ScareArea3D")
 max_scare_distance = 3
-scare_curve = SubResource("Curve_ea47e")
+scare_curve = SubResource("Curve_xo8ob")

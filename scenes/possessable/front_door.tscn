@@ -8,8 +8,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_pf23n"]
 radius = 2.0
 
-[sub_resource type="Curve" id="Curve_rdamt"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.5, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_hrhqj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Animation" id="Animation_0lope"]
@@ -88,14 +88,15 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorwayFront/ScareArea3D"]
 shape = SubResource("SphereShape3D_pf23n")
 
-[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "tigger_area", "scare_area")]
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "trigger_area", "scare_area") groups=["interactive"]]
 script = ExtResource("2_1pgh5")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["open", "close"])
-display_name = "Door"
-tigger_area = NodePath("../doorwayFront/TriggerArea3D")
+display_name = "Toggle Door"
+trigger_area = NodePath("../doorwayFront/TriggerArea3D")
 scare_area = NodePath("../doorwayFront/ScareArea3D")
-scare_curve = SubResource("Curve_rdamt")
+max_scare_distance = 3
+scare_curve = SubResource("Curve_hrhqj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
