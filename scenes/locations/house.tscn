@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://dtta54j7o5reu"]
+[gd_scene load_steps=2 format=3 uid="uid://dtta54j7o5reu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2dbi"]
+size = Vector3(10, 1, 10)
 
 [node name="House" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(10, 1, 10)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_t2dbi")
