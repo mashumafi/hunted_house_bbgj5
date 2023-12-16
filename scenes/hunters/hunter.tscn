@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo5gfb7t8db8r"]
+
+[ext_resource type="Script" path="res://scenes/hunters/hunter.gd" id="1_wgi2b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vhja8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyqgx"]
+albedo_color = Color(1, 0.12549, 0.172549, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ybffw"]
+material = SubResource("StandardMaterial3D_nyqgx")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w6l8f"]
+points = PackedVector3Array(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent")]
+script = ExtResource("1_wgi2b")
+nav_agent = NodePath("NavigationAgent3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vhja8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_ybffw")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+path_max_distance = 2.01
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77192, 0)
+shape = SubResource("ConvexPolygonShape3D_w6l8f")
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

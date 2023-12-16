@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://d16uljs8lp37p"]
+
+[ext_resource type="PackedScene" uid="uid://bo5gfb7t8db8r" path="res://scenes/hunters/hunter.tscn" id="1_xypgc"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_n2o2h"]
+vertices = PackedVector3Array(-14.0718, -1.29583, -16.7393, -14.0718, -1.29583, 6.26068, 8.92816, -1.29583, 6.26068, 8.92816, -1.29583, -16.7393)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[node name="TestLevel1" type="Node3D"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29583, 0)
+navigation_mesh = SubResource("NavigationMesh_n2o2h")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.60689, -2.29583, -5.26767)
+use_collision = true
+size = Vector3(23.9299, 1, 23.9433)
+
+[node name="Hunter" parent="." instance=ExtResource("1_xypgc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.478148, 0.5, -7.88874)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.290602, 0.956844, 0, -0.956844, 0.290602, 0, 15.6905, 0)
