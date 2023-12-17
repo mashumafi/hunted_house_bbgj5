@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bo5gfb7t8db8r"]
+[gd_scene load_steps=44 format=3 uid="uid://bo5gfb7t8db8r"]
 
 [ext_resource type="Script" path="res://scenes/hunters/hunter.gd" id="1_wgi2b"]
 [ext_resource type="PackedScene" uid="uid://llfndqsp4avx" path="res://assets/models/Graveyard_Kit/character-digger.glb" id="2_1780j"]
@@ -17,11 +17,14 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.15
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r28vn"]
+height = 3.0
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xl2ua"]
 height = 1.0
 radius = 10.0
 
-[sub_resource type="Animation" id="Animation_l4xdj"]
+[sub_resource type="Animation" id="Animation_8erno"]
 resource_name = "static"
 length = 0.1
 tracks/0/type = "position_3d"
@@ -102,7 +105,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1)
 
-[sub_resource type="Animation" id="Animation_sbtem"]
+[sub_resource type="Animation" id="Animation_paao3"]
 resource_name = "idle"
 length = 1.33333
 loop_mode = 1
@@ -184,7 +187,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_e4qng"]
+[sub_resource type="Animation" id="Animation_8ka7r"]
 resource_name = "walk"
 length = 0.666667
 loop_mode = 1
@@ -266,7 +269,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, -0.0817211, 0, 0, -0.996655, 0.1, 1, -0.427555, 0, 0, -0.903989, 0.133333, 1, -0.5, 0, 0, -0.866025, 0.166667, 1, -0.467004, 0, 0, -0.884255, 0.2, 1, -0.379779, 0, 0, -0.925077, 0.233333, 1, -0.256796, 0, 0, -0.966466, 0.266667, 1, -0.121176, 0, 0, -0.992631, 0.3, 1, -3.72529e-09, 0, 0, -1, 0.333333, 1, 0.121176, 0, 0, -0.992631, 0.366667, 1, 0.256795, 0, 0, -0.966466, 0.4, 1, 0.379779, 0, 0, -0.925077, 0.433333, 1, 0.467004, 0, 0, -0.884255, 0.466667, 1, 0.5, 0, 0, -0.866025, 0.5, 1, 0.452123, 0, 0, -0.891955, 0.533333, 1, 0.332819, 0, 0, -0.942991, 0.566667, 1, 0.183265, 0, 0, -0.983064, 0.6, 1, 0.0544273, 0, 0, -0.998518, 0.633333, 1, 0.0272237, 0, 0, -0.999629, 0.666667, 1, 0, 0, 0, -1)
 
-[sub_resource type="Animation" id="Animation_d8edj"]
+[sub_resource type="Animation" id="Animation_rwn6c"]
 resource_name = "sprint"
 length = 0.5
 loop_mode = 1
@@ -348,7 +351,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, -0.0408923, -0.010899, 0.000446084, -0.999104, 0.1, 1, -0.218721, -0.0574404, 0.0128987, -0.97401, 0.133333, 1, -0.258189, -0.0673796, 0.0180543, -0.963573, 0.166667, 1, -0.207984, -0.0586903, 0.0125031, -0.97629, 0.2, 1, -0.102787, -0.0370411, 0.00383031, -0.994006, 0.233333, 1, -0.0145006, -0.0111931, 0.000162335, -0.999832, 0.266667, 1, -0.0145006, 0.0111931, -0.000162334, -0.999832, 0.3, 1, -0.102787, 0.0370411, -0.00383031, -0.994006, 0.333333, 1, -0.207984, 0.0586903, -0.0125031, -0.97629, 0.366667, 1, -0.258189, 0.0673796, -0.0180543, -0.963573, 0.4, 1, -0.218721, 0.0574404, -0.0128987, -0.97401, 0.433333, 1, -0.130447, 0.0346009, -0.0045553, -0.990841, 0.466667, 1, -0.0653732, 0.0173402, -0.00228288, -0.997708, 0.5, 1, 0, 0, 0, -1)
 
-[sub_resource type="Animation" id="Animation_tww12"]
+[sub_resource type="Animation" id="Animation_4xa52"]
 resource_name = "jump"
 length = 0.5
 tracks/0/type = "position_3d"
@@ -429,7 +432,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_n3oaw"]
+[sub_resource type="Animation" id="Animation_n5lft"]
 resource_name = "fall"
 length = 0.333333
 tracks/0/type = "rotation_3d"
@@ -510,7 +513,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_e20kw"]
+[sub_resource type="Animation" id="Animation_kp888"]
 resource_name = "crouch"
 length = 0.166667
 tracks/0/type = "position_3d"
@@ -591,7 +594,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_r8jsp"]
+[sub_resource type="Animation" id="Animation_dg1d2"]
 resource_name = "sit"
 length = 0.166667
 tracks/0/type = "position_3d"
@@ -672,7 +675,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_mj8n8"]
+[sub_resource type="Animation" id="Animation_8vpit"]
 resource_name = "drive"
 length = 0.166667
 tracks/0/type = "position_3d"
@@ -753,7 +756,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_0r6xe"]
+[sub_resource type="Animation" id="Animation_bs14r"]
 resource_name = "die"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -834,7 +837,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.0333333, 1, 0.430317, 0.111929, 0.225479, -0.866867, 0.0666667, 1, 0.921094, 0.0376391, 0.015822, -0.387192, 0.1, 1, 0.961954, 8.99836e-09, 3.78256e-09, -0.273213, 0.133333, 1, 0.929777, 0, 0, -0.368124, 0.2, 1, 0.777634, 0, 0, -0.628717, 0.233333, 1, 0.7108, 0, 0, -0.703394, 0.266667, 1, 0.700938, 0, 0, -0.713223, 0.333333, 1, 0.707107, 0, 0, -0.707107)
 
-[sub_resource type="Animation" id="Animation_hr5xa"]
+[sub_resource type="Animation" id="Animation_yogyo"]
 resource_name = "pick-up"
 length = 0.333333
 tracks/0/type = "position_3d"
@@ -915,7 +918,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_qiwp4"]
+[sub_resource type="Animation" id="Animation_spahq"]
 resource_name = "emote-yes"
 length = 0.666667
 tracks/0/type = "rotation_3d"
@@ -996,7 +999,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_ivgc3"]
+[sub_resource type="Animation" id="Animation_erwnu"]
 resource_name = "emote-no"
 length = 0.666667
 tracks/0/type = "position_3d"
@@ -1077,7 +1080,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_65wrf"]
+[sub_resource type="Animation" id="Animation_senha"]
 resource_name = "holding-right"
 length = 0.166667
 tracks/0/type = "rotation_3d"
@@ -1158,7 +1161,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_38qt7"]
+[sub_resource type="Animation" id="Animation_tulb3"]
 resource_name = "holding-left"
 length = 0.166667
 tracks/0/type = "rotation_3d"
@@ -1239,7 +1242,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_f3t80"]
+[sub_resource type="Animation" id="Animation_hps2t"]
 resource_name = "holding-both"
 length = 0.166667
 tracks/0/type = "rotation_3d"
@@ -1320,7 +1323,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_6imtg"]
+[sub_resource type="Animation" id="Animation_8mibx"]
 resource_name = "holding-right-shoot"
 length = 0.2
 tracks/0/type = "position_3d"
@@ -1401,7 +1404,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_j7lp0"]
+[sub_resource type="Animation" id="Animation_hijkb"]
 resource_name = "holding-left-shoot"
 length = 0.2
 tracks/0/type = "position_3d"
@@ -1482,7 +1485,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_0ktww"]
+[sub_resource type="Animation" id="Animation_6jng3"]
 resource_name = "holding-both-shoot"
 length = 0.2
 tracks/0/type = "position_3d"
@@ -1563,7 +1566,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_yywjc"]
+[sub_resource type="Animation" id="Animation_shoc7"]
 resource_name = "attack-melee-right"
 length = 0.416667
 tracks/0/type = "position_3d"
@@ -1644,7 +1647,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, -0.013898, 0, 0, -0.999903, 0.0666667, 1, -0.0461828, 0, 0, -0.998933, 0.1, 1, -0.0842914, 0, 0, -0.996441, 0.133333, 1, -0.116129, 0, 0, -0.993234, 0.166667, 1, -0.114577, 0, 0, -0.993414, 0.2, 1, 0.00953317, 0, 0, -0.999955, 0.233333, 1, 0.196908, 0, 0, -0.980422, 0.266667, 1, 0.248706, 0, 0, -0.968579, 0.3, 1, 0.201471, 0, 0, -0.979495, 0.333333, 1, 0.130753, 0, 0, -0.991415, 0.366667, 1, 0.0673727, 0, 0, -0.997728, 0.4, 1, 0.0224727, 0, 0, -0.999748, 0.416667, 1, 0, 0, 0, -1)
 
-[sub_resource type="Animation" id="Animation_qeksy"]
+[sub_resource type="Animation" id="Animation_2t7ar"]
 resource_name = "attack-melee-left"
 length = 0.416667
 tracks/0/type = "position_3d"
@@ -1725,7 +1728,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, -0.013898, 0, 0, -0.999903, 0.0666667, 1, -0.0461828, 0, 0, -0.998933, 0.1, 1, -0.0842914, 0, 0, -0.996441, 0.133333, 1, -0.116129, 0, 0, -0.993234, 0.166667, 1, -0.114577, 0, 0, -0.993414, 0.2, 1, 0.00953317, 0, 0, -0.999955, 0.233333, 1, 0.196908, 0, 0, -0.980422, 0.266667, 1, 0.248706, 0, 0, -0.968579, 0.3, 1, 0.201471, 0, 0, -0.979495, 0.333333, 1, 0.130753, 0, 0, -0.991415, 0.366667, 1, 0.0673727, 0, 0, -0.997728, 0.4, 1, 0.0224727, 0, 0, -0.999748, 0.416667, 1, 0, 0, 0, -1)
 
-[sub_resource type="Animation" id="Animation_e2dic"]
+[sub_resource type="Animation" id="Animation_dp88i"]
 resource_name = "attack-kick-right"
 length = 0.533333
 tracks/0/type = "position_3d"
@@ -1806,7 +1809,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, 0.00646414, 0, 0, -0.999979, 0.0666667, 1, 0.0226227, 0, 0, -0.999744, 0.133333, 1, 0.0645968, 0, 0, -0.997912, 0.166667, 1, 0.0807144, 0, 0, -0.996737, 0.2, 1, 0.0871557, 0, 0, -0.996195, 0.233333, 1, -0.170464, 0, 0, -0.985364, 0.266667, 1, -0.256296, 0, 0, -0.966598, 0.3, 1, -0.237914, 0, 0, -0.971286, 0.333333, 1, -0.205701, 0, 0, -0.978615, 0.366667, 1, -0.16444, 0, 0, -0.986387, 0.4, 1, -0.11908, 0, 0, -0.992885, 0.433333, 1, -0.0747453, 0, 0, -0.997203, 0.466667, 1, -0.0366534, 0, 0, -0.999328, 0.5, 1, -0.0183298, 0, 0, -0.999832, 0.533333, 1, 0, 0, 0, -1)
 
-[sub_resource type="Animation" id="Animation_sa2vj"]
+[sub_resource type="Animation" id="Animation_x1aun"]
 resource_name = "attack-kick-left"
 length = 0.533333
 tracks/0/type = "position_3d"
@@ -1887,7 +1890,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, 0.0272238, 0, 0, -0.999629, 0.0666667, 1, 0.092023, 0, 0, -0.995757, 0.1, 1, 0.168833, 0, 0, -0.985645, 0.133333, 1, 0.232427, 0, 0, -0.972614, 0.166667, 1, 0.258819, 0, 0, -0.965926, 0.2, 1, 0.077415, 0, 0, -0.996999, 0.233333, 1, -0.205863, 0, 0, -0.978581, 0.266667, 1, -0.255596, 0, 0, -0.966784, 0.3, 1, -0.232427, 0, 0, -0.972614, 0.333333, 1, -0.192712, 0, 0, -0.981255, 0.366667, 1, -0.143473, 0, 0, -0.989654, 0.4, 1, -0.092023, 0, 0, -0.995757, 0.433333, 1, -0.0459054, 0, 0, -0.998946, 0.466667, 1, -0.0127212, 0, 0, -0.999919, 0.5, 1, -0.00636071, 0, 0, -0.99998, 0.533333, 1, 0, 0, 0, -1)
 
-[sub_resource type="Animation" id="Animation_y8es2"]
+[sub_resource type="Animation" id="Animation_lim4q"]
 resource_name = "interact-right"
 length = 0.666667
 tracks/0/type = "position_3d"
@@ -1968,7 +1971,7 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_lluxg"]
+[sub_resource type="Animation" id="Animation_h8gjv"]
 resource_name = "interact-left"
 length = 0.666667
 tracks/0/type = "position_3d"
@@ -2049,33 +2052,33 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1cs8f"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o0024"]
 _data = {
-"attack-kick-left": SubResource("Animation_sa2vj"),
-"attack-kick-right": SubResource("Animation_e2dic"),
-"attack-melee-left": SubResource("Animation_qeksy"),
-"attack-melee-right": SubResource("Animation_yywjc"),
-"crouch": SubResource("Animation_e20kw"),
-"die": SubResource("Animation_0r6xe"),
-"drive": SubResource("Animation_mj8n8"),
-"emote-no": SubResource("Animation_ivgc3"),
-"emote-yes": SubResource("Animation_qiwp4"),
-"fall": SubResource("Animation_n3oaw"),
-"holding-both": SubResource("Animation_f3t80"),
-"holding-both-shoot": SubResource("Animation_0ktww"),
-"holding-left": SubResource("Animation_38qt7"),
-"holding-left-shoot": SubResource("Animation_j7lp0"),
-"holding-right": SubResource("Animation_65wrf"),
-"holding-right-shoot": SubResource("Animation_6imtg"),
-"idle": SubResource("Animation_sbtem"),
-"interact-left": SubResource("Animation_lluxg"),
-"interact-right": SubResource("Animation_y8es2"),
-"jump": SubResource("Animation_tww12"),
-"pick-up": SubResource("Animation_hr5xa"),
-"sit": SubResource("Animation_r8jsp"),
-"sprint": SubResource("Animation_d8edj"),
-"static": SubResource("Animation_l4xdj"),
-"walk": SubResource("Animation_e4qng")
+"attack-kick-left": SubResource("Animation_x1aun"),
+"attack-kick-right": SubResource("Animation_dp88i"),
+"attack-melee-left": SubResource("Animation_2t7ar"),
+"attack-melee-right": SubResource("Animation_shoc7"),
+"crouch": SubResource("Animation_kp888"),
+"die": SubResource("Animation_bs14r"),
+"drive": SubResource("Animation_8vpit"),
+"emote-no": SubResource("Animation_erwnu"),
+"emote-yes": SubResource("Animation_spahq"),
+"fall": SubResource("Animation_n5lft"),
+"holding-both": SubResource("Animation_hps2t"),
+"holding-both-shoot": SubResource("Animation_6jng3"),
+"holding-left": SubResource("Animation_tulb3"),
+"holding-left-shoot": SubResource("Animation_hijkb"),
+"holding-right": SubResource("Animation_senha"),
+"holding-right-shoot": SubResource("Animation_8mibx"),
+"idle": SubResource("Animation_paao3"),
+"interact-left": SubResource("Animation_h8gjv"),
+"interact-right": SubResource("Animation_lim4q"),
+"jump": SubResource("Animation_4xa52"),
+"pick-up": SubResource("Animation_yogyo"),
+"sit": SubResource("Animation_dg1d2"),
+"sprint": SubResource("Animation_rwn6c"),
+"static": SubResource("Animation_8erno"),
+"walk": SubResource("Animation_8ka7r")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5lgh5"]
@@ -2088,6 +2091,10 @@ filters = ["character-digger/root/torso/arm-right"]
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4dgdw"]
 animation = &"idle"
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_gj0sw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kiriu"]
+
 [sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_7yh3l"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0l72j"]
@@ -2097,29 +2104,37 @@ animation = &"sprint"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xlk25"]
-graph_offset = Vector2(-634.224, 55.2814)
+graph_offset = Vector2(-309.523, 51.5732)
 nodes/hold_anim/node = SubResource("AnimationNodeAnimation_5lgh5")
 nodes/hold_anim/position = Vector2(16, 336)
 nodes/hold_blend/node = SubResource("AnimationNodeBlend2_k4y03")
 nodes/hold_blend/position = Vector2(304, 128)
 nodes/idle_anim/node = SubResource("AnimationNodeAnimation_4dgdw")
 nodes/idle_anim/position = Vector2(-240, 32)
+nodes/interact/node = SubResource("AnimationNodeOneShot_gj0sw")
+nodes/interact/position = Vector2(704, 208)
+nodes/interact_anim/node = SubResource("AnimationNodeAnimation_kiriu")
+nodes/interact_anim/position = Vector2(400, 368)
 nodes/move_anim/node = SubResource("AnimationNodeBlend3_7yh3l")
 nodes/move_anim/position = Vector2(-16, 112)
-nodes/output/position = Vector2(608, 112)
+nodes/output/position = Vector2(928, 224)
 nodes/sprint_anim/node = SubResource("AnimationNodeAnimation_0l72j")
 nodes/sprint_anim/position = Vector2(-240, 336)
 nodes/walk_anim/node = SubResource("AnimationNodeAnimation_afnri")
 nodes/walk_anim/position = Vector2(-240, 176)
-node_connections = [&"hold_blend", 0, &"move_anim", &"hold_blend", 1, &"hold_anim", &"move_anim", 0, &"idle_anim", &"move_anim", 1, &"walk_anim", &"move_anim", 2, &"sprint_anim", &"output", 0, &"hold_blend"]
+node_connections = [&"hold_blend", 0, &"move_anim", &"hold_blend", 1, &"hold_anim", &"interact", 0, &"hold_blend", &"interact", 1, &"interact_anim", &"move_anim", 0, &"idle_anim", &"move_anim", 1, &"walk_anim", &"move_anim", 2, &"sprint_anim", &"output", 0, &"interact"]
 
-[node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "anim_tree", "flashlight", "detect_area", "model") groups=["hunter"]]
+[node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "anim_tree", "flashlight", "flash_damage_area", "detect_area", "model", "follow_timer", "interact_rand_timer", "scare_timer") groups=["hunter"]]
 script = ExtResource("1_wgi2b")
 nav_agent = NodePath("NavigationAgent3D")
 anim_tree = NodePath("AnimationTree")
 flashlight = NodePath("character-digger2/character-digger/root/torso/arm-right/Flashlight")
+flash_damage_area = NodePath("character-digger2/character-digger/root/torso/arm-right/Flashlight/DamageArea")
 detect_area = NodePath("DetectionArea")
 model = NodePath("character-digger2")
+follow_timer = NodePath("FollowTimer")
+interact_rand_timer = NodePath("InteractRandTimer")
+scare_timer = NodePath("ScareTimer")
 GHOST_TRAP = ExtResource("2_b7jd0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -2144,12 +2159,21 @@ transform = Transform3D(0.787152, -0.616759, 0, 0.616759, 0.787152, 0, 0, 0, 1, 
 
 [node name="Flashlight" type="MeshInstance3D" parent="character-digger2/character-digger/root/torso/arm-right" index="0"]
 transform = Transform3D(0.295792, -0.86441, 0.406575, 0.86441, 0.0610551, -0.499067, 0.406575, 0.499067, 0.765264, -0.305984, 0.0454307, 0.0906013)
-visible = false
 mesh = SubResource("CylinderMesh_omjvn")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="character-digger2/character-digger/root/torso/arm-right/Flashlight"]
 transform = Transform3D(-0.320537, 0.928661, -0.186666, -0.031457, -0.207391, -0.977752, -0.946713, -0.307533, 0.0956892, -0.0146434, 0.0110493, 0.00845441)
-spot_angle = 20.0
+spot_attenuation = 0.554785
+spot_angle = 25.0
+spot_angle_attenuation = 0.517632
+
+[node name="DamageArea" type="Area3D" parent="character-digger2/character-digger/root/torso/arm-right/Flashlight"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="character-digger2/character-digger/root/torso/arm-right/Flashlight/DamageArea"]
+transform = Transform3D(1, -4.32134e-07, 0, 0, 0.999998, -2.38419e-07, 0, -3.8743e-07, 0.999999, 0.0578923, 1.67055, -0.0111121)
+shape = SubResource("CylinderShape3D_r28vn")
 
 [node name="head" parent="character-digger2/character-digger/root/torso" index="2"]
 transform = Transform3D(0.99919, 0, -0.0402488, 0, 1, 0, 0.0402488, 0, 0.99919, -1.44382e-15, 0.26, 3.60956e-16)
@@ -2165,11 +2189,14 @@ shape = SubResource("CylinderShape3D_xl2ua")
 active = false
 root_node = NodePath("../character-digger2")
 libraries = {
-"": SubResource("AnimationLibrary_1cs8f")
+"": SubResource("AnimationLibrary_o0024")
 }
 tree_root = SubResource("AnimationNodeBlendTree_xlk25")
 anim_player = NodePath("../character-digger2/AnimationPlayer")
 parameters/hold_blend/blend_amount = 0.0
+parameters/interact/active = false
+parameters/interact/internal_active = false
+parameters/interact/request = 0
 parameters/move_anim/blend_amount = -1.0
 
 [node name="FollowTimer" type="Timer" parent="."]
@@ -2179,6 +2206,10 @@ one_shot = true
 [node name="InteractRandTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="ScareTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="timeout" from="FollowTimer" to="." method="_on_follow_timer_timeout"]
