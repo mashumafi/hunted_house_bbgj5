@@ -108,6 +108,7 @@ max_scare_distance = 6
 scare_curve = SubResource("Curve_jdbos")
 
 [node name="Camera" parent="." instance=ExtResource("4_fcp23")]
+current = false
 
 [node name="TriggerPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_djtbu")

@@ -38,7 +38,6 @@ shape = SubResource("CylinderShape3D_dpcd6")
 
 [node name="ScareArea3D" type="Area3D" parent="kitchenFridgeLarge"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
-collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchenFridgeLarge/ScareArea3D"]
 shape = SubResource("SphereShape3D_wimae")
