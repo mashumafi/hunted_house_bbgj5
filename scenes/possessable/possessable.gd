@@ -31,8 +31,9 @@ var possessions_since_last_investigation := 0
 var interactions_since_last_investigation := 0
 
 func _ready() -> void:
-	trigger_area.body_entered.connect(_body_entered)
-	trigger_area.body_exited.connect(_body_exited)
+	if trigger_area:
+		trigger_area.body_entered.connect(_body_entered)
+		trigger_area.body_exited.connect(_body_exited)
 
 func _body_entered(body: Node3D) -> void:
 	ParanormalActivity.contact_made.emit(self, true)
