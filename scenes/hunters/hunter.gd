@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var follow_timer: Timer
 @export var interact_rand_timer : Timer
 @export var scare_timer : Timer
+@export var scare_meter : ProgressBar
 
 @export var GHOST_TRAP : PackedScene
 
@@ -50,6 +51,7 @@ func _ready():
 	random = RandomNumberGenerator.new()
 	random.randomize()
 	anim_tree.active = true
+	scare_meter.value = 0
 
 func _physics_process(delta):
 	
@@ -103,11 +105,14 @@ func _physics_process(delta):
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)		
 		
 		if global_position.distance_to(interact.trigger_area.global_position) < 0.5:
-			if do_lay_trap:
+			if do_lay_trap or (interact.possessions_since_last_investigation > 0 and random.randf() > 0.5):
 				do_lay_trap = false
 				var trap = GHOST_TRAP.instantiate()
 				get_parent().add_child(trap)
 				trap.global_position = global_position
+			
+			interact.investigated()
+			anim_tree.set("parameters/interact/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				
 			switch_state(STATE.EXPLORING)
 		
@@ -226,7 +231,8 @@ func switch_state(new_state : STATE):
 
 func scare(fear_amount: float, global_scare_location: Vector3):
 	fear += fear_amount
-
+	scare_meter.value = fear
+	
 	if fear >= 100.0:
 		switch_state(STATE.LEAVING)
 		nav_agent.set_target_position(exit_location)
@@ -272,9 +278,21 @@ func _on_follow_timer_timeout():
 func _on_interact_rand_timer_timeout():
 	if state == STATE.EXPLORING and random.randf() > 0.5:
 		var possessables = ParanormalActivity.get_possessables()
-		ParanormalActivity.sort_by_distance(possessables, ghost_last_pos)
+		ParanormalActivity.filter_no_activity(possessables)
+		ParanormalActivity.filter_far_away(possessables, global_position, 7)
+		ParanormalActivity.sort_by_distance(possessables, global_position)
+		
 		if possessables and possessables.size() > 0:
 			switch_state(STATE.INVESTIGATING)
 			interact = possessables[0]
 			nav_agent.set_target_position(interact.trigger_area.global_position)
+			return
 		
+		possessables = ParanormalActivity.get_possessables()
+		ParanormalActivity.sort_by_distance(possessables, global_position)
+		
+		if possessables and possessables.size() > 0:
+			switch_state(STATE.INVESTIGATING)
+			interact = possessables[0]
+			nav_agent.set_target_position(interact.trigger_area.global_position)
+			return
