@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyyu3awnt51jv"]
+[gd_scene load_steps=5 format=3 uid="uid://dyyu3awnt51jv"]
 
 [ext_resource type="Script" path="res://scenes/menu/win_lose_screen.gd" id="1_1h6nj"]
 [ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="1_cda3c"]
+[ext_resource type="AudioStream" uid="uid://b817g83ettkfa" path="res://assets/music/Ludum Dare 38 - Track 8.wav" id="3_v240b"]
+[ext_resource type="AudioStream" uid="uid://c1n712tk6snh1" path="res://assets/music/Ludum Dare 32 - Track 5.wav" id="4_rcopu"]
 
-[node name="WinLoseScreen" type="Control" node_paths=PackedStringArray("Title", "Reason")]
+[node name="WinLoseScreen" type="Control" node_paths=PackedStringArray("winplayer", "loseplayer", "Title", "Reason")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +13,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1h6nj")
+winplayer = NodePath("WinPlayer")
+loseplayer = NodePath("LosePlayer")
 Title = NodePath("CenterContainer/VBoxContainer/Title")
 Reason = NodePath("CenterContainer/VBoxContainer/Reason")
 
@@ -79,6 +83,12 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../ReplayButton")
 focus_previous = NodePath("../ReplayButton")
 text = "MENU"
+
+[node name="WinPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_v240b")
+
+[node name="LosePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rcopu")
 
 [connection signal="pressed" from="VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
