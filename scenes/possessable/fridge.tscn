@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw6t5juwh7x4x"]
+
+[ext_resource type="PackedScene" uid="uid://c5km5240etike" path="res://assets/models/Furniture_Kit/kitchenFridgeLarge.glb" id="1_n8bpo"]
+
+[node name="Fridge" type="Node3D"]
+
+[node name="kitchenFridgeLarge" parent="." instance=ExtResource("1_n8bpo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 3.25)
