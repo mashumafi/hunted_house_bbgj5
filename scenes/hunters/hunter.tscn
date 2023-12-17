@@ -9,8 +9,8 @@
 viewport_path = NodePath("ScareBarViewport")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vhja8"]
-radius = 0.300544
-height = 0.934498
+radius = 0.07
+height = 0.317622
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eywic"]
 albedo_color = Color(0.321569, 0.321569, 0.321569, 1)
@@ -2134,7 +2134,8 @@ node_connections = [&"hold_blend", 0, &"move_anim", &"hold_blend", 1, &"hold_ani
 height = 1.0
 
 [node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "anim_tree", "flashlight", "flash_damage_area", "detect_area", "door_open_area", "model", "follow_timer", "interact_rand_timer", "scare_timer", "scare_meter") groups=["hunter"]]
-collision_mask = 5
+collision_mask = 7
+floor_max_angle = 1.22173
 script = ExtResource("1_wgi2b")
 nav_agent = NodePath("NavigationAgent3D")
 anim_tree = NodePath("AnimationTree")
@@ -2161,15 +2162,17 @@ transparent_bg = true
 [node name="ScareMeter3D" parent="ScareBarViewport" instance=ExtResource("3_jk8dn")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.458662, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.163698, 0)
 shape = SubResource("CapsuleShape3D_vhja8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.5
+path_desired_distance = 0.2
 target_desired_distance = 0.5
 path_max_distance = 2.01
+debug_enabled = true
 
 [node name="character-digger2" parent="." instance=ExtResource("2_1780j")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [node name="torso" parent="character-digger2/character-digger/root" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44382e-15, 0.223184, -7.21911e-16)

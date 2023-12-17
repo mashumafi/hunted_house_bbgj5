@@ -67,7 +67,8 @@ func _physics_process(delta):
 		for sibling in door_area.get_parent().get_children():
 			if sibling.is_in_group("interactive"):
 				door_possess = sibling
-		door_possess.investigated()
+		if door_possess != null:
+			door_possess.investigated()
 		
 	if state == STATE.LEAVING:
 		var next_path_position: Vector3 = nav_agent.get_next_path_position()
@@ -127,20 +128,24 @@ func _physics_process(delta):
 			true)
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)		
 		
-		if global_position.distance_to(interact.trigger_area.global_position) < 0.5:
+		if global_position.distance_to(interact.trigger_area.global_position) < 1:
 			if do_lay_trap or (interact.possessions_since_last_investigation > 0 and random.randf() > 0.5):
 				do_lay_trap = false
 				var trap = GHOST_TRAP.instantiate()
 				get_parent().add_child(trap)
-				trap.global_position = global_position
+				trap.global_position = (global_position + interact.trigger_area.global_position) / 2
 			
 			interact.investigated()
 			anim_tree.set("parameters/interact/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				
 			switch_state(STATE.EXPLORING)
+			print(nav_agent.target_position)
+			print(global_position)
+			return
 		
 		if nav_agent.is_navigation_finished():		
 			switch_state(STATE.EXPLORING)
+			return
 		
 	if state == STATE.HUNTING: # chase the ghost
 		if not ghost:
