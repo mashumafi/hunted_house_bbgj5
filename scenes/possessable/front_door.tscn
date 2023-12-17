@@ -9,15 +9,15 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_la7qa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pf23n"]
-radius = 2.0
+radius = 5.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l84fj"]
 size = Vector3(0.626404, 1, 0.342712)
 
 [sub_resource type="Curve" id="Curve_d3amf"]
-max_value = 11.0
-_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.77095, 6.0418), -15.5072, -15.5072, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+max_value = 22.0
+_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(1e-05, 22), 0.0, 0.0, 0, 0, Vector2(0.77095, 6.0418), -15.5072, -15.5072, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="Animation" id="Animation_0lope"]
 length = 0.001
@@ -120,7 +120,7 @@ camera = NodePath("../doorwayFront/Camera")
 trigger_area = NodePath("../doorwayFront/TriggerArea3D")
 scare_area = NodePath("../doorwayFront/ScareArea3D")
 trigger_sound = NodePath("../AudioStreamPlayer3D")
-max_scare_distance = 3
+max_scare_distance = 6
 scare_curve = SubResource("Curve_d3amf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

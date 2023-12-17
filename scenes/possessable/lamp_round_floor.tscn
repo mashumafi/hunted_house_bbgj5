@@ -8,11 +8,11 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qnwfj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_raq3h"]
-radius = 1.9106
+radius = 5.0
 
 [sub_resource type="Curve" id="Curve_snrur"]
-max_value = 11.0
-_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.900838, 3.5627), -23.1622, -23.1622, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+max_value = 22.0
+_data = [Vector2(0, 22), 0.0, 0.0, 0, 0, Vector2(0.900838, 3.5627), -23.1622, -23.1622, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="lamp_round_floor" type="Node3D"]
@@ -50,7 +50,7 @@ camera = NodePath("../lampRoundFloor/Camera")
 trigger_area = NodePath("../lampRoundFloor/TriggerArea3D")
 scare_area = NodePath("../lampRoundFloor/ScareArea3D")
 trigger_sound = NodePath("../AudioStreamPlayer3D")
-max_scare_distance = 3
+max_scare_distance = 6
 scare_curve = SubResource("Curve_snrur")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]

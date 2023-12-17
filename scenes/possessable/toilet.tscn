@@ -8,11 +8,11 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nluqo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3nabe"]
-radius = 2.0
+radius = 5.0
 
 [sub_resource type="Curve" id="Curve_gymqm"]
-max_value = 11.0
-_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.871508, 2.8908), -27.3496, -27.3496, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+max_value = 22.0
+_data = [Vector2(0, 22), 0.0, 0.0, 0, 0, Vector2(0.871508, 2.8908), -27.3496, -27.3496, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="Toilet" type="Node3D"]
@@ -42,7 +42,7 @@ camera = NodePath("../Camera")
 trigger_area = NodePath("../toilet/TriggerArea3D")
 scare_area = NodePath("../toilet/ScareArea3D")
 trigger_sound = NodePath("../AudioStreamPlayer3D")
-max_scare_distance = 3
+max_scare_distance = 6
 scare_curve = SubResource("Curve_gymqm")
 
 [node name="Camera" parent="." instance=ExtResource("3_qc4x8")]
