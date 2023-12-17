@@ -29,6 +29,15 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:washer(Clone)": {
+"generate/occluder": 1,
+"generate/physics": true,
+"physics/layer": 2,
+"physics/mask": 0
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
