@@ -8,11 +8,11 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_payfc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ryctq"]
-radius = 2.0
+radius = 5.0
 
 [sub_resource type="Curve" id="Curve_d55ln"]
-max_value = 11.0
-_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.864525, 2.63594), -27.798, -27.798, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+max_value = 22.0
+_data = [Vector2(0, 22), 0.0, 0.0, 0, 0, Vector2(0.864525, 2.63594), -27.798, -27.798, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="DecoratedTree" type="Node3D"]
@@ -45,7 +45,7 @@ camera = NodePath("../Camera")
 trigger_area = NodePath("../treeDecorated2/TriggerArea3D")
 scare_area = NodePath("../treeDecorated2/ScareArea3D")
 trigger_sound = NodePath("../AudioStreamPlayer3D")
-max_scare_distance = 3
+max_scare_distance = 6
 scare_curve = SubResource("Curve_d55ln")
 
 [node name="Camera" parent="." instance=ExtResource("3_88qkq")]

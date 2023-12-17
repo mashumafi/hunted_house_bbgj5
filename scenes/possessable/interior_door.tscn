@@ -9,14 +9,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_40pct"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qktas"]
-radius = 2.0
+radius = 5.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f732c"]
 size = Vector3(0.626404, 1, 0.342712)
 
 [sub_resource type="Curve" id="Curve_7c44a"]
-max_value = 11.0
-_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.657821, 7.03808), -14.6209, -14.6209, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+max_value = 22.0
+_data = [Vector2(0, 22), 0.0, 0.0, 0, 0, Vector2(0.657821, 7.03808), -14.6209, -14.6209, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kwc1e"]
@@ -63,7 +63,7 @@ camera = NodePath("../Camera")
 trigger_area = NodePath("../doorway/TriggerArea3D")
 scare_area = NodePath("../doorway/ScareArea3D")
 trigger_sound = NodePath("../AudioStreamPlayer3D")
-max_scare_distance = 3
+max_scare_distance = 6
 scare_curve = SubResource("Curve_7c44a")
 
 [node name="Camera" parent="." instance=ExtResource("3_rhf3n")]
