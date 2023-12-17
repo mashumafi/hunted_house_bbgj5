@@ -24,11 +24,11 @@
 [ext_resource type="PackedScene" uid="uid://c8wo6h5gr3kly" path="res://assets/models/Holiday_Kit/presentRound.glb" id="20_b3yuj"]
 [ext_resource type="PackedScene" uid="uid://ba2yiy4ot6m6d" path="res://scenes/possessable/lamp_round_floor.tscn" id="20_gvert"]
 [ext_resource type="PackedScene" uid="uid://c0mbrdv3kjwr8" path="res://assets/models/Furniture_Kit/kitchenStove.glb" id="21_fiko6"]
-[ext_resource type="PackedScene" uid="uid://c5km5240etike" path="res://assets/models/Furniture_Kit/kitchenFridgeLarge.glb" id="22_bohdy"]
 [ext_resource type="PackedScene" uid="uid://dy7tnyyiyhgnj" path="res://assets/models/Furniture_Kit/kitchenCabinet.glb" id="23_6iedh"]
 [ext_resource type="PackedScene" uid="uid://bxs270jvdgf6" path="res://assets/models/Furniture_Kit/kitchenSink.glb" id="24_d04jj"]
 [ext_resource type="PackedScene" uid="uid://ujx0cbmtjbym" path="res://assets/models/Furniture_Kit/kitchenBlender.glb" id="24_kesfw"]
 [ext_resource type="PackedScene" uid="uid://ujdccqkup3f7" path="res://scenes/possessable/toaster.tscn" id="27_qnxkp"]
+[ext_resource type="PackedScene" uid="uid://bw6t5juwh7x4x" path="res://scenes/possessable/fridge.tscn" id="29_dvsld"]
 [ext_resource type="PackedScene" uid="uid://b7jlxg1ouw2vx" path="res://assets/models/Furniture_Kit/coatRack.glb" id="29_u3pp3"]
 [ext_resource type="PackedScene" uid="uid://ceichyyp18t6x" path="res://assets/models/Furniture_Kit/dryer.glb" id="29_ub8jx"]
 [ext_resource type="PackedScene" uid="uid://c80rwxv2jbgbx" path="res://assets/models/Furniture_Kit/washer.glb" id="30_3fpsy"]
@@ -500,9 +500,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86178, 0.0504574, 0.46195)
 [node name="kitchenStove" parent="Furniture/Kitchen" instance=ExtResource("21_fiko6")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0.0555492, 1.5)
 
-[node name="kitchenFridgeLarge" parent="Furniture/Kitchen" instance=ExtResource("22_bohdy")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 3.25)
-
 [node name="kitchenCabinet" parent="Furniture/Kitchen" instance=ExtResource("23_6iedh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 1)
 
@@ -523,6 +520,8 @@ transform = Transform3D(0.873815, 0, -0.486259, 0, 1, 0, 0.486259, 0, 0.873815, 
 
 [node name="kitchenSink" parent="Furniture/Kitchen" instance=ExtResource("24_d04jj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 2)
+
+[node name="Fridge" parent="Furniture/Kitchen" instance=ExtResource("29_dvsld")]
 
 [node name="BedRoom" type="Node3D" parent="Furniture"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
