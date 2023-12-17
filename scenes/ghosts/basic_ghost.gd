@@ -34,6 +34,7 @@ var _timer_id: int
 
 func _process(delta: float) -> void:
 	if state == State.Default:
+		HUD.energy_bar.value += delta * 10
 		if Input.is_action_just_pressed("interact") and ParanormalActivity.last_contact:
 			state = State.Possessing
 			possession_meter_sprite.visible = true
@@ -61,8 +62,8 @@ func _process(delta: float) -> void:
 			if velocity.length_squared() > 0:
 				ghost.rotation.y = lerp(ghost.rotation.y, atan2(velocity.x, velocity.z), .2)
 	elif state == State.Possessing:
-		HUD.energy_bar.value -= delta * 10
-		if Input.is_action_just_released("interact"):
+		HUD.energy_bar.value -= delta * 25
+		if Input.is_action_just_released("interact") or HUD.energy_bar.value == 0.0:
 			state = State.Default
 			possession_meter_sprite.visible = false
 			possession_meter_particles.emitting = false
@@ -74,3 +75,4 @@ func _process(delta: float) -> void:
 
 func take_damage(damage: float):
 	HUD.health_bar.value -= damage
+	HUD.energy_bar.value += damage * .8 # Gain energy from damage

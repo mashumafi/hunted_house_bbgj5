@@ -1,6 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7h5efb8ef70j"]
+[gd_scene load_steps=7 format=3 uid="uid://c7h5efb8ef70j"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_fi4cc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhgvg"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anv2r"]
+bg_color = Color(0.6, 0, 0.00784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyn5e"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxc5l"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_itnmu"]
+font_size = 100
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_fi4cc")
@@ -27,7 +56,9 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+theme_override_styles/background = SubResource("StyleBoxFlat_fhgvg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_anv2r")
+value = 60.0
 
 [node name="Health" type="Label" parent="Control/VBoxContainer/HealthContainer"]
 layout_mode = 2
@@ -40,8 +71,16 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+theme_override_colors/font_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_jyn5e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cxc5l")
+value = 80.0
 
 [node name="Energy" type="Label" parent="Control/VBoxContainer/EnergyContainer"]
 layout_mode = 2
 text = "Energy"
+
+[node name="TimerLabel" type="Label" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_itnmu")
