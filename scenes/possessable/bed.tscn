@@ -82,7 +82,7 @@ point_count = 3
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.75, 0.0555493, -0.157508)
 
 [node name="TriggerArea3D" type="Area3D" parent="bedDouble"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2913, 0, -0.338828)
 collision_layer = 0
 collision_mask = 8
 
@@ -90,7 +90,7 @@ collision_mask = 8
 shape = SubResource("CylinderShape3D_nta4e")
 
 [node name="ScareArea3D" type="Area3D" parent="bedDouble"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.650287, 2.38419e-07, -0.607943)
 collision_layer = 0
 collision_mask = 8
 

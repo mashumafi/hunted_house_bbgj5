@@ -77,7 +77,7 @@ func _physics_process(delta):
 		for sibling in door_area.get_parent().get_children():
 			if sibling.is_in_group("interactive"):
 				door_possess = sibling
-		if door_possess != null:
+		if door_possess != null and not door_possess.opened:
 			door_possess.investigated()
 
 	if state == STATE.LEAVING:
