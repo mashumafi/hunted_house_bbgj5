@@ -23,7 +23,7 @@ point_count = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.08165e-12, 2.08165e-12)
 
 [node name="TriggerArea3D" type="Area3D" parent="doorway"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 2.08165e-12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 2.08165e-12)
 collision_layer = 0
 collision_mask = 8
 
