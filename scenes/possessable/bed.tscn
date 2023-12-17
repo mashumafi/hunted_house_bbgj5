@@ -1,8 +1,116 @@
-[gd_scene load_steps=2 format=3 uid="uid://b820c2nj2afpt"]
+[gd_scene load_steps=10 format=3 uid="uid://b820c2nj2afpt"]
 
 [ext_resource type="PackedScene" uid="uid://ddcjs6ptadkpi" path="res://assets/models/Furniture_Kit/bedDouble.glb" id="1_xfnj0"]
+[ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="2_j323g"]
+[ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="3_0ltui"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nta4e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wc6ka"]
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_bkxkk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bedDouble/bedDouble(Clone)/cover:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bedDouble/bedDouble(Clone):rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n4bnw"]
+resource_name = "bite"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bedDouble/bedDouble(Clone)/cover:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(3.48787e-16, -1.5708, 0.785398), Vector3(0, -1.5708, 0), Vector3(3.48787e-16, -1.5708, 0.785398), Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bedDouble/bedDouble(Clone):rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.48787e-16, 3.48787e-16, 0.349066), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u3lsn"]
+_data = {
+"RESET": SubResource("Animation_bkxkk"),
+"bite": SubResource("Animation_n4bnw")
+}
+
+[sub_resource type="Curve" id="Curve_4eeok"]
+max_value = 11.0
+_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.743017, 6.06497), -23.3602, -23.3602, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Bed" type="Node3D"]
 
 [node name="bedDouble" parent="." instance=ExtResource("1_xfnj0")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.75, 0.0555493, -0.157508)
+
+[node name="TriggerArea3D" type="Area3D" parent="bedDouble"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bedDouble/TriggerArea3D"]
+shape = SubResource("CylinderShape3D_nta4e")
+
+[node name="ScareArea3D" type="Area3D" parent="bedDouble"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bedDouble/ScareArea3D"]
+shape = SubResource("SphereShape3D_wc6ka")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u3lsn")
+}
+
+[node name="Camera" parent="." instance=ExtResource("2_j323g")]
+transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 2.08165e-12, 3, -1)
+
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area")]
+script = ExtResource("3_0ltui")
+anim_player = NodePath("../AnimationPlayer")
+scare_anim = Array[String](["bite"])
+display_name = "Bed Monster"
+camera = NodePath("../Camera")
+trigger_area = NodePath("../bedDouble/TriggerArea3D")
+scare_area = NodePath("../bedDouble/ScareArea3D")
+max_scare_distance = 3
+scare_curve = SubResource("Curve_4eeok")
