@@ -14,6 +14,12 @@ signal die()
 @export var scare_timer : Timer
 @export var scare_meter : ProgressBar
 
+@export var footstep_audio :AudioStreamPlayer3D
+@export var flashlight_audio :AudioStreamPlayer3D
+@export var scream_audio :AudioStreamPlayer3D
+@export var trap_audio :AudioStreamPlayer3D
+@export var gasp_audio :AudioStreamPlayer3D
+
 @export var GHOST_TRAP : PackedScene
 
 @export var exit_location := Vector3.ZERO
@@ -49,6 +55,8 @@ var interact : Possessable = null
 var do_lay_trap := false
 
 var compute_first_frame := false
+
+var time_until_step = 0.0
 
 func _ready():
 	random = RandomNumberGenerator.new()
@@ -137,6 +145,7 @@ func _physics_process(delta):
 				var trap = GHOST_TRAP.instantiate()
 				get_parent().add_child(trap)
 				trap.global_position = (global_position + interact.trigger_area.global_position) / 2
+				trap_audio.play()
 
 			interact.investigated()
 			anim_tree.set("parameters/interact/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -237,6 +246,11 @@ func _physics_process(delta):
 
 	anim_tree.set("parameters/move_anim/blend_amount", remap(velocity.length(), 0, RUN_SPEED, -1, 1))
 	velocity += Vector3(0, GRAVITY * delta, 0)
+	
+	time_until_step -= delta * velocity.length() * 3
+	if time_until_step < 0:
+		time_until_step = 1
+		footstep_audio.play()
 
 	move_and_slide()
 
@@ -247,18 +261,22 @@ func ghost_raycast(ghost_pos: Vector3):
 	var query = PhysicsRayQueryParameters3D.create(
 		global_position + Vector3(0, 0.25, 0),
 		ghost_pos + Vector3(0, 0.25, 0),
-		0x9,  # 1 in hexadecimal for 1st collision layer
+		0x29,  # 1 in hexadecimal for 1st collision layer
 		[self])
 	return space_state.intersect_ray(query)
 
 func switch_state(new_state : STATE):
-	print(STATE.keys()[new_state])
 	if new_state == state:
 		return
+		
+	if new_state == STATE.HUNTING:
+		gasp_audio.play()
 
 	if state == STATE.INVESTIGATING:
 		interact_rand_timer.wait_time = randf_range(5, 10)
 		interact_rand_timer.start()
+
+	var flashlight_orig = flashlight.visible
 
 	if state == STATE.HUNTING || state == STATE.FOLLOWING || new_state == STATE.SCARED:
 		ghost = null
@@ -271,11 +289,16 @@ func switch_state(new_state : STATE):
 	|| new_state == STATE.LEAVING):
 		anim_tree.set("parameters/hold_blend/blend_amount", 1)
 		flashlight.show()
+		
+	if (flashlight_orig != flashlight.visible):
+		flashlight_audio.play()
 
 	state = new_state
 
 
 func scare(fear_amount: float, global_scare_location: Vector3):
+	scream_audio.play()
+	
 	fear += fear_amount
 	scare_meter.value = fear
 

@@ -33,6 +33,8 @@ _subresources={
 "nodes": {
 "PATH:wallDoorway(Clone)": {
 "generate/occluder": 1,
+"generate/physics": true,
+"physics/layer": 32,
 "physics/mask": 0,
 "physics/shape_type": 2
 }
