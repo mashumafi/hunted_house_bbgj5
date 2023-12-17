@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://d16uljs8lp37p"]
+[gd_scene load_steps=6 format=3 uid="uid://d16uljs8lp37p"]
 
 [ext_resource type="PackedScene" uid="uid://bo5gfb7t8db8r" path="res://scenes/hunters/hunter.tscn" id="1_xypgc"]
 [ext_resource type="PackedScene" uid="uid://cjh5fofgfgv0g" path="res://scenes/ghosts/basic_ghost.tscn" id="2_qm54d"]
 [ext_resource type="PackedScene" uid="uid://c26qcyvtl7y54" path="res://scenes/tools/ghost_trap.tscn" id="3_aha5m"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_n2o2h"]
-vertices = PackedVector3Array(-14.0718, -1.29583, -16.7393, -14.0718, -1.29583, 6.26068, 8.92816, -1.29583, 6.26068, 8.92816, -1.29583, -16.7393)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(-3.82184, -1.29583, -6.48932, -3.32184, -1.29583, -6.73932, -3.32184, -1.29583, -16.7393, -14.0718, -1.29583, -16.7393, -14.0718, -1.29583, -5.48932, -14.0718, -1.29583, -5.48932, -3.82184, -1.29583, -5.48932, -3.82184, -1.29583, -6.48932, 3.92816, -1.29583, -6.73932, 4.17816, -1.29583, -5.48932, 8.92816, -1.29583, -5.48932, 8.92816, -1.29583, -16.7393, 3.92816, -1.29583, -6.73932, 8.92816, -1.29583, -16.7393, -3.32184, -1.29583, -16.7393, -3.32184, -1.29583, -6.73932, -3.57184, -1.29583, -4.48932, -3.82184, -1.29583, -5.48932, -14.0718, -1.29583, -5.48932, -14.0718, -1.29583, 6.26068, -2.32184, -1.29583, 6.26068, -2.32184, -1.29583, 6.26068, -2.07184, -1.29583, -4.48932, -3.57184, -1.29583, -4.48932, 8.92816, -1.29583, -5.48932, 4.17816, -1.29583, -5.48932, 3.92816, -1.29583, -4.48932, 8.92816, -1.29583, 6.26068, -2.32184, -1.29583, 6.26068, 8.92816, -1.29583, 6.26068, 3.92816, -1.29583, -4.48932, -2.07184, -1.29583, -4.48932)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(19, 16, 20), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pem8s"]
+albedo_color = Color(0.156863, 0.490196, 1, 1)
 
 [node name="TestLevel1" type="Node3D"]
 
@@ -19,6 +22,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.60689, -2.29583, -5.26767)
 use_collision = true
 size = Vector3(23.9299, 1, 23.9433)
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15462, -1.41298, -5.66796)
+material_override = SubResource("StandardMaterial3D_pem8s")
+use_collision = true
+size = Vector3(6.87885, 1, 1)
+
 [node name="Hunter" parent="." instance=ExtResource("1_xypgc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.478148, 0.5, -7.88874)
 
@@ -30,3 +39,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.699738, 0.500001, -1.04796)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.328042, 0.944663, 0, -0.944663, 0.328042, 0, 11.1426, 0)
+current = true
