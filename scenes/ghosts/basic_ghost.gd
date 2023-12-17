@@ -22,6 +22,12 @@ var blend_tree : AnimationTree
 
 var health := 100.0
 
+const POSSESSION_DURATION := 1.0
+
+@onready var possession_meter : ProgressBar = $PossessionBarViewport/PoissessionMeter3D
+@onready var possession_meter_sprite : Sprite3D = $PossessionMeterTexture
+@onready var possession_meter_particles: CPUParticles3D = $PossessionCPUParticles3D
+
 func _ready():
 	blend_tree.active = true
 
@@ -32,10 +38,14 @@ func _process(delta: float) -> void:
 	if state == State.Default:
 		if Input.is_action_just_pressed("interact") and ParanormalActivity.last_contact:
 			state = State.Possessing
+			possession_meter_sprite.visible = true
+			possession_meter_particles.emitting = true
+			possession_meter.value = 0.0
+			create_tween().tween_property(possession_meter, "value", 100.0, POSSESSION_DURATION)
 			_possession_target = ParanormalActivity.last_contact
 			var timer_id := Engine.get_process_frames()
 			_timer_id = timer_id
-			get_tree().create_timer(1).timeout.connect(func():
+			get_tree().create_timer(POSSESSION_DURATION).timeout.connect(func():
 				if state == State.Possessing and _timer_id == timer_id:
 					_possession_target.possess()
 					var spawn := Node3D.new()
@@ -55,6 +65,8 @@ func _process(delta: float) -> void:
 	elif state == State.Possessing:
 		if Input.is_action_just_released("interact"):
 			state = State.Default
+			possession_meter_sprite.visible = false
+			possession_meter_particles.emitting = false
 		else:
 			velocity = velocity.move_toward(Vector3.ZERO, .8)
 
