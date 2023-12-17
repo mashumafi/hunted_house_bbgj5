@@ -75,7 +75,6 @@ shape = SubResource("CylinderShape3D_fftmf")
 
 [node name="ScareArea3D" type="Area3D" parent="candle2"]
 collision_layer = 0
-collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="candle2/ScareArea3D"]
 shape = SubResource("SphereShape3D_h2318")
