@@ -185,7 +185,7 @@ libraries = {
 "": SubResource("AnimationLibrary_smmy8")
 }
 
-[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area", "trigger_sound")]
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area", "trigger_sound") groups=["interactive", "possessable"]]
 script = ExtResource("4_rn2g8")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["down", "pop"])
