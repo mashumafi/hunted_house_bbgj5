@@ -1,6 +1,6 @@
 extends Control
 
-@onready var volumn_slider : HSlider = %VolumnSlider
+@onready var volumn_slider : HSlider = %VolumeSlider
 
 func _ready():
 	# needed for gamepads to work

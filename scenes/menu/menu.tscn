@@ -67,7 +67,7 @@ layout_mode = 2
 text = "Volume"
 horizontal_alignment = 1
 
-[node name="VolumnSlider" type="HSlider" parent="VBoxContainer"]
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
