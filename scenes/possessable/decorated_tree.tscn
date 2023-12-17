@@ -36,8 +36,9 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="treeDecorated2/ScareArea3D"]
 shape = SubResource("SphereShape3D_ryctq")
 
-[node name="VissibilityPossessable" type="Node" parent="." node_paths=PackedStringArray("camera", "trigger_area", "scare_area")]
+[node name="VissibilityPossessable" type="Node" parent="." node_paths=PackedStringArray("nodes", "camera", "trigger_area", "scare_area")]
 script = ExtResource("2_htnub")
+nodes = [NodePath("../treeDecorated2/OmniLight3D")]
 display_name = "Toggle Tree Star"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../treeDecorated2/TriggerArea3D")
