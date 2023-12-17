@@ -9,8 +9,9 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_raq3h"]
 
 [sub_resource type="Curve" id="Curve_ruueu"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+max_value = 8.0
+_data = [Vector2(0, 6.81589), 0.0, 0.0, 0, 0, Vector2(0.754781, 6.21038), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="lamp_round_floor" type="Node3D"]
 
