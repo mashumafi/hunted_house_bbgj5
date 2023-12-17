@@ -138,16 +138,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "made by:"
 
-[node name="Developer1" type="Label" parent="Credits"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92549, 0.92549, 0.92549, 1)
-text = "Matthew Murphy"
-
-[node name="Developer2" type="Label" parent="Credits"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.886275, 0.87451, 0.87451, 1)
-text = "Peyton Williams"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_8a1h3")
 autoplay = true
