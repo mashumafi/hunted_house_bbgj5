@@ -32,7 +32,6 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:floorFull(Clone)": {
-"generate/navmesh": 1,
 "generate/physics": true
 }
 }

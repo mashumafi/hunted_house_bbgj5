@@ -32,7 +32,6 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:tmpParent/ground_grass": {
-"generate/navmesh": 1,
 "generate/physics": true
 }
 }

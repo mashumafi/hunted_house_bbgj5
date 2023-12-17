@@ -46,7 +46,7 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503056, 0.597703, -0.0358582)
 shape = SubResource("BoxShape3D_f732c")
 
-[node name="RotationPossessable" type="Node" parent="." node_paths=PackedStringArray("target", "camera", "trigger_area", "scare_area")]
+[node name="RotationPossessable" type="Node" parent="." node_paths=PackedStringArray("target", "camera", "trigger_area", "scare_area") groups=["interactive", "possessable"]]
 script = ExtResource("2_sssp3")
 target = NodePath("../doorway/doorway(Clone)/door")
 target_rotation = Vector3(2.08165e-12, 1.571, 2.08165e-12)
