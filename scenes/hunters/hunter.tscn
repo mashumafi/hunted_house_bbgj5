@@ -1,9 +1,25 @@
-[gd_scene load_steps=47 format=3 uid="uid://bo5gfb7t8db8r"]
+[gd_scene load_steps=68 format=3 uid="uid://bo5gfb7t8db8r"]
 
 [ext_resource type="Script" path="res://scenes/hunters/hunter.gd" id="1_wgi2b"]
 [ext_resource type="PackedScene" uid="uid://llfndqsp4avx" path="res://assets/models/Graveyard_Kit/character-digger.glb" id="2_1780j"]
 [ext_resource type="PackedScene" uid="uid://c26qcyvtl7y54" path="res://scenes/tools/ghost_trap.tscn" id="2_b7jd0"]
 [ext_resource type="PackedScene" uid="uid://6e0tktq46esw" path="res://scenes/hunters/scare_meter_3d.tscn" id="3_jk8dn"]
+[ext_resource type="AudioStream" uid="uid://b6bosj1ac66r4" path="res://assets/sfx/FootstepsConcrete1.wav" id="5_87ddo"]
+[ext_resource type="AudioStream" uid="uid://dst2itxer0pst" path="res://assets/sfx/FootstepsConcrete2.wav" id="6_xrrik"]
+[ext_resource type="AudioStream" uid="uid://che1ypakl2u3e" path="res://assets/sfx/FootstepsConcrete3.wav" id="7_bpt37"]
+[ext_resource type="AudioStream" uid="uid://dxagx8klsx500" path="res://assets/sfx/FootstepsConcrete4.wav" id="8_os0gh"]
+[ext_resource type="AudioStream" uid="uid://b1xhk7bbh78vo" path="res://assets/sfx/SwitchButton1_On.wav" id="9_thnn0"]
+[ext_resource type="AudioStream" uid="uid://3hck8y7nfbev" path="res://assets/sfx/SwitchButton1_Off.wav" id="10_e04wp"]
+[ext_resource type="AudioStream" uid="uid://c06w3ow4b2rcb" path="res://assets/sfx/219858__adriancalzon__scream-01.mp3" id="11_o77kb"]
+[ext_resource type="AudioStream" uid="uid://bquot282uqscd" path="res://assets/sfx/220619__adriancalzon__scream-02.mp3" id="12_0gi1i"]
+[ext_resource type="AudioStream" uid="uid://cjcctt5wam3gl" path="res://assets/sfx/220620__adriancalzon__scream-03.mp3" id="13_t2wdx"]
+[ext_resource type="AudioStream" uid="uid://bvmj00trkn8q8" path="res://assets/sfx/220621__adriancalzon__scream-04.mp3" id="14_5dw5o"]
+[ext_resource type="AudioStream" uid="uid://3odtk28rrk3d" path="res://assets/sfx/220623__adriancalzon__scream-05.mp3" id="15_mlihl"]
+[ext_resource type="AudioStream" uid="uid://b1kuha7mosfcf" path="res://assets/sfx/action-openbook01.wav" id="16_n2p43"]
+[ext_resource type="AudioStream" uid="uid://ckrdh32w4mw2g" path="res://assets/sfx/action-openbook02.wav" id="17_4h3fk"]
+[ext_resource type="AudioStream" uid="uid://b5q0p7i8lk467" path="res://assets/sfx/648984__atomediadesign__startled-gasping-for-breath-1.wav" id="18_i8wt1"]
+[ext_resource type="AudioStream" uid="uid://bmixk8l7grhxy" path="res://assets/sfx/414213__iokera__gasp.wav" id="19_7ct8a"]
+[ext_resource type="AudioStream" uid="uid://out43o5dc2xp" path="res://assets/sfx/341908__bacruz666__gasp.mp3" id="20_fylr5"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2v3ht"]
 viewport_path = NodePath("ScareBarViewport")
@@ -2110,7 +2126,7 @@ animation = &"sprint"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xlk25"]
-graph_offset = Vector2(-385.87, 13.0606)
+graph_offset = Vector2(-90.4751, 159.786)
 nodes/hold_anim/node = SubResource("AnimationNodeAnimation_5lgh5")
 nodes/hold_anim/position = Vector2(16, 336)
 nodes/hold_blend/node = SubResource("AnimationNodeBlend2_k4y03")
@@ -2133,7 +2149,54 @@ node_connections = [&"hold_blend", 0, &"move_anim", &"hold_blend", 1, &"hold_ani
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vcmlc"]
 height = 1.0
 
-[node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "anim_tree", "flashlight", "flash_damage_area", "detect_area", "door_open_area", "model", "follow_timer", "interact_rand_timer", "scare_timer", "scare_meter") groups=["hunter"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_25myb"]
+streams_count = 4
+stream_0/stream = ExtResource("5_87ddo")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_xrrik")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_bpt37")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_os0gh")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_08ufb"]
+streams_count = 2
+stream_0/stream = ExtResource("9_thnn0")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_e04wp")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lbsro"]
+streams_count = 5
+stream_0/stream = ExtResource("11_o77kb")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_0gi1i")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_t2wdx")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_5dw5o")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("15_mlihl")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_orvm6"]
+streams_count = 2
+stream_0/stream = ExtResource("16_n2p43")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("17_4h3fk")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x5rcl"]
+streams_count = 3
+stream_0/stream = ExtResource("18_i8wt1")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("19_7ct8a")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("20_fylr5")
+stream_2/weight = 1.0
+
+[node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "anim_tree", "flashlight", "flash_damage_area", "detect_area", "door_open_area", "model", "follow_timer", "interact_rand_timer", "scare_timer", "scare_meter", "footstep_audio", "flashlight_audio", "scream_audio", "trap_audio", "gasp_audio") groups=["hunter"]]
 collision_mask = 7
 floor_max_angle = 1.22173
 script = ExtResource("1_wgi2b")
@@ -2148,6 +2211,11 @@ follow_timer = NodePath("FollowTimer")
 interact_rand_timer = NodePath("InteractRandTimer")
 scare_timer = NodePath("ScareTimer")
 scare_meter = NodePath("ScareBarViewport/ScareMeter3D")
+footstep_audio = NodePath("FootstepAudio3D")
+flashlight_audio = NodePath("FlashlightAudio3D")
+scream_audio = NodePath("ScreamAudio3D")
+trap_audio = NodePath("TrapLayAudio3D")
+gasp_audio = NodePath("GaspAudio3D")
 GHOST_TRAP = ExtResource("2_b7jd0")
 
 [node name="ScareMeterTexture" type="Sprite3D" parent="."]
@@ -2173,9 +2241,6 @@ debug_enabled = true
 
 [node name="character-digger2" parent="." instance=ExtResource("2_1780j")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-
-[node name="torso" parent="character-digger2/character-digger/root" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
 
 [node name="arm-left" parent="character-digger2/character-digger/root/torso" index="0"]
 transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.15, 0.2, 0.0025)
@@ -2245,6 +2310,21 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorOpenArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560387, 0)
 shape = SubResource("CylinderShape3D_vcmlc")
+
+[node name="FootstepAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_25myb")
+
+[node name="FlashlightAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_08ufb")
+
+[node name="ScreamAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_lbsro")
+
+[node name="TrapLayAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_orvm6")
+
+[node name="GaspAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_x5rcl")
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="timeout" from="FollowTimer" to="." method="_on_follow_timer_timeout"]
