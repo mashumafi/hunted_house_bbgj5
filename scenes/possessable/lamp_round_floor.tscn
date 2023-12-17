@@ -32,6 +32,8 @@ shape = SubResource("CylinderShape3D_qnwfj")
 
 [node name="ScareArea3D" type="Area3D" parent="lampRoundFloor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lampRoundFloor/ScareArea3D"]
 shape = SubResource("SphereShape3D_raq3h")

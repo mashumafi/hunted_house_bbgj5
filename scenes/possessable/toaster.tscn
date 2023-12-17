@@ -1,0 +1,197 @@
+[gd_scene load_steps=12 format=3 uid="uid://ujdccqkup3f7"]
+
+[ext_resource type="PackedScene" uid="uid://cm0fhhwekbkrr" path="res://assets/models/Furniture_Kit/toaster.glb" id="1_hhgxx"]
+[ext_resource type="PackedScene" uid="uid://0837gpglwunl" path="res://assets/models/Food_Kit/bread.glb" id="2_i68ju"]
+[ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_icd14"]
+[ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="4_rn2g8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bbkhd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d64cw"]
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_4hwji"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Toaster/toaster/bread2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00875574, 0.149284, -0.0267096)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Toaster/toaster/bread3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0035271, 0.149284, 0.0197392)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Toaster/toaster/bread3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0306237, -1.62258, -1.72875)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Toaster/toaster/bread2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0306237, -1.62258, -1.72875)]
+}
+
+[sub_resource type="Animation" id="Animation_q6c5c"]
+resource_name = "down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Toaster/toaster/bread2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.00875574, 0.149284, -0.0267096), Vector3(0.009, 0.1, -0.027)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Toaster/toaster/bread3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0035271, 0.149284, 0.0197392), Vector3(0.004, 0.1, 0.02)]
+}
+
+[sub_resource type="Animation" id="Animation_0dmcg"]
+resource_name = "pop"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Toaster/toaster/bread2:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.009, 0.1, -0.027), Vector3(0.00899994, 0.325645, -0.0270009), Vector3(0.00899994, 0.149, -0.0270009)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Toaster/toaster/bread3:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.004, 0.1, 0.02), Vector3(0.00399989, 0.325645, 0.02), Vector3(0.00399989, 0.149, 0.02)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Toaster/toaster/bread3:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0306237, -1.62258, -1.72875), Vector3(-0.32644, -1.60756, -1.82901), Vector3(0.0306237, -1.62258, -1.72875)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Toaster/toaster/bread2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0306237, -1.62258, -1.72875), Vector3(0.33984, -1.60622, -1.64101), Vector3(0.0306237, -1.62258, -1.72875)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smmy8"]
+_data = {
+"RESET": SubResource("Animation_4hwji"),
+"down": SubResource("Animation_q6c5c"),
+"pop": SubResource("Animation_0dmcg")
+}
+
+[sub_resource type="Curve" id="Curve_253yb"]
+max_value = 11.0
+_data = [Vector2(0, 8.28024), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Toaster" type="Node3D"]
+
+[node name="toaster" parent="." instance=ExtResource("1_hhgxx")]
+transform = Transform3D(0.950244, 0, 0.311506, 0, 1, 0, -0.311506, 0, 0.950244, -0.321036, 0.420965, -0.246522)
+
+[node name="bread2" parent="toaster" instance=ExtResource("2_i68ju")]
+transform = Transform3D(0.00766782, -0.00926131, -0.199638, -0.197418, -0.0314449, -0.00612378, -0.0311044, 0.197296, -0.0103473, 0.00875574, 0.149284, -0.0267096)
+
+[node name="bread3" parent="toaster" instance=ExtResource("2_i68ju")]
+transform = Transform3D(0.00766782, -0.00926131, -0.199638, -0.197418, -0.0314449, -0.00612378, -0.0311044, 0.197296, -0.0103473, 0.0035271, 0.149284, 0.0197392)
+
+[node name="TriggerArea3D" type="Area3D" parent="toaster"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="toaster/TriggerArea3D"]
+shape = SubResource("CylinderShape3D_bbkhd")
+
+[node name="ScareArea3D" type="Area3D" parent="toaster"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="toaster/ScareArea3D"]
+shape = SubResource("SphereShape3D_d64cw")
+
+[node name="Camera" parent="toaster" instance=ExtResource("3_icd14")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_smmy8")
+}
+
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area")]
+script = ExtResource("4_rn2g8")
+anim_player = NodePath("../AnimationPlayer")
+scare_anim = Array[String](["down", "pop"])
+display_name = "Toaster"
+camera = NodePath("../toaster/Camera")
+trigger_area = NodePath("../toaster/TriggerArea3D")
+scare_area = NodePath("../toaster/ScareArea3D")
+max_scare_distance = 3
+scare_curve = SubResource("Curve_253yb")
