@@ -77,6 +77,8 @@ text = "START"
 [node name="AboutButton" type="LinkButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "About"
