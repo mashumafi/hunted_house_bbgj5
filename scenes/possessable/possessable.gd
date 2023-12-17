@@ -17,8 +17,10 @@ var state := State.Default
 # area for scaring targets
 @export var scare_area: Area3D
 
+@export var trigger_sound: AudioStreamPlayer3D
+
 # affects the scare curve
-@export var max_scare_distance := 1
+@export var max_scare_distance := 2
 
 # a curve for scare effectiveness based on distance
 @export var scare_curve: Curve
@@ -64,7 +66,8 @@ func try_scare() -> bool:
 
 	if not _can_scare:
 		return false
-
+		
+	trigger_sound.play()
 	_scare()
 	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
 		print(hunter)
@@ -114,5 +117,6 @@ func exit():
 	ParanormalActivity.spawn_ghost(ghost)
 
 func investigated() -> void:
+	trigger_sound.play()
 	possessions_since_last_investigation = 0
 	interactions_since_last_investigation = 0

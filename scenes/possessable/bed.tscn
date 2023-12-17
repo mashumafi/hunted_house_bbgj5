@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b820c2nj2afpt"]
+[gd_scene load_steps=11 format=3 uid="uid://b820c2nj2afpt"]
 
 [ext_resource type="PackedScene" uid="uid://ddcjs6ptadkpi" path="res://assets/models/Furniture_Kit/bedDouble.glb" id="1_xfnj0"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="2_j323g"]
 [ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="3_0ltui"]
+[ext_resource type="AudioStream" uid="uid://ylvqwlg6x3i0" path="res://assets/sfx/246184__andreangelo__bite-growl-effect.wav" id="4_qt0nv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nta4e"]
 
@@ -104,7 +105,7 @@ libraries = {
 [node name="Camera" parent="." instance=ExtResource("2_j323g")]
 transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 2.08165e-12, 3, -1)
 
-[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area")]
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area", "trigger_sound")]
 script = ExtResource("3_0ltui")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["bite"])
@@ -112,5 +113,9 @@ display_name = "Bed Monster"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../bedDouble/TriggerArea3D")
 scare_area = NodePath("../bedDouble/ScareArea3D")
+trigger_sound = NodePath("../TriggerAudio3D")
 max_scare_distance = 3
 scare_curve = SubResource("Curve_4eeok")
+
+[node name="TriggerAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_qt0nv")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfptradiul14i"]
+[gd_scene load_steps=8 format=3 uid="uid://dfptradiul14i"]
 
 [ext_resource type="PackedScene" uid="uid://ehxftbrqh2fu" path="res://assets/models/Holiday_Kit/treeDecorated.glb" id="1_c4iwo"]
 [ext_resource type="Script" path="res://scenes/possessable/visibility_possessable.gd" id="2_htnub"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_88qkq"]
+[ext_resource type="AudioStream" uid="uid://dkmysg87vmi4w" path="res://assets/sfx/action-lightclick01.wav" id="4_6w5um"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_payfc"]
 
@@ -36,15 +37,19 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="treeDecorated2/ScareArea3D"]
 shape = SubResource("SphereShape3D_ryctq")
 
-[node name="VissibilityPossessable" type="Node" parent="." node_paths=PackedStringArray("nodes", "camera", "trigger_area", "scare_area")]
+[node name="VissibilityPossessable" type="Node" parent="." node_paths=PackedStringArray("nodes", "camera", "trigger_area", "scare_area", "trigger_sound")]
 script = ExtResource("2_htnub")
 nodes = [NodePath("../treeDecorated2/OmniLight3D")]
 display_name = "Toggle Tree Star"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../treeDecorated2/TriggerArea3D")
 scare_area = NodePath("../treeDecorated2/ScareArea3D")
+trigger_sound = NodePath("../AudioStreamPlayer3D")
 max_scare_distance = 3
 scare_curve = SubResource("Curve_d55ln")
 
 [node name="Camera" parent="." instance=ExtResource("3_88qkq")]
 transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1.24471, 3, 1.2468)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_6w5um")

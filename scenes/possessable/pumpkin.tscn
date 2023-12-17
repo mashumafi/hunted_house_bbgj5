@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d41mv84dyhv5"]
+[gd_scene load_steps=10 format=3 uid="uid://d41mv84dyhv5"]
 
 [ext_resource type="PackedScene" uid="uid://o122813xew73" path="res://assets/models/Nature_Kit/crop_pumpkin.glb" id="1_7u0p8"]
 [ext_resource type="Script" path="res://scenes/possessable/scale_possessable.gd" id="2_kydgk"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_c3htl"]
+[ext_resource type="AudioStream" uid="uid://b1kuha7mosfcf" path="res://assets/sfx/action-openbook01.wav" id="4_13lv5"]
+[ext_resource type="AudioStream" uid="uid://ckrdh32w4mw2g" path="res://assets/sfx/action-openbook02.wav" id="5_f880t"]
 
 [sub_resource type="Curve" id="Curve_fa1rs"]
 max_value = 11.0
@@ -14,18 +16,26 @@ point_count = 3
 [sub_resource type="SphereShape3D" id="SphereShape3D_tpf2b"]
 radius = 2.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tqjug"]
+streams_count = 2
+stream_0/stream = ExtResource("4_13lv5")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_f880t")
+stream_1/weight = 1.0
+
 [node name="Pumpkin" type="Node3D"]
 
 [node name="crop_pumpkin3" parent="." instance=ExtResource("1_7u0p8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
 
-[node name="ScalePossessable" type="Node" parent="." node_paths=PackedStringArray("node", "camera", "trigger_area", "scare_area")]
+[node name="ScalePossessable" type="Node" parent="." node_paths=PackedStringArray("node", "camera", "trigger_area", "scare_area", "trigger_sound")]
 script = ExtResource("2_kydgk")
 node = NodePath("../crop_pumpkin3")
 display_name = "Pumpkin Size"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../TriggerArea3D")
 scare_area = NodePath("../ScareArea3D")
+trigger_sound = NodePath("../AudioStreamPlayer3D")
 max_scare_distance = 3
 scare_curve = SubResource("Curve_fa1rs")
 
@@ -46,3 +56,6 @@ collision_mask = 8
 shape = SubResource("SphereShape3D_tpf2b")
 
 [node name="Camera" parent="." instance=ExtResource("3_c3htl")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_tqjug")
