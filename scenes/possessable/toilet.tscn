@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1qkgngjlvj0f"]
+
+[ext_resource type="PackedScene" uid="uid://cvqfbbax2f7c7" path="res://assets/models/Furniture_Kit/toilet.glb" id="1_6ulgo"]
+
+[node name="Toilet" type="Node3D"]
+
+[node name="toilet" parent="." instance=ExtResource("1_6ulgo")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.75, 0.0555492, 1.25)

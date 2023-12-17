@@ -29,15 +29,15 @@
 [ext_resource type="PackedScene" uid="uid://bxs270jvdgf6" path="res://assets/models/Furniture_Kit/kitchenSink.glb" id="24_d04jj"]
 [ext_resource type="PackedScene" uid="uid://ujx0cbmtjbym" path="res://assets/models/Furniture_Kit/kitchenBlender.glb" id="24_kesfw"]
 [ext_resource type="PackedScene" uid="uid://ujdccqkup3f7" path="res://scenes/possessable/toaster.tscn" id="27_qnxkp"]
-[ext_resource type="PackedScene" uid="uid://ddcjs6ptadkpi" path="res://assets/models/Furniture_Kit/bedDouble.glb" id="28_n4tdv"]
 [ext_resource type="PackedScene" uid="uid://b7jlxg1ouw2vx" path="res://assets/models/Furniture_Kit/coatRack.glb" id="29_u3pp3"]
 [ext_resource type="PackedScene" uid="uid://ceichyyp18t6x" path="res://assets/models/Furniture_Kit/dryer.glb" id="29_ub8jx"]
 [ext_resource type="PackedScene" uid="uid://c80rwxv2jbgbx" path="res://assets/models/Furniture_Kit/washer.glb" id="30_3fpsy"]
 [ext_resource type="PackedScene" uid="uid://b0uru0bpb6iwx" path="res://assets/models/Furniture_Kit/cabinetBedDrawer.glb" id="30_iynuo"]
 [ext_resource type="PackedScene" uid="uid://druwuhvoeaqel" path="res://assets/models/Furniture_Kit/coatRackStanding.glb" id="30_v6qqj"]
 [ext_resource type="PackedScene" uid="uid://btke5004hsy46" path="res://assets/models/Furniture_Kit/bathtub.glb" id="32_koso1"]
-[ext_resource type="PackedScene" uid="uid://cvqfbbax2f7c7" path="res://assets/models/Furniture_Kit/toilet.glb" id="33_4ldbe"]
+[ext_resource type="PackedScene" uid="uid://b820c2nj2afpt" path="res://scenes/possessable/bed.tscn" id="33_xlxq4"]
 [ext_resource type="PackedScene" uid="uid://4sqqj84xnejy" path="res://assets/models/Furniture_Kit/bathroomSink.glb" id="34_61d8c"]
+[ext_resource type="PackedScene" uid="uid://c1qkgngjlvj0f" path="res://scenes/possessable/toilet.tscn" id="36_13dtb"]
 
 [node name="Structure" type="Node3D"]
 
@@ -506,6 +506,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 
 [node name="kitchenCabinet" parent="Furniture/Kitchen" instance=ExtResource("23_6iedh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 1)
 
+[node name="Toaster" parent="Furniture/Kitchen/kitchenCabinet" instance=ExtResource("27_qnxkp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
 [node name="kitchenCabinet3" parent="Furniture/Kitchen" instance=ExtResource("23_6iedh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 2.5)
 
@@ -515,16 +518,14 @@ transform = Transform3D(0.954865, 0, 0.297042, 0, 1, 0, -0.297042, 0, 0.954865, 
 [node name="kitchenCabinet2" parent="Furniture/Kitchen" instance=ExtResource("23_6iedh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 0.5)
 
-[node name="Toaster" parent="Furniture/Kitchen/kitchenCabinet2" instance=ExtResource("27_qnxkp")]
+[node name="lamp_round_table" parent="Furniture/Kitchen/kitchenCabinet2" instance=ExtResource("13_4hafg")]
+transform = Transform3D(0.873815, 0, -0.486259, 0, 1, 0, 0.486259, 0, 0.873815, 0.222715, 0.0298012, -0.264781)
 
 [node name="kitchenSink" parent="Furniture/Kitchen" instance=ExtResource("24_d04jj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 2)
 
 [node name="BedRoom" type="Node3D" parent="Furniture"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
-
-[node name="bedDouble" parent="Furniture/BedRoom" instance=ExtResource("28_n4tdv")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.75, 0.0555493, -0.157508)
 
 [node name="Closet" type="Node3D" parent="Furniture/BedRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
@@ -550,20 +551,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, -0.75)
 [node name="lamp_round_floor" parent="Furniture/BedRoom" instance=ExtResource("20_gvert")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.611781, 0.0504574, 0.711953)
 
+[node name="Bed" parent="Furniture/BedRoom" instance=ExtResource("33_xlxq4")]
+
 [node name="BathRoom" type="Node3D" parent="Furniture"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5.75)
 
 [node name="bathtub" parent="Furniture/BathRoom" instance=ExtResource("32_koso1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.951629, 0.0555492, -0.15345)
 
-[node name="toilet" parent="Furniture/BathRoom" instance=ExtResource("33_4ldbe")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.75, 0.0555492, 1.25)
-
 [node name="bathroomSink" parent="Furniture/BathRoom" instance=ExtResource("34_61d8c")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.25, 0.459994, 0.75)
 
 [node name="lamp_round_floor" parent="Furniture/BathRoom" instance=ExtResource("20_gvert")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.611781, 0.0504574, 0.711953)
+
+[node name="Toilet" parent="Furniture/BathRoom" instance=ExtResource("36_13dtb")]
 
 [node name="Garage" type="Node3D" parent="Furniture"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
@@ -581,6 +583,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13822, 0.0504574, 2.21195)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="lamp_round_floor" parent="Furniture/Hallway" instance=ExtResource("20_gvert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.61178, 0.0504574, -0.0380468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36515, 0.0504574, 0.535973)
 
 [editable path="Walls/wall"]
