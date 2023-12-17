@@ -20,6 +20,7 @@ point_count = 3
 [node name="InteriorDoor" type="Node3D"]
 
 [node name="doorway" parent="." instance=ExtResource("1_ywl17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.08165e-12, 2.08165e-12)
 
 [node name="TriggerArea3D" type="Area3D" parent="doorway"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 2.08165e-12)
