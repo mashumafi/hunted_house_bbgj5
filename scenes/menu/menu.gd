@@ -3,6 +3,7 @@ extends Control
 @onready var volumn_slider : HSlider = %VolumeSlider
 
 func _ready():
+	HUD.hide()
 	# needed for gamepads to work
 	$VBoxContainer/PlayButton.grab_focus()
 	if OS.has_feature('HTML5'):
