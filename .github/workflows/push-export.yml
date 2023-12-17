@@ -108,11 +108,6 @@ jobs:
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
-        with:
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: builds/web # The folder the action should deploy.
       - name: Zip Folder
         run: zip -r itch.zip builds/web
       - name: Deploy to itch.io
