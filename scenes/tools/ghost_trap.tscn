@@ -114,6 +114,7 @@ size = 0.2
 section_length = 0.05
 
 [node name="GhostTrap" type="Area3D" node_paths=PackedStringArray("anim_player")]
+collision_mask = 8
 script = ExtResource("1_3mrpp")
 anim_player = NodePath("AnimationPlayer")
 
