@@ -10,6 +10,9 @@ func _scare() -> void:
 
 func toggle():
 	for node: Node3D in nodes:
+		if node is GPUParticles3D and OS.has_feature("web"):
+			continue
+
 		node.visible = not node.visible
 
 func investigated():
