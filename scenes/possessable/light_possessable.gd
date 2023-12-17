@@ -1,4 +1,4 @@
-# Possession that uses an AnimationPlayer
+# Possession of lights
 class_name LightPossessable
 extends Possessable
 

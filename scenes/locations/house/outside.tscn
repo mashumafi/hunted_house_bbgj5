@@ -170,6 +170,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 [node name="ground_grass24" parent="Grass" instance=ExtResource("1_xppk8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 
+[node name="grass_large2" parent="Grass/ground_grass24" instance=ExtResource("4_httvg")]
+
 [node name="ground_grass25" parent="Grass" instance=ExtResource("1_xppk8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
 
@@ -189,7 +191,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 [node name="ground_grass27" parent="Grass" instance=ExtResource("1_xppk8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
 
-[node name="grass_large2" parent="Grass/ground_grass27" instance=ExtResource("4_httvg")]
+[node name="path_stone2" parent="Grass/ground_grass27" instance=ExtResource("19_73os0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="ground_grass28" parent="Grass" instance=ExtResource("1_xppk8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)

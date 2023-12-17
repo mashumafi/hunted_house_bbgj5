@@ -55,6 +55,9 @@ func try_scare() -> bool:
 
 	_scare()
 	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
+		if not hunter.is_in_group("hunter"):
+			continue
+
 		var trigger_position := trigger_area.global_position
 		var distance := hunter.global_position.distance_to(trigger_position)
 		hunter.scare(scare_curve.sample(remap(distance, 0, max_scare_distance, 0.0, 1.0)), trigger_position)

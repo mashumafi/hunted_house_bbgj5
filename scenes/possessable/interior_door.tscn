@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://7j248s8w81tl"]
+
+[ext_resource type="PackedScene" uid="uid://dmcnrdibv1p5q" path="res://assets/models/Furniture_Kit/doorway.glb" id="1_ywl17"]
+[ext_resource type="Script" path="res://scenes/possessable/door_possessable.gd" id="2_gk8kd"]
+[ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_rhf3n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_40pct"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qktas"]
+radius = 2.0
+
+[sub_resource type="Curve" id="Curve_2unlr"]
+max_value = 11.0
+_data = [Vector2(0, 9.22383), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="InteriorDoor" type="Node3D"]
+
+[node name="doorway" parent="." instance=ExtResource("1_ywl17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
+
+[node name="TriggerArea3D" type="Area3D" parent="doorway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 2.08165e-12)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorway/TriggerArea3D"]
+shape = SubResource("BoxShape3D_40pct")
+
+[node name="ScareArea3D" type="Area3D" parent="doorway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 2.08165e-12)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="doorway/ScareArea3D"]
+shape = SubResource("SphereShape3D_qktas")
+
+[node name="DoorPossessable" type="Node" parent="." node_paths=PackedStringArray("door", "camera", "trigger_area", "scare_area")]
+script = ExtResource("2_gk8kd")
+door = NodePath("../doorway/doorway(Clone)/door")
+display_name = "Toggle Door"
+camera = NodePath("../Camera")
+trigger_area = NodePath("../doorway/TriggerArea3D")
+scare_area = NodePath("../doorway/ScareArea3D")
+max_scare_distance = 3
+scare_curve = SubResource("Curve_2unlr")
+
+[node name="Camera" parent="." instance=ExtResource("3_rhf3n")]
+
+[editable path="doorway"]
