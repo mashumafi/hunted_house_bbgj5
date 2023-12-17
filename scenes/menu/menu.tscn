@@ -9405,5 +9405,4 @@ transform = Transform3D(1, 0, 0, 0, 0.691954, 0.721941, 0, -0.721941, 0.691954, 
 environment = SubResource("Environment_fi8l7")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/AboutButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
