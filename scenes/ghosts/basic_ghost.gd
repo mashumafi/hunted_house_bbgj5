@@ -26,8 +26,24 @@ const POSSESSION_DURATION := 1.0
 @onready var possession_meter_sprite : Sprite3D = $PossessionMeterTexture
 @onready var possession_meter_particles: CPUParticles3D = $PossessionCPUParticles3D
 
+@onready var ghost_torso : MeshInstance3D = $"character-ghost/character-ghost/root/torso"
+@onready var ghost_arm_left : MeshInstance3D = $"character-ghost/character-ghost/root/torso/arm-left"
+@onready var ghost_arm_right : MeshInstance3D = $"character-ghost/character-ghost/root/torso/arm-right"
+
+@onready var torso_surface_override : StandardMaterial3D = ghost_torso.mesh.surface_get_material(0).duplicate()
+@onready var arm_left_surface_override : StandardMaterial3D = ghost_arm_left.mesh.surface_get_material(0).duplicate()
+@onready var arm_right_surface_override : StandardMaterial3D = ghost_arm_right.mesh.surface_get_material(0).duplicate()
+
+@onready var sizzle_audio : AudioStreamPlayer = $SizzleAudioStreamPlayer
+
+var recently_damaged := false
+
 func _ready():
 	blend_tree.active = true
+
+	ghost_torso.set_surface_override_material(0, torso_surface_override)
+	ghost_arm_left.set_surface_override_material(0, arm_left_surface_override)
+	ghost_arm_right.set_surface_override_material(0, arm_right_surface_override)
 
 var _possession_target: Possessable
 var _timer_id: int
@@ -76,3 +92,19 @@ func _process(delta: float) -> void:
 func take_damage(damage: float):
 	HUD.health_bar.value -= damage
 	HUD.energy_bar.value += damage * .8 # Gain energy from damage
+
+	if not recently_damaged:
+		sizzle_audio.play()
+		var hurt := func(mat: StandardMaterial3D) -> void:
+			var tween := create_tween()
+			tween.tween_property(mat, "albedo_color", Color.RED, .25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+			tween.tween_property(mat, "albedo_color", Color.WHITE, .25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).set_delay(.25)
+			recently_damaged = true
+			tween.tween_callback(func():
+				recently_damaged = false
+				sizzle_audio.stop()
+			)
+
+		hurt.call(torso_surface_override)
+		hurt.call(arm_left_surface_override)
+		hurt.call(arm_right_surface_override)

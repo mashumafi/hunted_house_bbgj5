@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://cjh5fofgfgv0g"]
+[gd_scene load_steps=45 format=3 uid="uid://cjh5fofgfgv0g"]
 
 [ext_resource type="Script" path="res://scenes/ghosts/basic_ghost.gd" id="1_h0f6c"]
 [ext_resource type="PackedScene" uid="uid://2cakrgbmp1xl" path="res://assets/models/Graveyard_Kit/character-ghost.glb" id="2_sqhnt"]
 [ext_resource type="PackedScene" uid="uid://6e0tktq46esw" path="res://scenes/hunters/scare_meter_3d.tscn" id="3_beb3j"]
+[ext_resource type="AudioStream" uid="uid://blim8brl831d1" path="res://assets/sfx/sizzle.wav" id="4_kc1a4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b8aiu"]
 radius = 0.2
@@ -1346,3 +1347,8 @@ initial_velocity_max = 2.0
 scale_amount_min = 0.25
 scale_amount_max = 0.6
 scale_amount_curve = SubResource("Curve_jef3q")
+
+[node name="SizzleAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kc1a4")
+
+[editable path="character-ghost"]
