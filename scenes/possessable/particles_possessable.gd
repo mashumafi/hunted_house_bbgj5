@@ -11,3 +11,8 @@ func _scare() -> void:
 func toggle():
 	for particle: GPUParticles3D in fire:
 		particle.visible = not particle.visible
+
+func investigated():
+	super()
+	if fire.size() > 0 and not fire[0].visible:
+		toggle()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfptradiul14i"]
+[gd_scene load_steps=7 format=3 uid="uid://b87cy16ty5er"]
 
 [ext_resource type="PackedScene" uid="uid://ehxftbrqh2fu" path="res://assets/models/Holiday_Kit/treeDecorated.glb" id="1_c4iwo"]
 [ext_resource type="Script" path="res://scenes/possessable/light_possessable.gd" id="2_3x53c"]
