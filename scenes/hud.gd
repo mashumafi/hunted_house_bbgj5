@@ -9,7 +9,7 @@ var time_left := 0.0
 
 func _ready() -> void:
 	hide()
-	ParanormalActivity.end_game.connect(func(): hide())
+	ParanormalActivity.end_game.connect(func(win: bool, reason: String): hide())
 	visibility_changed.connect(func() -> void:
 		if visible:
 			health_bar.value = 100

@@ -53,6 +53,7 @@ func try_scare() -> bool:
 	HUD.energy_bar.value -= 8 # punish the player by subtracting the energy first
 	if HUD.energy_bar.value == 0:
 		return false
+
 	if not _can_scare:
 		return false
 
