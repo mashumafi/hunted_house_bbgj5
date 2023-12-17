@@ -20,8 +20,6 @@ var ghost : Node3D
 @export
 var blend_tree : AnimationTree
 
-var health := 100.0
-
 const POSSESSION_DURATION := 1.0
 
 @onready var possession_meter : ProgressBar = $PossessionBarViewport/PoissessionMeter3D
@@ -63,6 +61,7 @@ func _process(delta: float) -> void:
 			if velocity.length_squared() > 0:
 				ghost.rotation.y = lerp(ghost.rotation.y, atan2(velocity.x, velocity.z), .2)
 	elif state == State.Possessing:
+		HUD.energy_bar.value -= delta * 10
 		if Input.is_action_just_released("interact"):
 			state = State.Default
 			possession_meter_sprite.visible = false
@@ -74,4 +73,4 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func take_damage(damage: float):
-	health -= damage
+	HUD.health_bar.value -= damage
