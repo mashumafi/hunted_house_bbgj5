@@ -1,23 +1,32 @@
 extends Control
 
+@export var winplayer : AudioStreamPlayer
+@export var loseplayer : AudioStreamPlayer
 
 @export var Title : Label
 @export var Reason : Label
 
+var win: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func pre_start(params):
+	win = params["win_lose"]
 	if not params["win_lose"]:
 		Title.text = "You Lose..."
 		Reason.text = params["reason"]
 
+func start():
+	if win:
+		winplayer.play()
+	else:
+		loseplayer.play()
 
 func _on_replay_button_pressed():
 	var params = {

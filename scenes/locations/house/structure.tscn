@@ -577,7 +577,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0, 2.5)
 
 [node name="lamp_round_floor" parent="Furniture/Garage" instance=ExtResource("20_gvert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13822, 0.0504574, 2.21195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13822, 0.0504574, 2.49236)
 
 [node name="Hallway" type="Node3D" parent="Furniture"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

@@ -57,7 +57,8 @@ func try_scare() -> bool:
 		return false
 
 	_scare()
-	for hunter: Node3D in scare_area.get_overlapping_bodies():
+	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
+		print(hunter)
 		if not hunter.is_in_group("hunter"):
 			continue
 

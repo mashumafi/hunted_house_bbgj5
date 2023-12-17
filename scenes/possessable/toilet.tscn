@@ -28,7 +28,6 @@ shape = SubResource("CylinderShape3D_nluqo")
 
 [node name="ScareArea3D" type="Area3D" parent="toilet"]
 collision_layer = 0
-collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="toilet/ScareArea3D"]
 shape = SubResource("SphereShape3D_3nabe")
