@@ -74,12 +74,13 @@ focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "START"
 
-[node name="AboutButton" type="Button" parent="VBoxContainer"]
+[node name="AboutButton" type="LinkButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "About"
+uri = "https://github.com/mashumafi/bbgj5?#About"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
@@ -9404,5 +9405,4 @@ transform = Transform3D(1, 0, 0, 0, 0.691954, 0.721941, 0, -0.721941, 0.691954, 
 environment = SubResource("Environment_fi8l7")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/AboutButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
