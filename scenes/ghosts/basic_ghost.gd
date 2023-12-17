@@ -38,6 +38,11 @@ func _process(delta: float) -> void:
 			get_tree().create_timer(1).timeout.connect(func():
 				if state == State.Possessing and _timer_id == timer_id:
 					_possession_target.possess()
+					var spawn := Node3D.new()
+					get_parent().add_child(spawn)
+					spawn.global_position = global_position
+					spawn.add_to_group("ghost")
+					self.queue_free()
 			)
 		else:
 			var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down") * speed

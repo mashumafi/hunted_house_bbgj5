@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://4fyoq8npekf0"]
+[gd_scene load_steps=7 format=3 uid="uid://4fyoq8npekf0"]
 
 [ext_resource type="PackedScene" uid="uid://barl4q1kugrmm" path="res://scenes/gameplay/pause-layer/pause-layer.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://cjh5fofgfgv0g" path="res://scenes/ghosts/basic_ghost.tscn" id="2_euut1"]
 [ext_resource type="PackedScene" uid="uid://dtta54j7o5reu" path="res://scenes/locations/house.tscn" id="3_r0psv"]
 [ext_resource type="Script" path="res://scenes/gameplay/gameplay.gd" id="5"]
 
@@ -18,17 +17,11 @@ ambient_light_color = Color(1, 1, 1, 1)
 [node name="Gameplay" type="Node"]
 script = ExtResource("5")
 
-[node name="BasicGhost" parent="." instance=ExtResource("2_euut1")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611064, 0)
-
-[node name="Camera3D" type="Camera3D" parent="BasicGhost"]
-transform = Transform3D(1, -5.95416e-16, 2.4663e-16, 2.4663e-16, 0.707107, 0.707107, -5.95416e-16, -0.707107, 0.707107, 2.08165e-12, 3, 2)
-current = true
-
 [node name="House" parent="." instance=ExtResource("3_r0psv")]
 
 [node name="PauseLayer" parent="." instance=ExtResource("2")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7axqf")
+
+[node name="GhostSpawn" type="Marker3D" parent="."]

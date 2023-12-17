@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://mat8uq2giici"]
+[gd_scene load_steps=7 format=3 uid="uid://mat8uq2giici"]
 
 [ext_resource type="PackedScene" uid="uid://cqp8i0n3hibp6" path="res://assets/models/Furniture_Kit/lampRoundTable.glb" id="1_nkhiw"]
+[ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="2_e3tfg"]
 [ext_resource type="Script" path="res://scenes/possessable/light_possessable.gd" id="2_h6bon"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sc1g5"]
@@ -34,10 +35,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lampRoundTable/ScareArea3D"]
 shape = SubResource("SphereShape3D_xm4fn")
 
-[node name="LightPossessable" type="Node" parent="." node_paths=PackedStringArray("light", "trigger_area", "scare_area") groups=["interactive"]]
+[node name="Camera" parent="lampRoundTable" instance=ExtResource("2_e3tfg")]
+
+[node name="LightPossessable" type="Node" parent="." node_paths=PackedStringArray("light", "camera", "trigger_area", "scare_area") groups=["interactive", "possessable"]]
 script = ExtResource("2_h6bon")
 light = NodePath("../lampRoundTable/OmniLight3D")
 display_name = "Toggle Lamp"
+camera = NodePath("../lampRoundTable/Camera")
 trigger_area = NodePath("../lampRoundTable/TriggerArea3D")
 scare_area = NodePath("../lampRoundTable/ScareArea3D")
 max_scare_distance = 3
