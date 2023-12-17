@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal die()
+
 @export var nav_agent : NavigationAgent3D
 @export var anim_tree : AnimationTree
 @export var flashlight : Node3D
@@ -85,8 +87,9 @@ func _physics_process(delta):
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)	
 		
 		if nav_agent.is_navigation_finished():
-	
+			die.emit()
 			queue_free()
+			return
 			
 	if state == STATE.SCARED:
 		
