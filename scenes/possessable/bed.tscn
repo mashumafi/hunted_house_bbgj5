@@ -105,7 +105,7 @@ libraries = {
 [node name="Camera" parent="." instance=ExtResource("2_j323g")]
 transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 2.08165e-12, 3, -1)
 
-[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area", "trigger_sound")]
+[node name="AnimPlayerPossessable" type="Node" parent="." node_paths=PackedStringArray("anim_player", "camera", "trigger_area", "scare_area", "trigger_sound") groups=["interactive"]]
 script = ExtResource("3_0ltui")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["bite"])
