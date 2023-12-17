@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://cjkfik5s4clml"]
+[gd_scene load_steps=38 format=3 uid="uid://cjkfik5s4clml"]
 
 [ext_resource type="PackedScene" uid="uid://6j3cdoiy67nj" path="res://assets/models/Furniture_Kit/wall.glb" id="1_8wlkb"]
 [ext_resource type="PackedScene" uid="uid://pwk5le8ukcpu" path="res://assets/models/Furniture_Kit/floorFull.glb" id="1_p3hux"]
 [ext_resource type="PackedScene" uid="uid://c5odmwn705l8x" path="res://assets/models/Furniture_Kit/wallWindow.glb" id="2_t4iy0"]
+[ext_resource type="PackedScene" uid="uid://7j248s8w81tl" path="res://scenes/possessable/interior_door.tscn" id="3_ikroo"]
 [ext_resource type="PackedScene" uid="uid://pa27rd3h6ilo" path="res://assets/models/Furniture_Kit/wallDoorway.glb" id="4_4wixk"]
 [ext_resource type="PackedScene" uid="uid://ew551lkpjt6m" path="res://scenes/possessable/front_door.tscn" id="5_mdf1e"]
 [ext_resource type="PackedScene" uid="uid://crjhuqftjg0l" path="res://assets/models/Furniture_Kit/wallDoorwayWide.glb" id="6_3i3ps"]
@@ -253,8 +254,18 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 0,
 [node name="wallDoorway4" parent="Walls" instance=ExtResource("4_4wixk")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 5)
 
+[node name="InteriorDoor" parent="Walls/wallDoorway4" instance=ExtResource("3_ikroo")]
+
+[node name="wallDoorway6" parent="Walls" instance=ExtResource("4_4wixk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 4)
+
+[node name="wallDoorway7" parent="Walls" instance=ExtResource("4_4wixk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3, 0, 4)
+
 [node name="wallDoorway5" parent="Walls" instance=ExtResource("4_4wixk")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 6)
+
+[node name="InteriorDoor" parent="Walls/wallDoorway5" instance=ExtResource("3_ikroo")]
 
 [node name="wall" parent="Walls" instance=ExtResource("1_8wlkb")]
 
@@ -302,9 +313,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 
 [node name="wall39" parent="Walls" instance=ExtResource("1_8wlkb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
-
-[node name="wall40" parent="Walls" instance=ExtResource("1_8wlkb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 
 [node name="wall41" parent="Walls" instance=ExtResource("1_8wlkb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
@@ -381,6 +389,21 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0,
 [node name="wall20" parent="Walls" instance=ExtResource("1_8wlkb")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 0, 6)
 
+[node name="wall45" parent="Walls" instance=ExtResource("1_8wlkb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 4)
+
+[node name="wall46" parent="Walls" instance=ExtResource("1_8wlkb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 4)
+
+[node name="wall47" parent="Walls" instance=ExtResource("1_8wlkb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 4)
+
+[node name="wall48" parent="Walls" instance=ExtResource("1_8wlkb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 4)
+
+[node name="wall49" parent="Walls" instance=ExtResource("1_8wlkb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, 4)
+
 [node name="wall18" parent="Walls" instance=ExtResource("1_8wlkb")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 5)
 
@@ -397,6 +420,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="FrontDoor" parent="Walls/wallDoorway" instance=ExtResource("5_mdf1e")]
+
+[node name="wallDoorway8" parent="Walls" instance=ExtResource("4_4wixk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+
+[node name="FrontDoor" parent="Walls/wallDoorway8" instance=ExtResource("5_mdf1e")]
 
 [node name="wallDoorway3" parent="Walls" instance=ExtResource("4_4wixk")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, 6)
@@ -464,8 +492,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152207, 0, -0.435914)
 [node name="OmniLight3D" type="OmniLight3D" parent="Furniture/LivingRoom/treeDecorated2" groups=["lamp"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129163, 1.65772, -0.0612268)
 
-[node name="lamp_round_floor" parent="Furniture/LivingRoom" instance=ExtResource("20_gvert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.861781, 0.0504574, 0.461953)
+[node name="lamp_round_floor" parent="Furniture/LivingRoom/treeDecorated2" instance=ExtResource("20_gvert")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28138, -0.0050918, -2.28489)
 
 [node name="Kitchen" type="Node3D" parent="Furniture"]
 
@@ -535,6 +563,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.75, 
 [node name="bathroomSink" parent="Furniture/BathRoom" instance=ExtResource("34_61d8c")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.25, 0.459994, 0.75)
 
+[node name="lamp_round_floor" parent="Furniture/BathRoom" instance=ExtResource("20_gvert")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.611781, 0.0504574, 0.711953)
+
 [node name="Garage" type="Node3D" parent="Furniture"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
 
@@ -546,5 +577,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, 0
 
 [node name="lamp_round_floor" parent="Furniture/Garage" instance=ExtResource("20_gvert")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13822, 0.0504574, 2.21195)
+
+[node name="Hallway" type="Node3D" parent="Furniture"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="lamp_round_floor" parent="Furniture/Hallway" instance=ExtResource("20_gvert")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.61178, 0.0504574, -0.0380468)
 
 [editable path="Walls/wall"]
