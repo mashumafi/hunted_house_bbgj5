@@ -74,12 +74,13 @@ focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "START"
 
-[node name="AboutButton" type="Button" parent="VBoxContainer"]
+[node name="AboutButton" type="LinkButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../ExitButton")
 focus_next = NodePath("../ExitButton")
 text = "About"
+uri = "https://github.com/mashumafi/bbgj5?#About"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
