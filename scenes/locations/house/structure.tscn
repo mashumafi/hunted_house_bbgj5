@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7tnyyiyhgnj" path="res://assets/models/Furniture_Kit/kitchenCabinet.glb" id="23_6iedh"]
 [ext_resource type="PackedScene" uid="uid://bxs270jvdgf6" path="res://assets/models/Furniture_Kit/kitchenSink.glb" id="24_d04jj"]
 [ext_resource type="PackedScene" uid="uid://ujx0cbmtjbym" path="res://assets/models/Furniture_Kit/kitchenBlender.glb" id="24_kesfw"]
-[ext_resource type="PackedScene" uid="uid://cm0fhhwekbkrr" path="res://assets/models/Furniture_Kit/toaster.glb" id="25_v8pdu"]
+[ext_resource type="PackedScene" uid="uid://ujdccqkup3f7" path="res://scenes/possessable/toaster.tscn" id="27_qnxkp"]
 [ext_resource type="PackedScene" uid="uid://ddcjs6ptadkpi" path="res://assets/models/Furniture_Kit/bedDouble.glb" id="28_n4tdv"]
 [ext_resource type="PackedScene" uid="uid://b7jlxg1ouw2vx" path="res://assets/models/Furniture_Kit/coatRack.glb" id="29_u3pp3"]
 [ext_resource type="PackedScene" uid="uid://ceichyyp18t6x" path="res://assets/models/Furniture_Kit/dryer.glb" id="29_ub8jx"]
@@ -515,8 +515,7 @@ transform = Transform3D(0.954865, 0, 0.297042, 0, 1, 0, -0.297042, 0, 0.954865, 
 [node name="kitchenCabinet2" parent="Furniture/Kitchen" instance=ExtResource("23_6iedh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 0.5)
 
-[node name="toaster" parent="Furniture/Kitchen/kitchenCabinet2" instance=ExtResource("25_v8pdu")]
-transform = Transform3D(0.950244, 0, 0.311506, 0, 1, 0, -0.311506, 0, 0.950244, -0.321036, 0.420965, -0.246522)
+[node name="Toaster" parent="Furniture/Kitchen/kitchenCabinet2" instance=ExtResource("27_qnxkp")]
 
 [node name="kitchenSink" parent="Furniture/Kitchen" instance=ExtResource("24_d04jj")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 2)
