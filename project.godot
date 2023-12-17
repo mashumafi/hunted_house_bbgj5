@@ -26,6 +26,7 @@ Transitions="*res://addons/ggt-core/transitions/transitions.tscn"
 Scenes="*res://addons/ggt-core/scenes/scenes.gd"
 Utils="*res://addons/ggt-core/utils/utils.gd"
 ParanormalActivity="*res://scenes/possessable/paranormal_activity.gd"
+HUD="*res://scenes/hud.tscn"
 
 [category]
 

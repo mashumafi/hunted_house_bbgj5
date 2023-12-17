@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cjh5fofgfgv0g"]
+[gd_scene load_steps=44 format=3 uid="uid://cjh5fofgfgv0g"]
 
 [ext_resource type="Script" path="res://scenes/ghosts/basic_ghost.gd" id="1_h0f6c"]
 [ext_resource type="PackedScene" uid="uid://2cakrgbmp1xl" path="res://assets/models/Graveyard_Kit/character-ghost.glb" id="2_sqhnt"]
@@ -1253,6 +1253,31 @@ node_connections = [&"move_anim", 0, &"idle_anim", &"move_anim", 1, &"walk_anim"
 [sub_resource type="ViewportTexture" id="ViewportTexture_882vw"]
 viewport_path = NodePath("PossessionBarViewport")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4p7a"]
+bg_color = Color(0.0980392, 0.00784314, 0.168627, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0980392, 0.00784314, 0.168627, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frkol"]
+bg_color = Color(1, 0.952941, 0.921569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0980392, 0.00784314, 0.168627, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0le35"]
 radius = 0.05
 height = 0.1
@@ -1303,6 +1328,8 @@ disable_3d = true
 transparent_bg = true
 
 [node name="PoissessionMeter3D" parent="PossessionBarViewport" instance=ExtResource("3_beb3j")]
+theme_override_styles/background = SubResource("StyleBoxFlat_d4p7a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_frkol")
 
 [node name="PossessionCPUParticles3D" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840747, 0)
