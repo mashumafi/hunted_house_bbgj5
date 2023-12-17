@@ -41,10 +41,18 @@ func _body_entered(body: Node3D) -> void:
 func _body_exited(body: Node3D) -> void:
 	ParanormalActivity.contact_made.emit(self, false)
 
+
+func set_audio_effects_enabled(enabled: bool):
+	var main_bus_index := AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_effect_enabled(main_bus_index, 0, enabled)
+	AudioServer.set_bus_effect_enabled(main_bus_index, 1, enabled)
+
+
 func possess():
 	if state != State.Default:
 		printerr("Expected to be in the default state.")
 
+	set_audio_effects_enabled(true)
 	possessions_since_last_investigation += 1
 	camera.current = true
 	state = State.Possessed
@@ -101,6 +109,7 @@ func _process(delta: float) -> void:
 
 func exit():
 	state = State.Default
+	set_audio_effects_enabled(false)
 	var ghost : Node3D = get_tree().get_nodes_in_group("ghost")[0]
 	ParanormalActivity.spawn_ghost(ghost)
 

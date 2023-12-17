@@ -1,11 +1,18 @@
 extends Control
 
+@onready var volumn_slider : HSlider = %VolumeSlider
 
 func _ready():
 	# needed for gamepads to work
 	$VBoxContainer/PlayButton.grab_focus()
 	if OS.has_feature('HTML5'):
 		$VBoxContainer/ExitButton.queue_free() # exit button dosn't make sense on HTML5
+
+	var main_bus_index := AudioServer.get_bus_index("Master")
+	volumn_slider.value = db_to_linear(AudioServer.get_bus_volume_db(main_bus_index))
+	volumn_slider.value_changed.connect(func(volume):
+		AudioServer.set_bus_volume_db(main_bus_index, linear_to_db(volume))
+	)
 
 
 func _on_PlayButton_pressed() -> void:
