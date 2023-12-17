@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var flashlight : Node3D
 @export var flash_damage_area : Area3D
 @export var detect_area : Area3D
+@export var door_open_area : Area3D
 @export var model : Node3D
 @export var follow_timer: Timer
 @export var interact_rand_timer : Timer
@@ -58,14 +59,28 @@ func _physics_process(delta):
 	if (!compute_first_frame):
 		compute_first_frame = true
 		return	
+
+	if door_open_area.has_overlapping_areas():
+		var door_area = door_open_area.get_overlapping_areas()[0]
+		
+		var door_possess = null
+		for sibling in door_area.get_parent().get_children():
+			if sibling.is_in_group("interactive"):
+				door_possess = sibling
+		door_possess.investigated()
 		
 	if state == STATE.LEAVING:
 		var next_path_position: Vector3 = nav_agent.get_next_path_position()
-		velocity = velocity.move_toward(global_position.direction_to(next_path_position) * RUN_SPEED,  delta * ACCEL)
+		velocity = velocity.move_toward(
+			global_position.direction_to(next_path_position) * RUN_SPEED, 
+			delta * ACCEL)
 		
 
 		var p_pos = next_path_position
-		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
+		var new_transform = model.global_transform.looking_at(
+			Vector3(p_pos.x, position.y + 0.01 , p_pos.z), 
+			Vector3.UP, 
+			true)
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)	
 		
 		if nav_agent.is_navigation_finished():
@@ -81,7 +96,10 @@ func _physics_process(delta):
 		var p_pos = nav_agent.get_next_path_position()
 		velocity = velocity.move_toward(global_position.direction_to(p_pos) * RUN_SPEED, delta * ACCEL)
 
-		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
+		var new_transform = model.global_transform.looking_at(
+			Vector3(p_pos.x, position.y + 0.01 , p_pos.z), 
+			Vector3.UP, 
+			true)
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)
 		
 			
@@ -98,10 +116,15 @@ func _physics_process(delta):
 			
 	if state == STATE.INVESTIGATING:
 		var next_path_position: Vector3 = nav_agent.get_next_path_position()
-		velocity = velocity.move_toward(global_position.direction_to(next_path_position) * RUN_SPEED,  delta * ACCEL)
+		velocity = velocity.move_toward(
+			global_position.direction_to(next_path_position) * RUN_SPEED, 
+			delta * ACCEL)
 
 		var p_pos = next_path_position
-		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
+		var new_transform = model.global_transform.looking_at(
+			Vector3(p_pos.x, position.y + 0.01 , p_pos.z), 
+			Vector3.UP, 
+			true)
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)		
 		
 		if global_position.distance_to(interact.trigger_area.global_position) < 0.5:
@@ -146,12 +169,19 @@ func _physics_process(delta):
 		var next_path_position: Vector3 = nav_agent.get_next_path_position()
 		
 		if global_position.distance_to(ghost.global_position) < 2: # ghost is too close
-			velocity = velocity.move_toward(-1 * global_position.direction_to(next_path_position) * SPEED,  delta * ACCEL * .5)	
+			velocity = velocity.move_toward(
+				-1 * global_position.direction_to(next_path_position) * SPEED,  
+				delta * ACCEL * .5)	
 		else:
-			velocity = velocity.move_toward(global_position.direction_to(next_path_position) * RUN_SPEED,  delta * ACCEL)	
+			velocity = velocity.move_toward(
+				global_position.direction_to(next_path_position) * RUN_SPEED, 
+				delta * ACCEL)	
 			
 		var g_pos = ghost.global_position
-		var new_transform = model.global_transform.looking_at(Vector3(g_pos.x, position.y, g_pos.z), Vector3.UP, true)
+		var new_transform = model.global_transform.looking_at(
+			Vector3(g_pos.x, position.y, g_pos.z), 
+			Vector3.UP, 
+			true)
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)
 		ghost_last_pos = g_pos
 		
@@ -185,10 +215,15 @@ func _physics_process(delta):
 		if state == STATE.FOLLOWING:
 			speed = JOG_SPEED
 
-		velocity = velocity.move_toward(global_position.direction_to(next_path_position) * speed, delta * ACCEL)
+		velocity = velocity.move_toward(
+			global_position.direction_to(next_path_position) * speed, 
+			delta * ACCEL)
 
 		var p_pos = next_path_position
-		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
+		var new_transform = model.global_transform.looking_at(
+			Vector3(p_pos.x, position.y + 0.01 , p_pos.z), 
+			Vector3.UP, 
+			true)
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)
 		#model.look_at(next_path_position, Vector3.UP, true) # TODO LERP
 
@@ -222,7 +257,10 @@ func switch_state(new_state : STATE):
 		anim_tree.set("parameters/hold_blend/blend_amount", 0)
 		flashlight.hide()
 		
-	if new_state == STATE.HUNTING || new_state == STATE.FOLLOWING || new_state == STATE.SCARED || new_state == STATE.LEAVING:
+	if (new_state == STATE.HUNTING 
+	|| new_state == STATE.FOLLOWING 
+	|| new_state == STATE.SCARED 
+	|| new_state == STATE.LEAVING):
 		anim_tree.set("parameters/hold_blend/blend_amount", 1)
 		flashlight.show()	
 

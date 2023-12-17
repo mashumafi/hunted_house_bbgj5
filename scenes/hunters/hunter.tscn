@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bo5gfb7t8db8r"]
+[gd_scene load_steps=47 format=3 uid="uid://bo5gfb7t8db8r"]
 
 [ext_resource type="Script" path="res://scenes/hunters/hunter.gd" id="1_wgi2b"]
 [ext_resource type="PackedScene" uid="uid://llfndqsp4avx" path="res://assets/models/Graveyard_Kit/character-digger.glb" id="2_1780j"]
@@ -2130,13 +2130,18 @@ nodes/walk_anim/node = SubResource("AnimationNodeAnimation_afnri")
 nodes/walk_anim/position = Vector2(-240, 176)
 node_connections = [&"hold_blend", 0, &"move_anim", &"hold_blend", 1, &"hold_anim", &"interact", 0, &"hold_blend", &"interact", 1, &"interact_anim", &"move_anim", 0, &"idle_anim", &"move_anim", 1, &"walk_anim", &"move_anim", 2, &"sprint_anim", &"output", 0, &"interact"]
 
-[node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "anim_tree", "flashlight", "flash_damage_area", "detect_area", "model", "follow_timer", "interact_rand_timer", "scare_timer", "scare_meter") groups=["hunter"]]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vcmlc"]
+height = 1.0
+
+[node name="Hunter" type="CharacterBody3D" node_paths=PackedStringArray("nav_agent", "anim_tree", "flashlight", "flash_damage_area", "detect_area", "door_open_area", "model", "follow_timer", "interact_rand_timer", "scare_timer", "scare_meter") groups=["hunter"]]
+collision_mask = 5
 script = ExtResource("1_wgi2b")
 nav_agent = NodePath("NavigationAgent3D")
 anim_tree = NodePath("AnimationTree")
 flashlight = NodePath("character-digger2/character-digger/root/torso/arm-right/Flashlight")
 flash_damage_area = NodePath("character-digger2/character-digger/root/torso/arm-right/Flashlight/DamageArea")
 detect_area = NodePath("DetectionArea")
+door_open_area = NodePath("DoorOpenArea")
 model = NodePath("character-digger2")
 follow_timer = NodePath("FollowTimer")
 interact_rand_timer = NodePath("InteractRandTimer")
@@ -2229,6 +2234,14 @@ autostart = true
 [node name="ScareTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="DoorOpenArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorOpenArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560387, 0)
+shape = SubResource("CylinderShape3D_vcmlc")
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="timeout" from="FollowTimer" to="." method="_on_follow_timer_timeout"]

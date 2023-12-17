@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7j248s8w81tl"]
+[gd_scene load_steps=8 format=3 uid="uid://7j248s8w81tl"]
 
 [ext_resource type="PackedScene" uid="uid://dmcnrdibv1p5q" path="res://assets/models/Furniture_Kit/doorway.glb" id="1_ywl17"]
 [ext_resource type="Script" path="res://scenes/possessable/door_possessable.gd" id="2_gk8kd"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qktas"]
 radius = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f732c"]
+size = Vector3(0.626404, 1, 0.342712)
 
 [sub_resource type="Curve" id="Curve_2unlr"]
 max_value = 11.0
@@ -34,6 +37,14 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorway/ScareArea3D"]
 shape = SubResource("SphereShape3D_qktas")
+
+[node name="AutoOpenArea" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AutoOpenArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503056, 0.597703, -0.0358582)
+shape = SubResource("BoxShape3D_f732c")
 
 [node name="DoorPossessable" type="Node" parent="." node_paths=PackedStringArray("door", "camera", "trigger_area", "scare_area")]
 script = ExtResource("2_gk8kd")

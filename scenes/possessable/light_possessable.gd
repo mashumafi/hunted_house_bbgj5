@@ -10,3 +10,8 @@ func _scare() -> void:
 
 func toggle():
 	light.visible = not light.visible
+
+func investigated():
+	super()
+	if not light.visible:
+		toggle()
