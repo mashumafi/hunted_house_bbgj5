@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1qkgngjlvj0f"]
+[gd_scene load_steps=8 format=3 uid="uid://c1qkgngjlvj0f"]
 
 [ext_resource type="PackedScene" uid="uid://cvqfbbax2f7c7" path="res://assets/models/Furniture_Kit/toilet.glb" id="1_6ulgo"]
 [ext_resource type="Script" path="res://scenes/possessable/rotation_possessable.gd" id="2_ancgp"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_qc4x8"]
+[ext_resource type="AudioStream" uid="uid://bkujkl1vtfjsq" path="res://assets/sfx/water-drainaway.wav" id="4_q81sf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nluqo"]
 
@@ -32,7 +33,7 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="toilet/ScareArea3D"]
 shape = SubResource("SphereShape3D_3nabe")
 
-[node name="RotationPossessable" type="Node" parent="." node_paths=PackedStringArray("target", "camera", "trigger_area", "scare_area")]
+[node name="RotationPossessable" type="Node" parent="." node_paths=PackedStringArray("target", "camera", "trigger_area", "scare_area", "trigger_sound")]
 script = ExtResource("2_ancgp")
 target = NodePath("../toilet/toilet(Clone)/cover")
 target_rotation = Vector3(2.08165e-12, 2.08165e-12, 1.571)
@@ -40,8 +41,12 @@ display_name = "Toggle Toilet"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../toilet/TriggerArea3D")
 scare_area = NodePath("../toilet/ScareArea3D")
+trigger_sound = NodePath("../AudioStreamPlayer3D")
 max_scare_distance = 3
 scare_curve = SubResource("Curve_gymqm")
 
 [node name="Camera" parent="." instance=ExtResource("3_qc4x8")]
 transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 2.4663e-16, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 2.08165e-12, 3, -1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_q81sf")

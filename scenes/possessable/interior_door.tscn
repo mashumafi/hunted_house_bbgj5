@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://7j248s8w81tl"]
+[gd_scene load_steps=11 format=3 uid="uid://7j248s8w81tl"]
 
 [ext_resource type="PackedScene" uid="uid://dmcnrdibv1p5q" path="res://assets/models/Furniture_Kit/doorway.glb" id="1_ywl17"]
 [ext_resource type="Script" path="res://scenes/possessable/rotation_possessable.gd" id="2_sssp3"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_rhf3n"]
+[ext_resource type="AudioStream" uid="uid://c7bxbaxh7yh2p" path="res://assets/sfx/action-doorhandle01.wav" id="4_qby8s"]
+[ext_resource type="AudioStream" uid="uid://ywxt8a20sbuo" path="res://assets/sfx/action-doorhandle02.wav" id="5_xqwg0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_40pct"]
 
@@ -16,6 +18,13 @@ size = Vector3(0.626404, 1, 0.342712)
 max_value = 11.0
 _data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.657821, 7.03808), -14.6209, -14.6209, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kwc1e"]
+streams_count = 2
+stream_0/stream = ExtResource("4_qby8s")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_xqwg0")
+stream_1/weight = 1.0
 
 [node name="InteriorDoor" type="Node3D"]
 
@@ -45,7 +54,7 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503056, 0.597703, -0.0358582)
 shape = SubResource("BoxShape3D_f732c")
 
-[node name="RotationPossessable" type="Node" parent="." node_paths=PackedStringArray("target", "camera", "trigger_area", "scare_area") groups=["interactive", "possessable"]]
+[node name="RotationPossessable" type="Node" parent="." node_paths=PackedStringArray("target", "camera", "trigger_area", "scare_area", "trigger_sound") groups=["interactive", "possessable"]]
 script = ExtResource("2_sssp3")
 target = NodePath("../doorway/doorway(Clone)/door")
 target_rotation = Vector3(2.08165e-12, 1.571, 2.08165e-12)
@@ -53,7 +62,11 @@ display_name = "Toggle Door"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../doorway/TriggerArea3D")
 scare_area = NodePath("../doorway/ScareArea3D")
+trigger_sound = NodePath("../AudioStreamPlayer3D")
 max_scare_distance = 3
 scare_curve = SubResource("Curve_7c44a")
 
 [node name="Camera" parent="." instance=ExtResource("3_rhf3n")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kwc1e")

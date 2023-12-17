@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c26qcyvtl7y54"]
+[gd_scene load_steps=15 format=3 uid="uid://c26qcyvtl7y54"]
 
 [ext_resource type="Script" path="res://scenes/tools/ghost_trap.gd" id="1_3mrpp"]
 [ext_resource type="PackedScene" uid="uid://dkyb81p36mab4" path="res://assets/models/Space_Kit/machine_wirelessCable.glb" id="1_wutwh"]
+[ext_resource type="AudioStream" uid="uid://buxbk7a7b04k8" path="res://assets/sfx/581432__milky0519__heavy-wind-push.mp3" id="3_s1exu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lv7st"]
 
@@ -113,10 +114,11 @@ material = SubResource("StandardMaterial3D_v25ll")
 size = 0.2
 section_length = 0.05
 
-[node name="GhostTrap" type="Area3D" node_paths=PackedStringArray("anim_player")]
+[node name="GhostTrap" type="Area3D" node_paths=PackedStringArray("anim_player", "trap_audio")]
 collision_mask = 8
 script = ExtResource("1_3mrpp")
 anim_player = NodePath("AnimationPlayer")
+trap_audio = NodePath("TrapAudio3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_lv7st")
@@ -163,6 +165,10 @@ strength = 10.0
 attenuation = 0.0384733
 cull_mask = 4293918722
 size = Vector3(2, 4, 2)
+
+[node name="TrapAudio3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_s1exu")
+volume_db = 10.0
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 

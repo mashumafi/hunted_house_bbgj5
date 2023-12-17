@@ -3,6 +3,7 @@ extends Area3D
 const DAMAGE_PER_SECOND = 20
 
 @export var anim_player : AnimationPlayer
+@export var trap_audio : AudioStreamPlayer3D
 
 var activated := false
 var ghost : Node3D = null
@@ -23,6 +24,7 @@ func _physics_process(delta):
 				activated = true
 				anim_player.play("activate")
 				ghost = body
+				trap_audio.play()
 				
 	if activated and is_instance_valid(ghost):
 		ghost.take_damage(delta * DAMAGE_PER_SECOND)
