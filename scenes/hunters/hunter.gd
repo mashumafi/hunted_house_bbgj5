@@ -3,9 +3,12 @@ extends CharacterBody3D
 @export var nav_agent : NavigationAgent3D
 @export var anim_tree : AnimationTree
 @export var flashlight : Node3D
+@export var flash_damage_area : Area3D
 @export var detect_area : Area3D
 @export var model : Node3D
 @export var follow_timer: Timer
+@export var interact_rand_timer : Timer
+@export var scare_timer : Timer
 
 @export var GHOST_TRAP : PackedScene
 
@@ -27,6 +30,8 @@ const RUN_SPEED := 1.6
 const ACCEL := 5.0
 const MAX_FEAR := 100.0
 
+const FLASHLIGHT_DPS := 10
+
 const GRAVITY = -9.8
 
 var random = null
@@ -35,7 +40,9 @@ var state = STATE.EXPLORING
 var nav_point := Vector3.ZERO
 var fear := 0.0
 var ghost : Node3D = null
+var ghost_last_pos := Vector3.ZERO
 var interact : Possessable = null
+var do_lay_trap := false
 
 var compute_first_frame := false
 
@@ -54,31 +61,81 @@ func _physics_process(delta):
 		var next_path_position: Vector3 = nav_agent.get_next_path_position()
 		velocity = velocity.move_toward(global_position.direction_to(next_path_position) * RUN_SPEED,  delta * ACCEL)
 		
+
+		var p_pos = next_path_position
+		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
+		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)	
+		
 		if nav_agent.is_navigation_finished():
 	
 			queue_free()
 			
 	if state == STATE.SCARED:
-		if nav_agent.is_navigation_finished():
+		
+		if nav_agent.is_navigation_finished() or scare_timer.is_stopped():
 			switch_state(STATE.EXPLORING)
+			return
+			
+		var p_pos = nav_agent.get_next_path_position()
+		velocity = velocity.move_toward(global_position.direction_to(p_pos) * RUN_SPEED, delta * ACCEL)
+
+		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
+		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)
+		
+			
+	if state == STATE.EXPLORING or state == STATE.FOLLOWING or state == STATE.INVESTIGATING:
+		if detect_area.has_overlapping_bodies(): # TODO decide on collison layers for ghost detection
+			for body in detect_area.get_overlapping_bodies():
+				if body.is_in_group("ghost"):
+					var result = ghost_raycast(body.global_position)
+						
+					if result.has("collider") and result["collider"] == body:
+						ghost = body
+						switch_state(STATE.HUNTING)
+						return
 			
 	if state == STATE.INVESTIGATING:
 		var next_path_position: Vector3 = nav_agent.get_next_path_position()
 		velocity = velocity.move_toward(global_position.direction_to(next_path_position) * RUN_SPEED,  delta * ACCEL)
+
+		var p_pos = next_path_position
+		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
+		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)		
 		
-		if global_position.distance_to(interact.trigger_area.global_position) < 1.5:
+		if global_position.distance_to(interact.trigger_area.global_position) < 0.5:
+			if do_lay_trap:
+				do_lay_trap = false
+				var trap = GHOST_TRAP.instantiate()
+				get_parent().add_child(trap)
+				trap.global_position = global_position
+				
 			switch_state(STATE.EXPLORING)
 		
 		if nav_agent.is_navigation_finished():		
 			switch_state(STATE.EXPLORING)
 		
 	if state == STATE.HUNTING: # chase the ghost
+		if not ghost:
+			var possessables = ParanormalActivity.get_possessables()
+			ParanormalActivity.sort_by_distance(possessables, ghost_last_pos)
+			switch_state(STATE.INVESTIGATING)
+			if possessables:
+				interact = possessables[0]
+				nav_agent.set_target_position(interact.trigger_area.global_position)
+				do_lay_trap = true
+			else:
+				switch_state(STATE.EXPLORING)
+			return
+			
 		var result = ghost_raycast(ghost.global_position)
 		
 		if !result.has("collider") or result["collider"] != ghost:
 			switch_state(STATE.FOLLOWING)
+			follow_timer.start()
 			return
 		
+		if (flash_damage_area.has_overlapping_bodies()):
+			flash_damage_area.get_overlapping_bodies()[0].take_damage(delta * FLASHLIGHT_DPS)
 		nav_agent.set_target_position(ghost.global_position)
 		
 		var next_path_position: Vector3 = nav_agent.get_next_path_position()
@@ -90,20 +147,10 @@ func _physics_process(delta):
 			
 		var g_pos = ghost.global_position
 		var new_transform = model.global_transform.looking_at(Vector3(g_pos.x, position.y, g_pos.z), Vector3.UP, true)
-
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)
+		ghost_last_pos = g_pos
 		
-	elif state == STATE.EXPLORING or state == STATE.FOLLOWING:
-		if detect_area.has_overlapping_bodies(): # TODO decide on collison layers for ghost detection
-			for body in detect_area.get_overlapping_bodies():
-				if body.is_in_group("ghost"):
-					var result = ghost_raycast(body.global_position)
-						
-					if result.has("collider") and result["collider"] == body:
-						ghost = body
-						switch_state(STATE.HUNTING)
-						return
-				 		
+	elif state == STATE.EXPLORING or state == STATE.FOLLOWING:		 		
 		if (nav_agent.is_navigation_finished()): # find a new random point to move towards
 			
 			var search_expand := 0.0
@@ -136,7 +183,6 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(global_position.direction_to(next_path_position) * speed, delta * ACCEL)
 
 		var p_pos = next_path_position
-		
 		var new_transform = model.global_transform.looking_at(Vector3(p_pos.x, position.y + 0.01 , p_pos.z), Vector3.UP, true)
 		model.global_transform = model.global_transform.interpolate_with(new_transform, ACCEL * delta)
 		#model.look_at(next_path_position, Vector3.UP, true) # TODO LERP
@@ -158,8 +204,13 @@ func ghost_raycast(ghost_pos: Vector3):
 	return space_state.intersect_ray(query)
 	
 func switch_state(new_state : STATE):
+	print(STATE.keys()[new_state])
 	if new_state == state:
 		return
+		
+	if state == STATE.INVESTIGATING:
+		interact_rand_timer.wait_time = randf_range(5, 10)
+		interact_rand_timer.start()
 		
 	if state == STATE.HUNTING || state == STATE.FOLLOWING || new_state == STATE.SCARED:
 		ghost = null
@@ -181,8 +232,10 @@ func scare(fear_amount: float, global_scare_location: Vector3):
 		nav_agent.set_target_position(exit_location)
 		return
 		
+	scare_timer.start()
 	if state != STATE.SCARED: # TODO add scare timer? continue nav away?
 		switch_state(STATE.SCARED)
+		
 		
 		var search_expand := 0.0
 		while(true):
@@ -213,14 +266,13 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 func _on_follow_timer_timeout():
 	if state == STATE.FOLLOWING:
-		state = STATE.EXPLORING
-		anim_tree.set("parameters/hold_blend/blend_amount", 0)
-		flashlight.hide()
+		switch_state(STATE.EXPLORING)
 		
 
 func _on_interact_rand_timer_timeout():
-	if state == STATE.EXPLORING:
-		var possessables = ParanormalActivity.sort_by_distance(ParanormalActivity.get_possessables(), global_position)
+	if state == STATE.EXPLORING and random.randf() > 0.5:
+		var possessables = ParanormalActivity.get_possessables()
+		ParanormalActivity.sort_by_distance(possessables, ghost_last_pos)
 		if possessables and possessables.size() > 0:
 			switch_state(STATE.INVESTIGATING)
 			interact = possessables[0]
