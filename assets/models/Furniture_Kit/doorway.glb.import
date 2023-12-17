@@ -34,7 +34,7 @@ _subresources={
 "PATH:doorway(Clone)/door": {
 "generate/occluder": 1,
 "generate/physics": true,
-"physics/layer": 36,
+"physics/layer": 32,
 "physics/mask": 0
 }
 }
