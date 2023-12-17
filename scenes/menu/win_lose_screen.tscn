@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyyu3awnt51jv"]
+
+[ext_resource type="Script" path="res://scenes/menu/win_lose_screen.gd" id="1_1h6nj"]
+[ext_resource type="FontFile" uid="uid://da2t6lyf41wty" path="res://assets/fonts/open-sans/open-sans-bold.ttf" id="1_cda3c"]
+
+[node name="WinLoseScreen" type="Control" node_paths=PackedStringArray("Title", "Reason")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1h6nj")
+Title = NodePath("CenterContainer/VBoxContainer/Title")
+Reason = NodePath("CenterContainer/VBoxContainer/Reason")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.176471, 0.682353, 0.647059, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -339.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_cda3c")
+theme_override_font_sizes/font_size = 60
+text = "You Win!"
+uppercase = true
+
+[node name="Reason" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_cda3c")
+theme_override_font_sizes/font_size = 30
+text = "the ghost hunters were scared away!"
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -34.0
+offset_right = 100.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="ReplayButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../MenuButton")
+focus_next = NodePath("../MenuButton")
+text = "PLAY AGAIN"
+
+[node name="MenuButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+focus_neighbor_top = NodePath("../ReplayButton")
+focus_previous = NodePath("../ReplayButton")
+text = "MENU"
+
+[connection signal="pressed" from="VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

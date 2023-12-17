@@ -24,9 +24,13 @@ func _physics_process(delta):
 				anim_player.play("activate")
 				ghost = body
 				
-	if activated and ghost:
+	if activated and is_instance_valid(ghost):
 		ghost.take_damage(delta * DAMAGE_PER_SECOND)
 		
 				
 func end_trap():
 	queue_free()
+
+
+func _on_body_exited(body):
+	ghost = null
