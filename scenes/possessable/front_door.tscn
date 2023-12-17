@@ -10,8 +10,9 @@
 radius = 2.0
 
 [sub_resource type="Curve" id="Curve_hrhqj"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+max_value = 9.0
+_data = [Vector2(0, 7.62246), 0.0, 0.0, 0, 0, Vector2(0.106774, 0.780178), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Animation" id="Animation_0lope"]
 length = 0.001

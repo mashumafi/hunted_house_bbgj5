@@ -54,6 +54,11 @@ func try_scare() -> bool:
 		return false
 
 	_scare()
+	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
+		var trigger_position := trigger_area.global_position
+		var distance := hunter.global_position.distance_to(trigger_position)
+		hunter.scare(scare_curve.sample(remap(distance, 0, max_scare_distance, 0.0, 1.0)), trigger_position)
+
 	interactions_since_last_investigation += 1
 	_can_scare = false
 	get_tree().create_timer(cooldown_sec).timeout.connect(func(): _can_scare = true)
@@ -79,3 +84,7 @@ func _process(delta: float) -> void:
 			state = State.Default
 			var ghost : Node3D = get_tree().get_nodes_in_group("ghost")[0]
 			ParanormalActivity.spawn_ghost(ghost)
+
+func investigated() -> void:
+	possessions_since_last_investigation = 0
+	interactions_since_last_investigation = 0
