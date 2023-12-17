@@ -17,9 +17,6 @@ agent_max_climb = 0.1
 
 [node name="House" type="Node3D"]
 
-[node name="Hunter" parent="." instance=ExtResource("1_0s2ef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96066, 0.107684, 0)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_v4q1p")
 
@@ -29,5 +26,11 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 
 [node name="Outside" parent="NavigationRegion3D" instance=ExtResource("1_kl3be")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
 
-[node name="Hunter2" parent="." instance=ExtResource("1_0s2ef")]
+[node name="Hunters" type="Node3D" parent="." groups=["hunters"]]
+
+[node name="Hunter2" parent="Hunters" instance=ExtResource("1_0s2ef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.105247, -4)
+exit_location = Vector3(2.51107, 0.437615, 1.38779)
+
+[node name="ExitLocation" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.51107, 0.437615, 1.38779)
