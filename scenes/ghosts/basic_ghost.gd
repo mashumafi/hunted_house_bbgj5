@@ -34,6 +34,8 @@ const POSSESSION_DURATION := 1.0
 @onready var arm_left_surface_override : StandardMaterial3D = ghost_arm_left.mesh.surface_get_material(0).duplicate()
 @onready var arm_right_surface_override : StandardMaterial3D = ghost_arm_right.mesh.surface_get_material(0).duplicate()
 
+@onready var sizzle_audio : AudioStreamPlayer = $SizzleAudioStreamPlayer
+
 var recently_damaged := false
 
 func _ready():
@@ -92,6 +94,7 @@ func take_damage(damage: float):
 	HUD.energy_bar.value += damage * .8 # Gain energy from damage
 
 	if not recently_damaged:
+		sizzle_audio.play()
 		var hurt := func(mat: StandardMaterial3D) -> void:
 			var tween := create_tween()
 			tween.tween_property(mat, "albedo_color", Color.RED, .25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
@@ -99,6 +102,7 @@ func take_damage(damage: float):
 			recently_damaged = true
 			tween.tween_callback(func():
 				recently_damaged = false
+				sizzle_audio.stop()
 			)
 
 		hurt.call(torso_surface_override)
