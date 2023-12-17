@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://byyctdd4c7uk7"]
+[gd_scene load_steps=30 format=3 uid="uid://byyctdd4c7uk7"]
 
 [ext_resource type="PackedScene" uid="uid://2g8wriumrpcf" path="res://assets/models/Nature_Kit/ground_grass.glb" id="1_xppk8"]
 [ext_resource type="PackedScene" uid="uid://dfmv4nj7r8rt7" path="res://assets/models/Nature_Kit/grass_leafs.glb" id="2_g7ey2"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cr6syf0lnqbst" path="res://assets/models/Nature_Kit/crops_cornStageA.glb" id="14_ngnvl"]
 [ext_resource type="PackedScene" uid="uid://bjg0e8xpm83g6" path="res://assets/models/Nature_Kit/crops_cornStageB.glb" id="16_xq5f4"]
 [ext_resource type="PackedScene" uid="uid://cnonn25a2p3sh" path="res://assets/models/Nature_Kit/crop_melon.glb" id="17_2md2h"]
+[ext_resource type="PackedScene" uid="uid://d41mv84dyhv5" path="res://scenes/possessable/pumpkin.tscn" id="17_6fifr"]
 [ext_resource type="PackedScene" uid="uid://dv36wknmmro4" path="res://assets/models/Nature_Kit/crop_carrot.glb" id="18_3ndcc"]
 [ext_resource type="PackedScene" uid="uid://dtn5uxot30p7g" path="res://assets/models/Nature_Kit/path_stone.glb" id="19_73os0"]
 [ext_resource type="PackedScene" uid="uid://d1e0f1qwrsxdp" path="res://assets/models/Nature_Kit/crops_wheatStageB.glb" id="19_t8whp"]
@@ -471,8 +472,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -9)
 [node name="crop_pumpkin2" parent="Grass/ground_grass154/crops_dirtDoubleRow2" instance=ExtResource("11_l70mt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.21573)
 
-[node name="crop_pumpkin3" parent="Grass/ground_grass154/crops_dirtDoubleRow2" instance=ExtResource("11_l70mt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+[node name="Pumpkin" parent="Grass/ground_grass154/crops_dirtDoubleRow2" instance=ExtResource("17_6fifr")]
 
 [node name="ground_grass155" parent="Grass" instance=ExtResource("1_xppk8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -9)

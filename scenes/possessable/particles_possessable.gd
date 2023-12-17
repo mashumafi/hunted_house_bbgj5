@@ -1,5 +1,5 @@
 # Possession of fire
-class_name FirePossessable
+class_name ParticlesPossessable
 extends Possessable
 
 # animation player to

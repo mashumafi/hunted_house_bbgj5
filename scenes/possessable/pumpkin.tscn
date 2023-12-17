@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://d41mv84dyhv5"]
+
+[ext_resource type="PackedScene" uid="uid://o122813xew73" path="res://assets/models/Nature_Kit/crop_pumpkin.glb" id="1_7u0p8"]
+[ext_resource type="Script" path="res://scenes/possessable/scale_possessable.gd" id="2_kydgk"]
+[ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_c3htl"]
+
+[sub_resource type="Curve" id="Curve_fa1rs"]
+max_value = 11.0
+_data = [Vector2(0, 9.09874), 0.0, 0.0, 0, 0, Vector2(0.816667, 6.44943), -12.4017, -12.4017, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3qvmm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tpf2b"]
+radius = 2.0
+
+[node name="Pumpkin" type="Node3D"]
+
+[node name="crop_pumpkin3" parent="." instance=ExtResource("1_7u0p8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+
+[node name="ScalePossessable" type="Node" parent="." node_paths=PackedStringArray("node", "camera", "trigger_area", "scare_area")]
+script = ExtResource("2_kydgk")
+node = NodePath("../crop_pumpkin3")
+display_name = "Pumpkin Size"
+camera = NodePath("../Camera")
+trigger_area = NodePath("../TriggerArea3D")
+scare_area = NodePath("../ScareArea3D")
+max_scare_distance = 3
+scare_curve = SubResource("Curve_fa1rs")
+
+[node name="TriggerArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea3D"]
+shape = SubResource("CylinderShape3D_3qvmm")
+
+[node name="ScareArea3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScareArea3D"]
+shape = SubResource("SphereShape3D_tpf2b")
+
+[node name="Camera" parent="." instance=ExtResource("3_c3htl")]
