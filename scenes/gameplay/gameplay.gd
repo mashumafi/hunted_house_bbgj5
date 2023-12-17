@@ -7,6 +7,7 @@ func pre_start(params):
 
 func start():
 	print("gameplay.gd: start() called")
+	print(ParanormalActivity.get_possessables())
 
 func _process(delta: float) -> void:
 	pass
