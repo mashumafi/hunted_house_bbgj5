@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://d3nl5vgg0lhdm"]
 
 [ext_resource type="PackedScene" uid="uid://dchudpmvd8r2d" path="res://assets/models/Graveyard_Kit/candle.glb" id="1_5fij5"]
-[ext_resource type="Script" path="res://scenes/possessable/particles_possessable.gd" id="3_yexq0"]
+[ext_resource type="Script" path="res://scenes/possessable/visibility_possessable.gd" id="2_bmcu0"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="4_fcp23"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fftmf"]
@@ -46,9 +46,9 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_8bpwy")
 size = Vector2(0.05, 0.05)
 
-[sub_resource type="Curve" id="Curve_lwbu8"]
+[sub_resource type="Curve" id="Curve_jdbos"]
 max_value = 11.0
-_data = [Vector2(0, 9.41042), 0.0, 0.0, 0, 0, Vector2(0.553704, 4.73518), -19.3555, -19.3555, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.763967, 3.95658), -20.9547, -20.9547, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="Candle" type="Node3D"]
@@ -80,14 +80,21 @@ draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_0lmtj")
 draw_pass_1 = SubResource("PlaneMesh_hnsqe")
 
-[node name="FirePossessable" type="Node" parent="." node_paths=PackedStringArray("fire", "camera", "trigger_area", "scare_area")]
-script = ExtResource("3_yexq0")
-fire = [NodePath("../candle2/FireGPUParticles3D")]
+[node name="OmniLight3D" type="OmniLight3D" parent="candle2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.181131, 0)
+visible = false
+light_energy = 0.1
+omni_range = 1.0
+omni_attenuation = 0.9
+
+[node name="VisibilityPossessable" type="Node" parent="." node_paths=PackedStringArray("nodes", "camera", "trigger_area", "scare_area")]
+script = ExtResource("2_bmcu0")
+nodes = [NodePath("../candle2/FireGPUParticles3D"), NodePath("../candle2/OmniLight3D")]
 display_name = "Toggle Candle"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../candle2/TriggerArea3D")
 scare_area = NodePath("../candle2/ScareArea3D")
 max_scare_distance = 3
-scare_curve = SubResource("Curve_lwbu8")
+scare_curve = SubResource("Curve_jdbos")
 
 [node name="Camera" parent="." instance=ExtResource("4_fcp23")]

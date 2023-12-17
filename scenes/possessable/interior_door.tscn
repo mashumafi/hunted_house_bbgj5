@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://7j248s8w81tl"]
 
 [ext_resource type="PackedScene" uid="uid://dmcnrdibv1p5q" path="res://assets/models/Furniture_Kit/doorway.glb" id="1_ywl17"]
-[ext_resource type="Script" path="res://scenes/possessable/door_possessable.gd" id="2_gk8kd"]
+[ext_resource type="Script" path="res://scenes/possessable/rotation_possessable.gd" id="2_sssp3"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_rhf3n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_40pct"]
@@ -12,10 +12,10 @@ radius = 2.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_f732c"]
 size = Vector3(0.626404, 1, 0.342712)
 
-[sub_resource type="Curve" id="Curve_2unlr"]
+[sub_resource type="Curve" id="Curve_7c44a"]
 max_value = 11.0
-_data = [Vector2(0, 9.22383), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 11), 0.0, 0.0, 0, 0, Vector2(0.657821, 7.03808), -14.6209, -14.6209, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="InteriorDoor" type="Node3D"]
 
@@ -46,15 +46,16 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.503056, 0.597703, -0.0358582)
 shape = SubResource("BoxShape3D_f732c")
 
-[node name="DoorPossessable" type="Node" parent="." node_paths=PackedStringArray("door", "camera", "trigger_area", "scare_area")]
-script = ExtResource("2_gk8kd")
-door = NodePath("../doorway/doorway(Clone)/door")
+[node name="RotationPossessable" type="Node" parent="." node_paths=PackedStringArray("target", "camera", "trigger_area", "scare_area")]
+script = ExtResource("2_sssp3")
+target = NodePath("../doorway/doorway(Clone)/door")
+target_rotation = Vector3(2.08165e-12, 1.571, 2.08165e-12)
 display_name = "Toggle Door"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../doorway/TriggerArea3D")
 scare_area = NodePath("../doorway/ScareArea3D")
 max_scare_distance = 3
-scare_curve = SubResource("Curve_2unlr")
+scare_curve = SubResource("Curve_7c44a")
 
 [node name="Camera" parent="." instance=ExtResource("3_rhf3n")]
 

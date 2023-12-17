@@ -107,3 +107,4 @@ interact={
 3d_physics/layer_3="Possessable"
 3d_physics/layer_4="Ghost"
 3d_physics/layer_5="Hunter"
+3d_physics/layer_6="Door"
