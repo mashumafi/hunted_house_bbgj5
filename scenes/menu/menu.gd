@@ -14,6 +14,16 @@ func _ready():
 		AudioServer.set_bus_volume_db(main_bus_index, linear_to_db(volume))
 	)
 
+	var developers := [
+		"Matthew Murphy",
+		"Peyton Williams",
+	]
+	developers.shuffle()
+	for developer: String in developers:
+		var label := Label.new()
+		label.text = developer
+		$Credits.add_child(label)
+
 
 func _on_PlayButton_pressed() -> void:
 	var params = {
