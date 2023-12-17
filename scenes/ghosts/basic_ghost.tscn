@@ -1346,3 +1346,5 @@ initial_velocity_max = 2.0
 scale_amount_min = 0.25
 scale_amount_max = 0.6
 scale_amount_curve = SubResource("Curve_jef3q")
+
+[editable path="character-ghost"]

@@ -66,7 +66,7 @@ func try_scare() -> bool:
 
 	if not _can_scare:
 		return false
-		
+
 	trigger_sound.play()
 	_scare()
 	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
