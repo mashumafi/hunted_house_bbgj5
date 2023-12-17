@@ -135,6 +135,7 @@ libraries = {
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80243, 0)
 layers = 3
+emitting = false
 amount = 30
 lifetime = 0.5
 randomness = 0.44
@@ -146,6 +147,7 @@ draw_pass_1 = SubResource("SphereMesh_0b1dn")
 
 [node name="GPUParticles3DVortex" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01858, 0)
+emitting = false
 amount = 40
 lifetime = 0.7
 fixed_fps = 60
