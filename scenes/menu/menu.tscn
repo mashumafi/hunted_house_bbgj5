@@ -62,6 +62,17 @@ focus_neighbor_top = NodePath("../PlayButton")
 focus_previous = NodePath("../PlayButton")
 text = "EXIT"
 
+[node name="VolumeLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="VolumnSlider" type="HSlider" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
 [node name="Version" type="VBoxContainer" parent="."]
 layout_mode = 0
 anchor_top = 1.0
