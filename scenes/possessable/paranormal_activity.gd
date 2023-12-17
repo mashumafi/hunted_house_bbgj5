@@ -28,7 +28,7 @@ func filter_no_activity(possables: Array[Possessable]) -> Array[Possessable]:
 	)
 
 func filter_far_away(possables: Array[Possessable], global_position: Vector3, distance: float) -> Array[Possessable]:
-	return possables.filter(func(a: Possessable, b: Possessable) -> bool:
+	return possables.filter(func(a: Possessable) -> bool:
 		return a.trigger_area.global_position.distance_squared_to(global_position) <= distance
 	)
 
