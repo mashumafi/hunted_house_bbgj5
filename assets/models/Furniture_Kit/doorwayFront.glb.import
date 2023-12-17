@@ -33,7 +33,7 @@ _subresources={
 "nodes": {
 "PATH:doorwayFront(Clone)/door": {
 "generate/physics": true,
-"physics/layer": 36,
+"physics/layer": 32,
 "physics/mask": 0,
 "physics/shape_type": 3,
 "primitive/position": Vector3(0.2, 0.5, 2.08165e-12),
