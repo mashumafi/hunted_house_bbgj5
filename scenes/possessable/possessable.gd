@@ -50,12 +50,14 @@ func possess():
 	state = State.Possessed
 
 func try_scare() -> bool:
-	# TODO: Check ghost energy and consume it before trying to scare
+	HUD.energy_bar.value -= 8 # punish the player by subtracting the energy first
+	if HUD.energy_bar.value == 0:
+		return false
 	if not _can_scare:
 		return false
 
 	_scare()
-	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
+	for hunter: Node3D in scare_area.get_overlapping_bodies():
 		if not hunter.is_in_group("hunter"):
 			continue
 
@@ -82,12 +84,23 @@ func _scare() -> void:
 
 func _process(delta: float) -> void:
 	if state == State.Possessed:
+		HUD.energy_bar.value -= delta * 3
+		if HUD.energy_bar.value == 0.0:
+			exit()
+			return
+
 		if Input.is_action_just_pressed("interact"):
-			try_scare()
+			if not try_scare():
+				pass
+
 		if Input.get_vector("move_left", "move_right", "move_up", "move_down").length_squared() > 0:
-			state = State.Default
-			var ghost : Node3D = get_tree().get_nodes_in_group("ghost")[0]
-			ParanormalActivity.spawn_ghost(ghost)
+			exit()
+			return
+
+func exit():
+	state = State.Default
+	var ghost : Node3D = get_tree().get_nodes_in_group("ghost")[0]
+	ParanormalActivity.spawn_ghost(ghost)
 
 func investigated() -> void:
 	possessions_since_last_investigation = 0
