@@ -172,7 +172,6 @@ collision_mask = 8
 shape = SubResource("CylinderShape3D_bbkhd")
 
 [node name="ScareArea3D" type="Area3D" parent="toaster"]
-collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="toaster/ScareArea3D"]
 shape = SubResource("SphereShape3D_d64cw")
