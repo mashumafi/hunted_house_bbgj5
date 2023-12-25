@@ -1,6 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7h5efb8ef70j"]
+[gd_scene load_steps=9 format=3 uid="uid://c7h5efb8ef70j"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_fi4cc"]
+[ext_resource type="Shader" path="res://scenes/vignette.gdshader" id="2_vqo4l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tx2s8"]
+shader = ExtResource("2_vqo4l")
+shader_parameter/vignette_intensity = 2.08165e-12
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhgvg"]
 bg_color = Color(1, 1, 1, 1)
@@ -41,6 +48,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 97.0
 offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vignette" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_tx2s8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 

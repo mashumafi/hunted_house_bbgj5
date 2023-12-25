@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 			possession_meter_sprite.visible = true
 			possession_meter_particles.emitting = true
 			possession_meter.value = 0.0
+			HUD.show_vignette()
 			create_tween().tween_property(possession_meter, "value", 100.0, POSSESSION_DURATION)
 			_possession_target = ParanormalActivity.last_contact
 			var timer_id := Engine.get_process_frames()
@@ -83,6 +84,7 @@ func _process(delta: float) -> void:
 			state = State.Default
 			possession_meter_sprite.visible = false
 			possession_meter_particles.emitting = false
+			HUD.hide_vignette()
 		else:
 			velocity = velocity.move_toward(Vector3.ZERO, .8)
 
