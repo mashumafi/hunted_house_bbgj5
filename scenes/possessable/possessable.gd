@@ -114,6 +114,7 @@ func exit():
 	set_audio_effects_enabled(false)
 	var ghost : Node3D = get_tree().get_nodes_in_group("ghost")[0]
 	ParanormalActivity.spawn_ghost(ghost)
+	HUD.hide_vignette(.25)
 
 func investigated() -> void:
 	trigger_sound.play()
