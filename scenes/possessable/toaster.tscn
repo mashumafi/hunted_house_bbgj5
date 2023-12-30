@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://0837gpglwunl" path="res://assets/models/Food_Kit/bread.glb" id="2_i68ju"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_icd14"]
 [ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="4_rn2g8"]
-[ext_resource type="AudioStream" uid="uid://dbo6drsbe5jyv" path="res://assets/sfx/219509__jarredgibb__toaster-03.wav" id="5_7abxw"]
+[ext_resource type="AudioStream" path="res://assets/sfx/219509__jarredgibb__toaster-03.wav" id="5_7abxw"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bbkhd"]
 
@@ -159,10 +159,10 @@ point_count = 2
 transform = Transform3D(0.950244, 0, 0.311506, 0, 1, 0, -0.311506, 0, 0.950244, -0.321036, 0.420965, -0.246522)
 
 [node name="bread2" parent="toaster" instance=ExtResource("2_i68ju")]
-transform = Transform3D(0.00766782, -0.00926131, -0.199638, -0.197418, -0.0314449, -0.00612377, -0.0311044, 0.197296, -0.0103472, 0.00875574, 0.149284, -0.0267096)
+transform = Transform3D(0.00766782, -0.00926131, -0.199638, -0.197418, -0.0314449, -0.00612378, -0.0311044, 0.197296, -0.0103473, 0.00875574, 0.149284, -0.0267096)
 
 [node name="bread3" parent="toaster" instance=ExtResource("2_i68ju")]
-transform = Transform3D(0.00766782, -0.00926131, -0.199638, -0.197418, -0.0314449, -0.00612377, -0.0311044, 0.197296, -0.0103472, 0.0035271, 0.149284, 0.0197392)
+transform = Transform3D(0.00766782, -0.00926131, -0.199638, -0.197418, -0.0314449, -0.00612378, -0.0311044, 0.197296, -0.0103473, 0.0035271, 0.149284, 0.0197392)
 
 [node name="TriggerArea3D" type="Area3D" parent="toaster"]
 collision_layer = 0
@@ -188,7 +188,7 @@ libraries = {
 script = ExtResource("4_rn2g8")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["down", "pop"])
-display_name = "Toaster"
+display_name = "Possess Toaster"
 camera = NodePath("../toaster/Camera")
 trigger_area = NodePath("../toaster/TriggerArea3D")
 scare_area = NodePath("../toaster/ScareArea3D")

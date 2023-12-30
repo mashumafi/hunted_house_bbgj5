@@ -99,7 +99,7 @@ omni_attenuation = 0.9
 [node name="VisibilityPossessable" type="Node" parent="." node_paths=PackedStringArray("nodes", "camera", "trigger_area", "scare_area", "trigger_sound")]
 script = ExtResource("2_bmcu0")
 nodes = [NodePath("../candle2/OmniLight3D"), NodePath("../candle2/FireGPUParticles3D")]
-display_name = "Toggle Candle"
+display_name = "Possess Candle"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../candle2/TriggerArea3D")
 scare_area = NodePath("../candle2/ScareArea3D")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ddcjs6ptadkpi" path="res://assets/models/Furniture_Kit/bedDouble.glb" id="1_xfnj0"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="2_j323g"]
 [ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="3_0ltui"]
-[ext_resource type="AudioStream" uid="uid://ylvqwlg6x3i0" path="res://assets/sfx/246184__andreangelo__bite-growl-effect.wav" id="4_qt0nv"]
+[ext_resource type="AudioStream" path="res://assets/sfx/246184__andreangelo__bite-growl-effect.wav" id="4_qt0nv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nta4e"]
 
@@ -107,7 +107,7 @@ transform = Transform3D(-1, -6.18172e-08, 6.18172e-08, 2.4663e-16, 0.707107, 0.7
 script = ExtResource("3_0ltui")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["bite"])
-display_name = "Bed Monster"
+display_name = "Possess Bed Monster"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../bedDouble/TriggerArea3D")
 scare_area = NodePath("../bedDouble/ScareArea3D")

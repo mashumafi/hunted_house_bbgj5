@@ -1,6 +1,8 @@
 class_name Possessable
 extends Node
 
+const SCARE_MULTI = 0.66
+
 enum State {
 	Default,
 	Possessed,
@@ -72,10 +74,23 @@ func try_scare() -> bool:
 	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
 		if not hunter.is_in_group("hunter"):
 			continue
+			
+		var parent_node = get_parent()
+			
+		var space_state = parent_node.get_world_3d().direct_space_state
+
+		var query = PhysicsRayQueryParameters3D.create(
+			parent_node.global_position + Vector3(0, 0.25, 0),
+			hunter.global_position + Vector3(0, 0.25, 0),
+			0x1,  # 1 in hexadecimal for 1st collision layer (hunter + walls)
+			[]) # determine if excluding collision of of possessable is needed
+		var intersect = space_state.intersect_ray(query)
+		if not intersect.has("collider") or not intersect["collider"].is_in_group("hunter"):
+			continue
 
 		var trigger_position := trigger_area.global_position
 		var distance := hunter.global_position.distance_to(trigger_position)
-		hunter.scare(scare_curve.sample(remap(distance, 0, max_scare_distance, 0.0, 1.0)), trigger_position)
+		hunter.scare(scare_curve.sample(remap(distance, 0, max_scare_distance, 0.0, 1.0))  * SCARE_MULTI, trigger_position)
 
 	interactions_since_last_investigation += 1
 	_can_scare = false
