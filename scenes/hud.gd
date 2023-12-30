@@ -35,7 +35,13 @@ func _process(delta: float) -> void:
 	if time_left == 0.0:
 		ParanormalActivity.end_game.emit(false, "You ran out of time.")
 
-	timer_label.text = String.num_int64(time_left)
+	timer_label.text = get_time_formatted(time_left)
+	
+func get_time_formatted(time_left: float) -> String:
+	var seconds = fmod(time_left, 60)
+	var minutes = fmod(time_left, 3600) / 60
+	return "%01d:%02d" % [minutes, seconds]
+	
 
 func show_vignette(duration: float = 1.0) -> void:
 	create_tween().tween_method(set_vignette_intensity, get_vignette_intensity(), .4, duration)
