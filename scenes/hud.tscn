@@ -15,25 +15,43 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anv2r"]
-bg_color = Color(0.6, 0, 0.00784314, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyn5e"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.407843, 0, 0.00392157, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxc5l"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyn5e"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
 border_width_left = 2
 border_width_top = 2
+border_width_right = 2
 border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxc5l"]
+bg_color = Color(0.239216, 0.466667, 0.360784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_itnmu"]
 font_size = 100
@@ -46,8 +64,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 97.0
-offset_bottom = 97.0
+offset_top = 66.0
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -62,19 +80,22 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_right = 253.0
-offset_bottom = 58.0
+offset_left = 9.0
+offset_right = 262.0
+offset_bottom = 199.0
 
 [node name="HealthContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 
 [node name="HealthProgressBar" type="ProgressBar" parent="Control/VBoxContainer/HealthContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_fhgvg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_anv2r")
-value = 60.0
+value = 100.0
+show_percentage = false
 
 [node name="Health" type="Label" parent="Control/VBoxContainer/HealthContainer"]
 layout_mode = 2
@@ -85,12 +106,14 @@ layout_mode = 2
 
 [node name="EnergyProgressBar" type="ProgressBar" parent="Control/VBoxContainer/EnergyContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.392157, 0.392157, 0.392157, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_jyn5e")
 theme_override_styles/fill = SubResource("StyleBoxFlat_cxc5l")
-value = 80.0
+value = 99.96
+show_percentage = false
 
 [node name="Energy" type="Label" parent="Control/VBoxContainer/EnergyContainer"]
 layout_mode = 2
@@ -100,3 +123,27 @@ text = "Energy"
 unique_name_in_owner = true
 layout_mode = 2
 label_settings = SubResource("LabelSettings_itnmu")
+
+[node name="ControlsUI" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -299.0
+offset_top = -128.0
+offset_right = -7.0
+offset_bottom = -78.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Control/ControlsUI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+text = "Possess Object: [Space] (Hold)"
+
+[node name="Label2" type="Label" parent="Control/ControlsUI"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+text = "Scare: [Space] (while possessing object)"

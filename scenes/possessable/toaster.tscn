@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://0837gpglwunl" path="res://assets/models/Food_Kit/bread.glb" id="2_i68ju"]
 [ext_resource type="PackedScene" uid="uid://detvjbkeh7l8e" path="res://scenes/camera.tscn" id="3_icd14"]
 [ext_resource type="Script" path="res://scenes/possessable/anim_player_possessable.gd" id="4_rn2g8"]
-[ext_resource type="AudioStream" uid="uid://dbo6drsbe5jyv" path="res://assets/sfx/219509__jarredgibb__toaster-03.wav" id="5_7abxw"]
+[ext_resource type="AudioStream" path="res://assets/sfx/219509__jarredgibb__toaster-03.wav" id="5_7abxw"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_bbkhd"]
 
@@ -188,7 +188,7 @@ libraries = {
 script = ExtResource("4_rn2g8")
 anim_player = NodePath("../AnimationPlayer")
 scare_anim = Array[String](["down", "pop"])
-display_name = "Toaster"
+display_name = "Possess Toaster"
 camera = NodePath("../toaster/Camera")
 trigger_area = NodePath("../toaster/TriggerArea3D")
 scare_area = NodePath("../toaster/ScareArea3D")

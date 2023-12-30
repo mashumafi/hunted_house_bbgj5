@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bo5gfb7t8db8r"]
+[gd_scene load_steps=67 format=3 uid="uid://bo5gfb7t8db8r"]
 
 [ext_resource type="Script" path="res://scenes/hunters/hunter.gd" id="1_wgi2b"]
 [ext_resource type="PackedScene" uid="uid://llfndqsp4avx" path="res://assets/models/Graveyard_Kit/character-digger.glb" id="2_1780j"]
@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://c06w3ow4b2rcb" path="res://assets/sfx/219858__adriancalzon__scream-01.mp3" id="11_o77kb"]
 [ext_resource type="AudioStream" uid="uid://bquot282uqscd" path="res://assets/sfx/220619__adriancalzon__scream-02.mp3" id="12_0gi1i"]
 [ext_resource type="AudioStream" uid="uid://cjcctt5wam3gl" path="res://assets/sfx/220620__adriancalzon__scream-03.mp3" id="13_t2wdx"]
-[ext_resource type="AudioStream" uid="uid://bvmj00trkn8q8" path="res://assets/sfx/220621__adriancalzon__scream-04.mp3" id="14_5dw5o"]
 [ext_resource type="AudioStream" uid="uid://3odtk28rrk3d" path="res://assets/sfx/220623__adriancalzon__scream-05.mp3" id="15_mlihl"]
 [ext_resource type="AudioStream" uid="uid://b1kuha7mosfcf" path="res://assets/sfx/action-openbook01.wav" id="16_n2p43"]
 [ext_resource type="AudioStream" uid="uid://ckrdh32w4mw2g" path="res://assets/sfx/action-openbook02.wav" id="17_4h3fk"]
@@ -2168,17 +2167,15 @@ stream_1/stream = ExtResource("10_e04wp")
 stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lbsro"]
-streams_count = 5
+streams_count = 4
 stream_0/stream = ExtResource("11_o77kb")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("12_0gi1i")
 stream_1/weight = 1.0
 stream_2/stream = ExtResource("13_t2wdx")
 stream_2/weight = 1.0
-stream_3/stream = ExtResource("14_5dw5o")
+stream_3/stream = ExtResource("15_mlihl")
 stream_3/weight = 1.0
-stream_4/stream = ExtResource("15_mlihl")
-stream_4/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_orvm6"]
 streams_count = 2

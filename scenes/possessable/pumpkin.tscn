@@ -31,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.242615)
 [node name="ScalePossessable" type="Node" parent="." node_paths=PackedStringArray("node", "camera", "trigger_area", "scare_area", "trigger_sound") groups=["interactive", "possessable"]]
 script = ExtResource("2_kydgk")
 node = NodePath("../crop_pumpkin3")
-display_name = "Pumpkin Size"
+display_name = "Possess Pumpkin"
 camera = NodePath("../Camera")
 trigger_area = NodePath("../TriggerArea3D")
 scare_area = NodePath("../ScareArea3D")

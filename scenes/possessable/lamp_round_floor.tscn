@@ -45,7 +45,7 @@ shape = SubResource("SphereShape3D_raq3h")
 [node name="VisibilityPossessable" type="Node" parent="." node_paths=PackedStringArray("nodes", "camera", "trigger_area", "scare_area", "trigger_sound") groups=["interactive", "possessable"]]
 script = ExtResource("3_yhhrm")
 nodes = [NodePath("../lampRoundFloor/OmniLight3D")]
-display_name = "Toggle Lamp"
+display_name = "Possess Lamp"
 camera = NodePath("../lampRoundFloor/Camera")
 trigger_area = NodePath("../lampRoundFloor/TriggerArea3D")
 scare_area = NodePath("../lampRoundFloor/ScareArea3D")
