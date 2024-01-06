@@ -2,6 +2,7 @@ class_name Possessable
 extends Node
 
 const SCARE_MULTI = 0.66
+const SCARE_COST := 8
 
 enum State {
 	Default,
@@ -22,12 +23,12 @@ var state := State.Default
 @export var trigger_sound: AudioStreamPlayer3D
 
 # affects the scare curve
-@export var max_scare_distance := 2
+@export var max_scare_distance := 2.0
 
 # a curve for scare effectiveness based on distance
 @export var scare_curve: Curve
 
-@export var cooldown_sec := 1
+@export var cooldown_sec := 1.0
 
 var _can_scare := true
 
@@ -62,21 +63,23 @@ func possess():
 	state = State.Possessed
 
 func try_scare() -> bool:
-	HUD.energy_bar.value -= 8 # punish the player by subtracting the energy first
-	if HUD.energy_bar.value == 0:
+	if HUD.energy_bar.value <= SCARE_COST:
 		return false
 
 	if not _can_scare:
+		HUD.energy_bar.value -= SCARE_COST / 2.0 # Punish player if they scare too soon
 		return false
+
+	HUD.energy_bar.value -= SCARE_COST
 
 	trigger_sound.play()
 	_scare()
 	for hunter: Node3D in scare_area.get_overlapping_bodies():  # TODO: Use the hunter type
 		if not hunter.is_in_group("hunter"):
 			continue
-			
+
 		var parent_node = get_parent()
-			
+
 		var space_state = parent_node.get_world_3d().direct_space_state
 
 		var query = PhysicsRayQueryParameters3D.create(
@@ -85,12 +88,12 @@ func try_scare() -> bool:
 			0x1,  # 1 in hexadecimal for 1st collision layer (hunter + walls)
 			[]) # determine if excluding collision of of possessable is needed
 		var intersect = space_state.intersect_ray(query)
-		if not intersect.has("collider") or not intersect["collider"].is_in_group("hunter"):
-			continue
+		var blocked : bool = not intersect.has("collider") or not intersect["collider"].is_in_group("hunter")
 
 		var trigger_position := trigger_area.global_position
 		var distance := hunter.global_position.distance_to(trigger_position)
-		hunter.scare(scare_curve.sample(remap(distance, 0, max_scare_distance, 0.0, 1.0))  * SCARE_MULTI, trigger_position)
+		var distance_scaled : float = lerp(distance, max_scare_distance, .65) if blocked else distance
+		hunter.scare(scare_curve.sample(remap(distance_scaled, 0, max_scare_distance, 0.0, 1.0))  * SCARE_MULTI, trigger_position)
 
 	interactions_since_last_investigation += 1
 	_can_scare = false
@@ -111,7 +114,7 @@ func _scare() -> void:
 
 func _process(delta: float) -> void:
 	if state == State.Possessed:
-		HUD.energy_bar.value -= delta * 3
+		HUD.energy_bar.value -= delta * 3.5
 		if HUD.energy_bar.value == 0.0:
 			exit()
 			return
@@ -128,7 +131,7 @@ func exit():
 	state = State.Default
 	set_audio_effects_enabled(false)
 	var ghost : Node3D = get_tree().get_nodes_in_group("ghost")[0]
-	ParanormalActivity.spawn_ghost(ghost)
+	ParanormalActivity.spawn_ghost(ghost, true)
 	HUD.hide_vignette(.25)
 
 func investigated() -> void:
