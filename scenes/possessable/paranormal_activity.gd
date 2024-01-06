@@ -43,7 +43,7 @@ func sort_by_distance(possessables: Array[Possessable], global_position: Vector3
 		return a.trigger_area.global_position.distance_squared_to(global_position) < b.trigger_area.global_position.distance_squared_to(global_position)
 	)
 
-func spawn_ghost(node: Node3D):
+func spawn_ghost(node: Node3D, invulnerable := false):
 	var ghost := preload("res://scenes/ghosts/basic_ghost.tscn").instantiate()
 	var camera := preload("res://scenes/camera.tscn").instantiate()
 	var parent := node.get_parent()
@@ -52,4 +52,7 @@ func spawn_ghost(node: Node3D):
 	parent.add_child(ghost)
 	camera.current = true
 	ghost.global_position = node.global_position
+	if invulnerable:
+		ghost.start_invulnerable_timer(HUD.energy_bar.value / 16.0)
+		HUD.energy_bar.value = lerp(HUD.energy_bar.value, 100.0, .25)
 	node.queue_free()
