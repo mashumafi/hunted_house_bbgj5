@@ -246,7 +246,7 @@ func _physics_process(delta):
 
 	anim_tree.set("parameters/move_anim/blend_amount", remap(velocity.length(), 0, RUN_SPEED, -1, 1))
 	velocity += Vector3(0, GRAVITY * delta, 0)
-	
+
 	time_until_step -= delta * velocity.length() * 3
 	if time_until_step < 0:
 		time_until_step = 1
@@ -268,7 +268,7 @@ func ghost_raycast(ghost_pos: Vector3):
 func switch_state(new_state : STATE):
 	if new_state == state:
 		return
-		
+
 	if new_state == STATE.HUNTING:
 		gasp_audio.play()
 
@@ -289,7 +289,7 @@ func switch_state(new_state : STATE):
 	|| new_state == STATE.LEAVING):
 		anim_tree.set("parameters/hold_blend/blend_amount", 1)
 		flashlight.show()
-		
+
 	if (flashlight_orig != flashlight.visible):
 		flashlight_audio.play()
 
@@ -298,7 +298,7 @@ func switch_state(new_state : STATE):
 
 func scare(fear_amount: float, global_scare_location: Vector3):
 	scream_audio.play()
-	
+
 	fear += fear_amount
 	scare_meter.value = fear
 
