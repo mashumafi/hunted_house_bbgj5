@@ -64,10 +64,11 @@ func possess():
 
 func try_scare() -> bool:
 	if HUD.energy_bar.value <= SCARE_COST:
+		HUD.energy_bar.value = 0 # Punish the player more
 		return false
 
 	if not _can_scare:
-		HUD.energy_bar.value -= SCARE_COST / 2.0 # Punish player if they scare too soon
+		HUD.energy_bar.value -= SCARE_COST / 1.5 # Punish player if they scare too soon
 		return false
 
 	HUD.energy_bar.value -= SCARE_COST
@@ -93,7 +94,7 @@ func try_scare() -> bool:
 		var trigger_position := trigger_area.global_position
 		var distance := hunter.global_position.distance_to(trigger_position)
 		var distance_scaled : float = lerp(distance, max_scare_distance, .65) if blocked else distance
-		hunter.scare(scare_curve.sample(remap(distance_scaled, 0, max_scare_distance, 0.0, 1.0))  * SCARE_MULTI, trigger_position)
+		hunter.scare(scare_curve.sample(remap(distance_scaled, 0, max_scare_distance, 0.0, 1.0)) * SCARE_MULTI, trigger_position)
 
 	interactions_since_last_investigation += 1
 	_can_scare = false
