@@ -56,3 +56,8 @@ func spawn_ghost(node: Node3D, invulnerable := false):
 		ghost.start_invulnerable_timer(HUD.energy_bar.value / 16.0)
 		HUD.energy_bar.value = lerp(HUD.energy_bar.value, 100.0, .25)
 	node.queue_free()
+
+func set_audio_effects_enabled(enabled: bool):
+	var main_bus_index := AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_effect_enabled(main_bus_index, 0, enabled)
+	AudioServer.set_bus_effect_enabled(main_bus_index, 1, enabled)

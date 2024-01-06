@@ -23,6 +23,7 @@ func _ready() -> void:
 
 	visibility_changed.connect(func():
 		hide_vignette()
+		ParanormalActivity.set_audio_effects_enabled(false)
 	)
 
 	health_bar.value_changed.connect(func(value: float) -> void:
