@@ -6,6 +6,8 @@ enum State
 	Possessing,
 }
 
+var invulnerable := false
+
 var state := State.Default
 
 @export
@@ -40,6 +42,10 @@ var recently_damaged := false
 
 func _ready():
 	blend_tree.active = true
+
+	torso_surface_override.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	arm_left_surface_override.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	arm_right_surface_override.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
 	ghost_torso.set_surface_override_material(0, torso_surface_override)
 	ghost_arm_left.set_surface_override_material(0, arm_left_surface_override)
@@ -79,7 +85,7 @@ func _process(delta: float) -> void:
 			if velocity.length_squared() > 0:
 				ghost.rotation.y = lerp(ghost.rotation.y, atan2(velocity.x, velocity.z), .2)
 	elif state == State.Possessing:
-		HUD.energy_bar.value -= delta * 25
+		HUD.energy_bar.value -= delta * 20
 		if Input.is_action_just_released("interact") or HUD.energy_bar.value == 0.0:
 			state = State.Default
 			possession_meter_sprite.visible = false
@@ -92,6 +98,9 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 func take_damage(damage: float):
+	if invulnerable:
+		return
+
 	HUD.health_bar.value -= damage
 	HUD.energy_bar.value += damage * .8 # Gain energy from damage
 
@@ -110,3 +119,18 @@ func take_damage(damage: float):
 		hurt.call(torso_surface_override)
 		hurt.call(arm_left_surface_override)
 		hurt.call(arm_right_surface_override)
+
+func start_invulnerable_timer(time_sec: float) -> void:
+	invulnerable = true
+	var tween := create_tween()
+	var transparent := func(mat: StandardMaterial3D) -> void:
+		mat.albedo_color = Color.TRANSPARENT.lerp(Color.WHITE, .15)
+		tween.tween_property(mat, "albedo_color", Color.WHITE, time_sec / 8.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).set_delay(7.0 * time_sec / 8.0)
+
+	transparent.call(torso_surface_override)
+	transparent.call(arm_left_surface_override)
+	transparent.call(arm_right_surface_override)
+
+	get_tree().create_timer(time_sec).timeout.connect(func():
+		invulnerable = false
+	)
